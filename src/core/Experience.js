@@ -382,24 +382,67 @@ export class Experience {
         );
       };
 
+    const recoverMobileAudio = async () => {
+      this.adaptiveSoundscapeSystem.start();
+      await this.adaptiveSoundscapeSystem.resume();
+    };
+
+    window.addEventListener(
+      "pointerdown",
+      recoverMobileAudio,
+      { passive: true }
+    );
+
+    window.addEventListener(
+      "touchend",
+      recoverMobileAudio,
+      { passive: true }
+    );
+
+    window.addEventListener(
+      "pageshow",
+      recoverMobileAudio
+    );
+
+    document.addEventListener(
+      "visibilitychange",
+      () => {
+        if (!document.hidden) {
+          recoverMobileAudio();
+        }
+      }
+    );
+
     this.interfaceManager.onOpeningAudioActivated =
-      async () => {
-        this.adaptiveSoundscapeSystem.start();
-        await this.adaptiveSoundscapeSystem.resume();
+      () => {
+        const unlockPromise =
+          this.adaptiveSoundscapeSystem.unlockMobileAudio();
+
+        this.adaptiveSoundscapeSystem
+          .queueMobileLaunchSpeech(
+            "activation"
+          );
+
+        /*
+         * Schedule the cinematic sound immediately while the
+         * activation tap is still valid on iOS/WebKit.
+         */
         this.adaptiveSoundscapeSystem.playOpeningDopplerSequence();
+
+        return unlockPromise;
       };
 
     this.interfaceManager.onGenesisLoadingAudioRequested =
-      () => {
+      async () => {
         this.adaptiveSoundscapeSystem.start();
-        this.adaptiveSoundscapeSystem.resume();
+        await this.adaptiveSoundscapeSystem.resume();
         this.adaptiveSoundscapeSystem.playGenesisLoadingSequence();
       };
 
     this.interfaceManager.onBootSystemCheckAudioRequested =
-      (systemName, index) => {
+      async (systemName, index) => {
         this.adaptiveSoundscapeSystem.start();
-        this.adaptiveSoundscapeSystem.resume();
+        await this.adaptiveSoundscapeSystem.resume();
         this.adaptiveSoundscapeSystem.playBootSystemCheck(
           systemName,
           index
@@ -407,21 +450,22 @@ export class Experience {
       };
 
     this.interfaceManager.onPreflightAuthorizationAudioRequested =
-      () => {
+      async () => {
         this.adaptiveSoundscapeSystem.start();
-        this.adaptiveSoundscapeSystem.resume();
+        await this.adaptiveSoundscapeSystem.resume();
         this.adaptiveSoundscapeSystem.playPreflightAuthorization();
       };
 
     this.interfaceManager.onTakeFlightAudioRequested =
-      () => {
-        /*
-         * Cinematic audio occurs before onExperienceStarted.
-         * Initialize Web Audio inside the user's Take Flight click
-         * so browser gesture restrictions are satisfied.
-         */
+      async () => {
         this.adaptiveSoundscapeSystem.start();
-        this.adaptiveSoundscapeSystem.resume();
+
+        this.adaptiveSoundscapeSystem
+          .queueMobileLaunchSpeech(
+            "takeoff"
+          );
+
+        await this.adaptiveSoundscapeSystem.resume();
         this.adaptiveSoundscapeSystem.playTakeFlightCue();
       };
 
@@ -433,9 +477,15 @@ export class Experience {
       };
 
     this.interfaceManager.onLaunchCountdownAudioRequested =
-      (value) => {
+      async (value) => {
         this.adaptiveSoundscapeSystem.start();
-        this.adaptiveSoundscapeSystem.resume();
+        await this.adaptiveSoundscapeSystem.resume();
+
+        /*
+         * The visual hangar countdown is the single source of
+         * 3-2-1-LAUNCH narration. Earlier mobile speech no longer
+         * includes countdown numbers.
+         */
         this.adaptiveSoundscapeSystem.playCountdownCue(
           value
         );

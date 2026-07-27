@@ -250,6 +250,34 @@ export class InterfaceManager {
     this.destinationMarkerDragHandle = $("#destination-marker-drag-handle");
     this.destinationMarkerActions = $("#destination-marker-actions");
     this.destinationMarkerCollapse = $("#destination-marker-collapse");
+    this.mobileExplorerControls = $("#mobile-explorer-controls");
+    this.mobileCockpit = $("#mobile-cockpit");
+    this.mobileCockpitMinimize = $("#mobile-cockpit-minimize");
+    this.mobileCockpitAlert = $("#mobile-cockpit-alert");
+    this.mobileCockpitHelp = $("#mobile-cockpit-help");
+    this.mobileCockpitHelpDismiss = $("#mobile-cockpit-help-dismiss");
+    this.mobileCockpitAlertTitle = $("#mobile-cockpit-alert-title");
+    this.mobileCockpitAlertMessage = $("#mobile-cockpit-alert-message");
+    this.cockpitSpeed = $("#cockpit-speed");
+    this.cockpitAltitude = $("#cockpit-altitude");
+    this.cockpitWaypoint = $("#cockpit-waypoint");
+    this.cockpitStatus = $("#cockpit-status");
+    this.mobileCockpitAlertTimer = null;
+    this.mobileControlsCollapse = $("#mobile-controls-collapse");
+    this.mobileCinematicAudio = $("#mobile-cinematic-audio");
+    this.mobileHudTabs = $("#mobile-hud-tabs");
+    this.mobileSystemHologram = $("#mobile-system-hologram");
+    this.mobileSystemHologramToggle = $("#mobile-system-hologram-toggle");
+    this.mobileSystemSummary = $("#mobile-system-summary");
+    this.mobileSystemDetail = $("#mobile-system-detail");
+    this.mobileFlightChip = $("#mobile-flight-chip");
+    this.mobileFlightChipValue = $("#mobile-flight-chip-value");
+    this.mobileArrivalToast = $("#mobile-arrival-toast");
+    this.mobileArrivalTitle = $("#mobile-arrival-title");
+    this.mobileArrivalMessage = $("#mobile-arrival-message");
+    this.mobileArrivalLand = $("#mobile-arrival-land");
+    this.mobileOverlayTimers = new Map();
+    this.mobileTouchStart = null;
     this.destinationMarkerDragging = false;
     this.destinationMarkerCollapsed = false;
     this.destinationMarkerDragOffset = { x: 0, y: 0 };
@@ -423,6 +451,8 @@ export class InterfaceManager {
 
     this.started = false;
     this.bootCompleted = false;
+    this.bootCompletionWatchdog = null;
+    this.bootSequenceStartedAt = 0;
     this.missionCompleted = false;
     this.onOverlayClosed = null;
     this.onGenesisBootOpened = null;
@@ -458,6 +488,1294 @@ export class InterfaceManager {
     this.bindOpeningAudioActivation();
     this.initializeFloatingControls();
     this.initializeDestinationMarkerControls();
+    this.initializeMobileBootRecovery();
+    this.initializeRealMobileInterface();
+    this.initializeMobileExplorerControls();
+    this.initializeMobileUxPolish();
+    this.initializeMobileClearViewHud();
+    this.initializeMobileCockpit();
+  }
+
+  isRealMobileDevice() {
+    return window.matchMedia(
+      "(max-width: 760px), (pointer: coarse)"
+    ).matches;
+  }
+
+  scheduleMobileAutoHide(
+    element,
+    delay = 5200,
+    collapseClass = "is-hidden"
+  ) {
+    if (
+      !this.isRealMobileDevice() ||
+      !element
+    ) {
+      return;
+    }
+
+    const previous =
+      this.mobileOverlayTimers.get(element);
+
+    if (previous) {
+      window.clearTimeout(previous);
+    }
+
+    const timer =
+      window.setTimeout(
+        () => {
+          element.classList.add(
+            collapseClass
+          );
+
+          this.mobileOverlayTimers.delete(
+            element
+          );
+        },
+        delay
+      );
+
+    this.mobileOverlayTimers.set(
+      element,
+      timer
+    );
+  }
+
+  showMobileArrivalToast(
+    title,
+    message,
+    showLand = false
+  ) {
+    if (!this.isRealMobileDevice()) {
+      return;
+    }
+
+    if (this.mobileCockpit) {
+      this.showMobileCockpitAlert(
+        title || "DESTINATION",
+        message || "Approach ready.",
+        showLand
+          ? 7000
+          : 4200
+      );
+
+      return;
+    }
+
+    if (!this.mobileArrivalToast) {
+      return;
+    }
+
+    this.mobileArrivalTitle.textContent =
+      title || "DESTINATION";
+
+    this.mobileArrivalMessage.textContent =
+      message || "Approach ready.";
+
+    this.mobileArrivalLand.classList.toggle(
+      "is-hidden",
+      !showLand
+    );
+
+    this.mobileArrivalToast.classList.remove(
+      "is-hidden"
+    );
+
+    this.scheduleMobileAutoHide(
+      this.mobileArrivalToast,
+      showLand
+        ? 9000
+        : 4800
+    );
+  }
+
+  showMobileCockpitAlert(
+    title,
+    message,
+    duration = 3600
+  ) {
+    if (
+      !this.isRealMobileDevice() ||
+      !this.mobileCockpitAlert
+    ) {
+      return;
+    }
+
+    this.mobileCockpitAlertTitle.textContent =
+      title || "AURA";
+
+    this.mobileCockpitAlertMessage.textContent =
+      message || "Systems nominal.";
+
+    this.mobileCockpitAlert.classList.remove(
+      "is-hidden"
+    );
+
+    window.clearTimeout(
+      this.mobileCockpitAlertTimer
+    );
+
+    this.mobileCockpitAlertTimer =
+      window.setTimeout(
+        () => {
+          this.mobileCockpitAlert.classList.add(
+            "is-hidden"
+          );
+        },
+        duration
+      );
+  }
+
+  releaseAllMobileCockpitKeys() {
+    if (!this.mobileCockpit) {
+      return;
+    }
+
+    this.mobileCockpit
+      .querySelectorAll(
+        "[data-cockpit-key], [data-cockpit-tap]"
+      )
+      .forEach((button) => {
+        button.classList.remove(
+          "is-active"
+        );
+
+        const code =
+          button.dataset.cockpitKey ||
+          button.dataset.cockpitTap;
+
+        if (code) {
+          this.inputManager.releaseVirtualKey(
+            code
+          );
+        }
+
+        try {
+          if (
+            button.hasPointerCapture?.(
+              button.__activePointerId
+            )
+          ) {
+            button.releasePointerCapture(
+              button.__activePointerId
+            );
+          }
+        } catch {
+          // Pointer may already be released by the browser.
+        }
+
+        button.__activePointerId =
+          undefined;
+      });
+  }
+
+  activateMobileCockpitAfterLaunch() {
+    if (!this.isRealMobileDevice()) {
+      return;
+    }
+
+    document.documentElement.classList.add(
+      "mobile-cockpit-mode"
+    );
+
+    this.mobileCockpit.classList.remove(
+      "is-hidden",
+      "is-minimized"
+    );
+
+    this.mobileCockpitMinimize.textContent =
+      "⌄";
+
+    this.releaseAllMobileCockpitKeys();
+
+    this.mobileExplorerControls?.classList.add(
+      "is-hidden"
+    );
+
+    this.mobileHudTabs?.classList.add(
+      "is-hidden"
+    );
+
+    this.mobileSystemHologram?.classList.add(
+      "is-hidden"
+    );
+
+    this.mobileFlightChip?.classList.add(
+      "is-hidden"
+    );
+
+    if (
+      !sessionStorage.getItem(
+        "ees-mobile-cockpit-help-seen"
+      )
+    ) {
+      this.mobileCockpitHelp?.classList.remove(
+        "is-hidden"
+      );
+    }
+  }
+
+  initializeMobileCockpit() {
+    if (!this.mobileCockpit) {
+      return;
+    }
+
+    const holdButtons = [
+      ...this.mobileCockpit.querySelectorAll(
+        "[data-cockpit-key]"
+      )
+    ];
+
+    holdButtons.forEach((button) => {
+      const code =
+        button.dataset.cockpitKey;
+
+      const press = (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+
+        button.classList.add(
+          "is-active"
+        );
+
+        button.__activePointerId =
+          event.pointerId;
+
+        this.inputManager.pressVirtualKey(
+          code
+        );
+
+        button.setPointerCapture?.(
+          event.pointerId
+        );
+      };
+
+      const release = (event) => {
+        event?.preventDefault?.();
+
+        button.classList.remove(
+          "is-active"
+        );
+
+        button.__activePointerId =
+          undefined;
+
+        this.inputManager.releaseVirtualKey(
+          code
+        );
+      };
+
+      button.addEventListener(
+        "pointerdown",
+        press
+      );
+
+      button.addEventListener(
+        "pointerup",
+        release
+      );
+
+      button.addEventListener(
+        "pointercancel",
+        release
+      );
+
+      button.addEventListener(
+        "lostpointercapture",
+        release
+      );
+    });
+
+    this.mobileCockpit
+      .querySelectorAll(
+        "[data-cockpit-tap]"
+      )
+      .forEach((button) => {
+        button.addEventListener(
+          "pointerdown",
+          (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+
+            const code =
+              button.dataset.cockpitTap;
+
+            button.classList.add(
+              "is-active"
+            );
+
+            this.inputManager.pressVirtualKey(
+              code
+            );
+
+            window.setTimeout(
+              () => {
+                this.inputManager.releaseVirtualKey(
+                  code
+                );
+
+                button.classList.remove(
+                  "is-active"
+                );
+              },
+              code === "ShiftLeft"
+                ? 650
+                : 120
+            );
+          }
+        );
+      });
+
+    const commandMap = {
+      destinations: this.navigationPanel,
+      missions: this.missionPanel,
+      aura: this.auraCommandPanel,
+      system: this.systemConsole,
+      controls: this.controlsPanel
+    };
+
+    this.mobileCockpit
+      .querySelectorAll(
+        "[data-cockpit-action]"
+      )
+      .forEach((button) => {
+        button.addEventListener(
+          "click",
+          () => {
+            const target =
+              commandMap[
+                button.dataset.cockpitAction
+              ];
+
+            if (
+              button.dataset.cockpitAction ===
+              "takeoff"
+            ) {
+              this.requestImmediateTakeoff();
+              return;
+            }
+
+            if (!target) {
+              return;
+            }
+
+            [
+              this.navigationPanel,
+              this.missionPanel,
+              this.auraCommandPanel,
+              this.systemConsole,
+              this.controlsPanel
+            ]
+              .filter(Boolean)
+              .forEach((panel) => {
+                panel.classList.add(
+                  "is-hidden"
+                );
+
+                panel.classList.remove(
+                  "mobile-top-drawer"
+                );
+              });
+
+            target.classList.remove(
+              "is-hidden"
+            );
+
+            target.classList.add(
+              "mobile-cockpit-drawer"
+            );
+          }
+        );
+      });
+
+    const releaseCockpitControls =
+      () => {
+        this.releaseAllMobileCockpitKeys();
+      };
+
+    window.addEventListener(
+      "pointerup",
+      releaseCockpitControls,
+      {
+        passive: true
+      }
+    );
+
+    window.addEventListener(
+      "pointercancel",
+      releaseCockpitControls,
+      {
+        passive: true
+      }
+    );
+
+    window.addEventListener(
+      "blur",
+      releaseCockpitControls
+    );
+
+    document.addEventListener(
+      "visibilitychange",
+      () => {
+        if (document.hidden) {
+          releaseCockpitControls();
+        }
+      }
+    );
+
+    this.mobileCockpitHelpDismiss
+      ?.addEventListener(
+        "click",
+        () => {
+          this.mobileCockpitHelp.classList.add(
+            "is-hidden"
+          );
+
+          sessionStorage.setItem(
+            "ees-mobile-cockpit-help-seen",
+            "true"
+          );
+        }
+      );
+
+    this.mobileCockpitMinimize
+      ?.addEventListener(
+        "click",
+        () => {
+          this.mobileCockpit.classList.toggle(
+            "is-minimized"
+          );
+
+          this.mobileCockpitMinimize.textContent =
+            this.mobileCockpit.classList.contains(
+              "is-minimized"
+            )
+              ? "⌃"
+              : "⌄";
+        }
+      );
+
+    const updateCockpitTelemetry = () => {
+      if (!this.isRealMobileDevice()) {
+        return;
+      }
+
+      this.cockpitSpeed.textContent =
+        this.speedValue?.textContent ||
+        "0";
+
+      this.cockpitAltitude.textContent =
+        this.altitudeValue?.textContent ||
+        "0";
+
+      this.cockpitWaypoint.textContent =
+        this.waypointStatus?.textContent ||
+        "NONE";
+
+      this.cockpitStatus.textContent =
+        this.flightStatus?.textContent ||
+        "ONLINE";
+    };
+
+    window.setInterval(
+      updateCockpitTelemetry,
+      500
+    );
+
+    const mobileObserverTargets = [
+      {
+        element: this.systemMessage,
+        title: "SYSTEM"
+      },
+      {
+        element: this.guide,
+        title: "AURA"
+      },
+      {
+        element: this.facilityAiMessage,
+        title: "AURA"
+      },
+      {
+        element: this.verseActivityTicker,
+        title: "VERSE"
+      }
+    ];
+
+    mobileObserverTargets.forEach(
+      ({ element, title }) => {
+        if (!element) {
+          return;
+        }
+
+        const observer =
+          new MutationObserver(
+            () => {
+              if (
+                !this.isRealMobileDevice() ||
+                element.classList.contains(
+                  "is-hidden"
+                )
+              ) {
+                return;
+              }
+
+              const text =
+                element.textContent
+                  ?.replace(/\s+/g, " ")
+                  .trim();
+
+              if (text) {
+                this.showMobileCockpitAlert(
+                  title,
+                  text
+                );
+              }
+
+              element.classList.add(
+                "is-hidden"
+              );
+            }
+          );
+
+        observer.observe(
+          element,
+          {
+            attributes: true,
+            childList: true,
+            subtree: true
+          }
+        );
+      }
+    );
+
+    const applyCockpitMode = () => {
+      if (!this.isRealMobileDevice()) {
+        return;
+      }
+
+      /*
+       * Cockpit stays hidden during cinematic, boot, hangar,
+       * countdown, and arrival. It is activated only after
+       * control transfers into the Engineering Verse.
+       */
+      if (!this.started) {
+        document.documentElement.classList.remove(
+          "mobile-cockpit-mode"
+        );
+
+        this.mobileCockpit.classList.add(
+          "is-hidden"
+        );
+
+        this.releaseAllMobileCockpitKeys();
+
+        return;
+      }
+
+      this.activateMobileCockpitAfterLaunch();
+
+
+
+      [
+        this.missionHud,
+        this.missionPanel,
+        this.destinationMarker,
+        this.guidancePanel,
+        this.facilityArrivalBanner,
+        this.facilityAiMessage,
+        this.verseActivityTicker,
+        this.auraOperationsPanel,
+        this.facilityOperationsConsole
+      ]
+        .filter(Boolean)
+        .forEach((panel) => {
+          panel.classList.add(
+            "is-hidden"
+          );
+        });
+    };
+
+    applyCockpitMode();
+
+    window.addEventListener(
+      "resize",
+      applyCockpitMode
+    );
+
+    window.addEventListener(
+      "orientationchange",
+      () =>
+        window.setTimeout(
+          applyCockpitMode,
+          180
+        )
+    );
+  }
+
+  initializeMobileClearViewHud() {
+    if (
+      !this.mobileHudTabs ||
+      !this.mobileFlightChip
+    ) {
+      return;
+    }
+
+    const mobileOnly = () =>
+      this.isRealMobileDevice();
+
+    const hideAllMobileDrawers = () => {
+      [
+        this.missionHud,
+        this.missionPanel,
+        this.destinationMarker,
+        this.auraCommandPanel,
+        this.navigationPanel,
+        this.controlsPanel,
+        this.systemConsole
+      ]
+        .filter(Boolean)
+        .forEach((panel) => {
+          panel.classList.add(
+            "is-hidden"
+          );
+        });
+    };
+
+    const openTopDrawer = (panel) => {
+      if (!mobileOnly() || !panel) {
+        return;
+      }
+
+      hideAllMobileDrawers();
+
+      panel.classList.remove(
+        "is-hidden"
+      );
+
+      panel.classList.add(
+        "mobile-top-drawer"
+      );
+
+      this.scheduleMobileAutoHide(
+        panel,
+        7600
+      );
+    };
+
+    this.mobileHudTabs
+      .querySelectorAll(
+        "[data-mobile-action]"
+      )
+      .forEach((button) => {
+        button.addEventListener(
+          "click",
+          () => {
+            const action =
+              button.dataset.mobileAction;
+
+            if (action === "missions") {
+              openTopDrawer(
+                this.missionPanel
+              );
+              return;
+            }
+
+            if (action === "controls") {
+              openTopDrawer(
+                this.controlsPanel
+              );
+              return;
+            }
+
+            if (action === "destinations") {
+              openTopDrawer(
+                this.navigationPanel
+              );
+              return;
+            }
+
+            if (action === "aura") {
+              openTopDrawer(
+                this.auraCommandPanel
+              );
+              return;
+            }
+
+            if (action === "system") {
+              this.mobileSystemHologram
+                ?.classList.remove(
+                  "is-hidden"
+                );
+
+              this.mobileSystemHologram
+                ?.classList.toggle(
+                  "is-collapsed"
+                );
+            }
+          }
+        );
+      });
+
+    this.mobileSystemHologramToggle
+      ?.addEventListener(
+        "click",
+        () => {
+          this.mobileSystemHologram
+            .classList.toggle(
+              "is-collapsed"
+            );
+        }
+      );
+
+    this.mobileFlightChip
+      ?.addEventListener(
+        "click",
+        () => {
+          if (
+            this.missionHud.classList
+              .contains("is-hidden")
+          ) {
+            openTopDrawer(
+              this.missionHud
+            );
+          } else {
+            this.missionHud.classList.add(
+              "is-hidden"
+            );
+          }
+        }
+      );
+
+    const reflectMobileStatus = () => {
+      if (!mobileOnly()) {
+        return;
+      }
+
+      this.mobileFlightChipValue.textContent =
+        this.flightStatus?.textContent ||
+        "ONLINE";
+
+      const systemState =
+        this.systemInterfaceState
+          ?.textContent ||
+        "NOMINAL";
+
+      this.mobileSystemSummary.textContent =
+        systemState;
+
+      const auraState =
+        this.auraStatus?.textContent ||
+        "ONLINE";
+
+      const navState =
+        this.nearestZone?.textContent ||
+        "SCANNING";
+
+      this.mobileSystemDetail.textContent =
+        `AURA ${auraState} • ${navState}`;
+    };
+
+    window.setInterval(
+      reflectMobileStatus,
+      1000
+    );
+
+    const applyMobileClearView = () => {
+      if (!mobileOnly()) {
+        return;
+      }
+
+      hideAllMobileDrawers();
+
+      this.mobileHudTabs.classList.remove(
+        "is-hidden"
+      );
+
+      this.mobileSystemHologram
+        .classList.remove(
+          "is-hidden"
+        );
+
+      this.mobileSystemHologram
+        .classList.add(
+          "is-collapsed"
+        );
+
+      this.mobileFlightChip.classList.remove(
+        "is-hidden"
+      );
+
+      this.mobileExplorerControls
+        ?.classList.remove(
+          "is-hidden"
+        );
+
+      /*
+       * Landing and destination arrival should never leave
+       * desktop panels stacked at the bottom of a phone.
+       */
+      [
+        this.guidancePanel,
+        this.facilityAiMessage,
+        this.facilityArrivalBanner,
+        this.verseActivityTicker,
+        this.auraOperationsPanel,
+        this.facilityOperationsConsole
+      ]
+        .filter(Boolean)
+        .forEach((panel) => {
+          panel.classList.add(
+            "is-hidden"
+          );
+        });
+    };
+
+    applyMobileClearView();
+
+    window.addEventListener(
+      "resize",
+      applyMobileClearView
+    );
+
+    window.addEventListener(
+      "orientationchange",
+      () =>
+        window.setTimeout(
+          applyMobileClearView,
+          180
+        )
+    );
+  }
+
+  initializeMobileUxPolish() {
+    if (!this.mobileHudTabs) {
+      return;
+    }
+
+    const drawerMap = {
+      flight: this.missionHud,
+      mission: this.missionPanel,
+      waypoint: this.destinationMarker,
+      aura:
+        this.auraOperationsPanel ||
+        this.auraCommandPanel
+    };
+
+    this.mobileHudTabs
+      .querySelectorAll(
+        "[data-mobile-drawer]"
+      )
+      .forEach((button) => {
+        button.addEventListener(
+          "click",
+          () => {
+            const drawer =
+              drawerMap[
+                button.dataset.mobileDrawer
+              ];
+
+            if (!drawer) {
+              return;
+            }
+
+            const isHidden =
+              drawer.classList.contains(
+                "is-hidden"
+              );
+
+            Object.values(drawerMap)
+              .filter(Boolean)
+              .forEach((panel) => {
+                if (panel !== drawer) {
+                  panel.classList.add(
+                    "is-hidden"
+                  );
+                }
+              });
+
+            drawer.classList.toggle(
+              "is-hidden",
+              !isHidden
+            );
+
+            if (
+              drawer === this.missionHud &&
+              isHidden
+            ) {
+              drawer.classList.remove(
+                "mobile-collapsed"
+              );
+            }
+
+            if (
+              drawer === this.destinationMarker &&
+              isHidden
+            ) {
+              this.toggleDestinationMarkerCollapse(
+                true
+              );
+            }
+
+            if (isHidden) {
+              this.scheduleMobileAutoHide(
+                drawer,
+                6500
+              );
+            }
+          }
+        );
+      });
+
+    this.mobileArrivalLand?.addEventListener(
+      "click",
+      () => {
+        this.markerLandButton?.click();
+        this.mobileArrivalToast.classList.add(
+          "is-hidden"
+        );
+      }
+    );
+
+    this.navigationPanel?.addEventListener(
+      "click",
+      (event) => {
+        if (
+          this.isRealMobileDevice() &&
+          event.target.closest(
+            ".waypoint-action, [data-zone-id], button"
+          )
+        ) {
+          window.setTimeout(
+            () =>
+              this.closeNavigationPanel(),
+            180
+          );
+        }
+      }
+    );
+
+    const transientSelectors = [
+      "#facility-ai-message",
+      "#guidance-panel",
+      "#facility-arrival-banner",
+      "#verse-activity-ticker"
+    ];
+
+    transientSelectors.forEach(
+      (selector) => {
+        const element =
+          document.querySelector(selector);
+
+        if (!element) {
+          return;
+        }
+
+        const observer =
+          new MutationObserver(
+            () => {
+              if (
+                this.isRealMobileDevice() &&
+                !element.classList.contains(
+                  "is-hidden"
+                )
+              ) {
+                this.scheduleMobileAutoHide(
+                  element,
+                  4800
+                );
+              }
+            }
+          );
+
+        observer.observe(
+          element,
+          {
+            attributes: true,
+            childList: true,
+            subtree: true
+          }
+        );
+      }
+    );
+
+    const canvas =
+      document.querySelector(
+        "#experience-canvas"
+      );
+
+    canvas?.addEventListener(
+      "pointerdown",
+      (event) => {
+        if (
+          !this.isRealMobileDevice() ||
+          event.target !== canvas
+        ) {
+          return;
+        }
+
+        this.mobileTouchStart = {
+          x: event.clientX,
+          y: event.clientY
+        };
+      }
+    );
+
+    canvas?.addEventListener(
+      "pointermove",
+      (event) => {
+        if (
+          !this.mobileTouchStart ||
+          !this.isRealMobileDevice()
+        ) {
+          return;
+        }
+
+        const dx =
+          event.clientX -
+          this.mobileTouchStart.x;
+
+        const dy =
+          event.clientY -
+          this.mobileTouchStart.y;
+
+        if (
+          Math.abs(dx) < 22 &&
+          Math.abs(dy) < 22
+        ) {
+          return;
+        }
+
+        const code =
+          Math.abs(dx) >= Math.abs(dy)
+            ? (
+              dx > 0
+                ? "KeyD"
+                : "KeyA"
+            )
+            : (
+              dy < 0
+                ? "KeyE"
+                : "KeyQ"
+            );
+
+        this.inputManager.pressVirtualKey(
+          code
+        );
+
+        window.setTimeout(
+          () =>
+            this.inputManager.releaseVirtualKey(
+              code
+            ),
+          90
+        );
+
+        this.mobileTouchStart = {
+          x: event.clientX,
+          y: event.clientY
+        };
+      }
+    );
+
+    const clearTouch = () => {
+      this.mobileTouchStart = null;
+    };
+
+    canvas?.addEventListener(
+      "pointerup",
+      clearTouch
+    );
+
+    canvas?.addEventListener(
+      "pointercancel",
+      clearTouch
+    );
+  }
+
+  initializeMobileExplorerControls() {
+    if (!this.mobileExplorerControls) return;
+
+    const holdButtons = [
+      ...this.mobileExplorerControls.querySelectorAll("[data-mobile-key]")
+    ];
+
+    holdButtons.forEach((button) => {
+      const code = button.dataset.mobileKey;
+      const press = (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        button.classList.add("is-active");
+        this.inputManager.pressVirtualKey(code);
+        button.setPointerCapture?.(event.pointerId);
+      };
+      const release = (event) => {
+        event?.preventDefault?.();
+        button.classList.remove("is-active");
+        this.inputManager.releaseVirtualKey(code);
+      };
+      button.addEventListener("pointerdown", press);
+      button.addEventListener("pointerup", release);
+      button.addEventListener("pointercancel", release);
+      button.addEventListener("lostpointercapture", release);
+    });
+
+    this.mobileExplorerControls
+      .querySelectorAll("[data-mobile-tap]")
+      .forEach((button) => {
+        button.addEventListener("pointerdown", (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+          const code = button.dataset.mobileTap;
+          button.classList.add("is-active");
+          this.inputManager.pressVirtualKey(code);
+          window.setTimeout(() => {
+            this.inputManager.releaseVirtualKey(code);
+            button.classList.remove("is-active");
+          }, code === "ShiftLeft" ? 700 : 110);
+        });
+      });
+
+    this.mobileExplorerControls
+      .querySelector('[data-mobile-action="destinations"]')
+      ?.addEventListener("click", (event) => {
+        event.preventDefault();
+        this.navigationButton?.click();
+      });
+
+    this.mobileControlsCollapse?.addEventListener("click", () => {
+      this.mobileExplorerControls.classList.toggle("is-collapsed");
+      this.mobileControlsCollapse.textContent =
+        this.mobileExplorerControls.classList.contains("is-collapsed")
+          ? "+"
+          : "−";
+    });
+
+    window.addEventListener("blur", () => {
+      ["KeyW","KeyA","KeyS","KeyD","KeyQ","KeyE","ShiftLeft"]
+        .forEach((code) => this.inputManager.releaseVirtualKey(code));
+    });
+  }
+
+  initializeRealMobileInterface() {
+    const media =
+      window.matchMedia(
+        "(max-width: 760px), (pointer: coarse)"
+      );
+
+    const apply = () => {
+      document.documentElement.classList.toggle(
+        "real-mobile-device",
+        media.matches
+      );
+
+      if (!media.matches) {
+        this.missionHud?.classList.remove(
+          "mobile-collapsed"
+        );
+        return;
+      }
+
+      this.missionHud?.classList.add(
+        "mobile-collapsed"
+      );
+
+      /*
+       * Real phones should begin with the universe visible.
+       * Secondary floating panels remain available through
+       * command-deck controls rather than covering the canvas.
+       */
+      this.missionPanel?.classList.add(
+        "is-hidden"
+      );
+
+      this.auraOperationsPanel?.classList.add(
+        "is-collapsed"
+      );
+
+      this.facilityOperationsConsole?.classList.add(
+        "is-collapsed"
+      );
+    };
+
+    apply();
+
+    media.addEventListener?.(
+      "change",
+      apply
+    );
+
+    const heading =
+      this.missionHud?.querySelector(
+        ".hud-heading"
+      );
+
+    heading?.setAttribute(
+      "role",
+      "button"
+    );
+
+    heading?.setAttribute(
+      "tabindex",
+      "0"
+    );
+
+    heading?.setAttribute(
+      "aria-label",
+      "Toggle flight status"
+    );
+
+    const toggleHud = () => {
+      if (!media.matches) {
+        return;
+      }
+
+      this.missionHud.classList.toggle(
+        "mobile-collapsed"
+      );
+    };
+
+    heading?.addEventListener(
+      "click",
+      toggleHud
+    );
+
+    heading?.addEventListener(
+      "keydown",
+      (event) => {
+        if (
+          event.key === "Enter" ||
+          event.key === " "
+        ) {
+          event.preventDefault();
+          toggleHud();
+        }
+      }
+    );
+  }
+
+  initializeMobileBootRecovery() {
+    const restore = () => {
+      if (
+        this.bootCompleted &&
+        !this.bootScreen.classList.contains("is-hidden")
+      ) {
+        this.finalizeBootSequence();
+      }
+    };
+
+    window.addEventListener("resize", restore);
+    window.addEventListener(
+      "orientationchange",
+      () => window.setTimeout(restore, 180)
+    );
+    window.addEventListener("pageshow", restore);
+
+    document.addEventListener(
+      "visibilitychange",
+      () => {
+        if (!document.hidden) restore();
+      }
+    );
   }
 
   initializeDestinationMarkerControls() {
@@ -517,6 +1835,17 @@ export class InterfaceManager {
   }
 
   toggleDestinationMarkerCollapse(forceCollapsed = null) {
+    if (
+      this.isRealMobileDevice() &&
+      forceCollapsed === null
+    ) {
+      this.destinationMarker.classList.toggle(
+        "is-hidden"
+      );
+
+      return;
+    }
+
     this.destinationMarkerCollapsed =
       typeof forceCollapsed === "boolean"
         ? forceCollapsed
@@ -1058,25 +2387,59 @@ export class InterfaceManager {
       }
     );
 
+    this.portalContent.addEventListener(
+      "pointerup",
+      (event) => {
+        if (!this.isRealMobileDevice()) {
+          return;
+        }
+
+        const button =
+          event.target.closest(
+            "[data-portal-detail]"
+          );
+
+        if (!button) {
+          return;
+        }
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        this.openPortalDetail(
+          button.dataset.portalDetail
+        );
+      }
+    );
+
     this.portalTabs.forEach((tab) => tab.addEventListener("click", () => {
       this.portalTabs.forEach((item) => item.classList.remove("is-active"));
       tab.classList.add("is-active");
       this.renderPortalTab(tab.dataset.tab);
     }));
     this.closeWorldButton.addEventListener("click", () => this.closeDigitalWorld(false));
-    this.takeoffButton.addEventListener("click", () => {
-      if (typeof this.onTakeoffRequested === "function") this.onTakeoffRequested();
-    });
+    this.takeoffButton.addEventListener(
+      "click",
+      (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        this.requestImmediateTakeoff();
+      }
+    );
 
     this.returnFlightButton.addEventListener("click", () => {
       this.closeDigitalWorld(false);
       this.showMessage("Returned to landing pad. Select Take Off when ready.");
     });
 
-    this.portalTakeoffButton.addEventListener("click", () => {
-      this.closePortal(false);
-      if (typeof this.onTakeoffRequested === "function") this.onTakeoffRequested();
-    });
+    this.portalTakeoffButton.addEventListener(
+      "click",
+      (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        this.requestImmediateTakeoff();
+      }
+    );
 
     window.addEventListener("keydown", (event) => {
       if (event.code === "KeyT" && typeof this.onTakeoffRequested === "function") {
@@ -1120,6 +2483,17 @@ export class InterfaceManager {
 
         this.activateOpeningAudioButton.textContent =
           "INITIALIZING AUDIO...";
+
+        if (this.mobileCinematicAudio) {
+          try {
+            this.mobileCinematicAudio.currentTime = 0;
+            this.mobileCinematicAudio.volume = 0.82;
+            const playback = this.mobileCinematicAudio.play();
+            playback?.catch?.(() => {});
+          } catch (error) {
+            console.warn("Mobile cinematic audio could not start.", error);
+          }
+        }
 
         await this.onOpeningAudioActivated?.();
 
@@ -1481,6 +2855,34 @@ export class InterfaceManager {
     this.bootDiagnosticValue.textContent = "0%";
     this.bootDiagnosticRing.style.strokeDashoffset = "301.593";
     this.bootContinueButton.classList.add("is-hidden");
+    this.bootContinueButton.removeAttribute("style");
+    this.bootSequenceStartedAt = performance.now();
+
+    window.clearInterval(this.bootCompletionWatchdog);
+
+    this.bootCompletionWatchdog = window.setInterval(
+      () => {
+        if (this.bootCompleted) {
+          window.clearInterval(this.bootCompletionWatchdog);
+          this.bootCompletionWatchdog = null;
+          return;
+        }
+
+        const elapsed =
+          performance.now() - this.bootSequenceStartedAt;
+
+        const progress =
+          Number.parseInt(
+            this.bootProgressValue.textContent,
+            10
+          ) || 0;
+
+        if (progress >= 100 || elapsed >= 14500) {
+          this.finalizeBootSequence();
+        }
+      },
+      500
+    );
 
     this.bootSystemItems.forEach((item) => {
       item.classList.remove("is-online");
@@ -1489,23 +2891,7 @@ export class InterfaceManager {
 
     const runStep = (index) => {
       if (index >= steps.length) {
-        this.bootCompleted = true;
-        this.bootCoreState.textContent = "ONLINE";
-        this.bootCoreMessage.textContent =
-          "Identity Core synchronized — EES Genesis ready";
-        this.bootProgressLabel.textContent =
-          "EES GENESIS ONLINE";
-        this.bootFooterStatus.textContent =
-          "ALL SYSTEMS OPERATIONAL";
-        this.bootOverviewStatus.textContent =
-          "EXPLORER UNIT READY";
-        this.bootContinueButton.classList.remove("is-hidden");
-        this.onPreflightAuthorizationAudioRequested?.();
-
-        if (typeof this.onBootComplete === "function") {
-          this.onBootComplete();
-        }
-
+        this.finalizeBootSequence();
         return;
       }
 
@@ -1601,6 +2987,55 @@ export class InterfaceManager {
     };
 
     window.setTimeout(() => runStep(0), 420);
+  }
+
+  finalizeBootSequence() {
+    if (this.bootCompleted) {
+      this.bootContinueButton.classList.remove("is-hidden");
+      this.bootContinueButton.style.display = "grid";
+      this.bootContinueButton.style.visibility = "visible";
+      this.bootContinueButton.style.opacity = "1";
+      this.bootContinueButton.style.pointerEvents = "auto";
+      return;
+    }
+
+    this.bootCompleted = true;
+    window.clearInterval(this.bootCompletionWatchdog);
+    this.bootCompletionWatchdog = null;
+
+    this.bootCoreState.textContent = "ONLINE";
+    this.bootCoreMessage.textContent =
+      "Identity Core synchronized — EES Genesis ready";
+    this.bootProgressLabel.textContent = "EES GENESIS ONLINE";
+    this.bootProgressBar.style.width = "100%";
+    this.bootProgressValue.textContent = "100%";
+    this.bootDiagnosticValue.textContent = "100%";
+    this.bootDiagnosticRing.style.strokeDashoffset = "0";
+    this.bootFooterStatus.textContent = "ALL SYSTEMS OPERATIONAL";
+    this.bootOverviewStatus.textContent = "EXPLORER UNIT READY";
+
+    this.bootSystemItems.forEach((item) => {
+      item.classList.add("is-online");
+      const status = item.querySelector("strong");
+      if (status) status.textContent = "ONLINE";
+    });
+
+    this.bootContinueButton.classList.remove("is-hidden");
+    this.bootContinueButton.style.display = "grid";
+    this.bootContinueButton.style.visibility = "visible";
+    this.bootContinueButton.style.opacity = "1";
+    this.bootContinueButton.style.pointerEvents = "auto";
+
+    this.bootContinueButton.scrollIntoView?.({
+      block: "nearest",
+      inline: "nearest"
+    });
+
+    this.onPreflightAuthorizationAudioRequested?.();
+
+    if (typeof this.onBootComplete === "function") {
+      this.onBootComplete();
+    }
   }
 
   openFlightOperations() {
@@ -2019,6 +3454,12 @@ export class InterfaceManager {
     this.bootScreen.classList.add("is-hidden");
     this.hangarScreen.classList.add("is-hidden");
     this.missionHud.classList.remove("is-hidden");
+    if (document.documentElement.classList.contains("real-mobile-device")) {
+      this.activateMobileCockpitAfterLaunch();
+      this.missionHud?.classList.add("is-hidden");
+      this.missionPanel?.classList.add("is-hidden");
+      this.destinationMarker?.classList.add("is-hidden");
+    }
     this.crosshair.classList.remove("is-hidden");
     this.inputManager.setEnabled(true);
     this.setFlightStatus("ONLINE");
@@ -3241,7 +4682,37 @@ export class InterfaceManager {
   }
 
   showDestinationMarker() {
-    this.destinationMarker.classList.remove("is-hidden");
+    if (this.isRealMobileDevice()) {
+      this.destinationMarker.classList.add("is-hidden");
+      this.toggleDestinationMarkerCollapse(true);
+
+      /*
+       * Mobile uses the compact waypoint chip and arrival toast.
+       * Clear any desktop drag offsets that can expand or misplace
+       * the panel after a previous interaction.
+       */
+      this.destinationMarker.style.removeProperty(
+        "left"
+      );
+
+      this.destinationMarker.style.removeProperty(
+        "top"
+      );
+
+      this.destinationMarker.style.removeProperty(
+        "right"
+      );
+
+      this.destinationMarker.style.removeProperty(
+        "bottom"
+      );
+
+      return;
+    }
+
+    this.destinationMarker.classList.remove(
+      "is-hidden"
+    );
   }
 
   hideDestinationMarker() {
@@ -4308,6 +5779,16 @@ export class InterfaceManager {
       this.guidancePanel.classList.add("is-hidden");
       this.markerWaypointButton.textContent = "Set Waypoint";
 
+      if (this.isRealMobileDevice()) {
+        this.destinationMarker.classList.add(
+          "is-hidden"
+        );
+
+        this.mobileArrivalToast?.classList.add(
+          "is-hidden"
+        );
+      }
+
       this.mapNodeByZone.forEach((node) => node.classList.remove("is-active"));
       this.navItemByZone.forEach((item) => {
         item.classList.remove("is-active");
@@ -4326,6 +5807,30 @@ export class InterfaceManager {
     this.guidanceTitle.textContent = zone.title;
     this.guidanceDistance.textContent = Math.round(distance);
     this.guidancePanel.classList.remove("is-hidden");
+
+    if (this.isRealMobileDevice()) {
+      this.destinationMarker.classList.add(
+        "is-collapsed"
+      );
+
+      this.destinationMarkerCollapsed = true;
+
+      if (this.destinationMarkerCollapse) {
+        this.destinationMarkerCollapse.textContent =
+          "+";
+      }
+
+      this.showMobileArrivalToast(
+        `WAYPOINT: ${zone.title}`,
+        `${Math.round(distance)} units remaining`,
+        distance <= 14
+      );
+
+      this.scheduleMobileAutoHide(
+        this.guidancePanel,
+        4200
+      );
+    }
 
     this.markerTitle.textContent = `WAYPOINT: ${zone.title}`;
     this.markerDistance.textContent = Math.round(distance);
@@ -4353,6 +5858,18 @@ export class InterfaceManager {
   openPortal(zone) {
     if (!zone) return;
 
+    this.releaseAllMobileCockpitKeys();
+
+    if (this.isRealMobileDevice()) {
+      document.documentElement.classList.add(
+        "cockpit-interface-open"
+      );
+
+      this.mobileCockpit?.classList.add(
+        "interface-open"
+      );
+    }
+
     this.currentZone = zone;
     this.portalCode.textContent = `NODE-${zone.id.toUpperCase()}`;
     this.portalShell.dataset.zone = zone.id;
@@ -4377,6 +5894,19 @@ export class InterfaceManager {
     this.portalInterface.setAttribute("aria-hidden", "true");
 
     if (
+      this.isRealMobileDevice() &&
+      !returnToWorld
+    ) {
+      document.documentElement.classList.remove(
+        "cockpit-interface-open"
+      );
+
+      this.mobileCockpit?.classList.remove(
+        "interface-open"
+      );
+    }
+
+    if (
       returnToWorld &&
       this.currentZone &&
       this.digitalWorld &&
@@ -4384,6 +5914,16 @@ export class InterfaceManager {
     ) {
       this.digitalWorld.classList.add("is-open");
       this.digitalWorld.setAttribute("aria-hidden", "false");
+
+      if (this.isRealMobileDevice()) {
+        document.documentElement.classList.add(
+          "cockpit-interface-open"
+        );
+
+        this.mobileCockpit?.classList.add(
+          "interface-open"
+        );
+      }
     }
   }
 
@@ -4618,6 +6158,15 @@ export class InterfaceManager {
     this.portalDetailContent.innerHTML =
       this.renderPortalDetailContent(detail);
 
+    this.portalInterface.classList.add(
+      "detail-is-open"
+    );
+
+    this.portalInterface.setAttribute(
+      "aria-hidden",
+      "true"
+    );
+
     this.portalDetailOverlay.classList.add(
       "is-open"
     );
@@ -4626,6 +6175,13 @@ export class InterfaceManager {
       "aria-hidden",
       "false"
     );
+
+    if (this.isRealMobileDevice()) {
+      window.requestAnimationFrame(() => {
+        this.portalDetailOverlay.scrollTop = 0;
+        this.portalDetailContent.scrollTop = 0;
+      });
+    }
   }
 
   closePortalDetail() {
@@ -4636,6 +6192,10 @@ export class InterfaceManager {
     this.portalDetailOverlay.setAttribute(
       "aria-hidden",
       "true"
+    );
+
+    this.portalInterface.classList.remove(
+      "detail-is-open"
     );
 
     // Keep the destination portal open and interactive.
@@ -4826,8 +6386,41 @@ export class InterfaceManager {
     if (this.started) this.inputManager.setEnabled(true);
   }
 
+  requestImmediateTakeoff() {
+    this.releaseAllMobileCockpitKeys();
+
+    this.closePortal(false);
+    this.closeDigitalWorld(false);
+
+    document.activeElement?.blur?.();
+
+    if (this.started) {
+      this.inputManager.setEnabled(true);
+    }
+
+    window.requestAnimationFrame(() => {
+      if (
+        typeof this.onTakeoffRequested ===
+        "function"
+      ) {
+        this.onTakeoffRequested();
+      }
+    });
+  }
+
   openDigitalWorld(zone) {
+    this.releaseAllMobileCockpitKeys();
     this.inputManager.setEnabled(false);
+
+    if (this.isRealMobileDevice()) {
+      document.documentElement.classList.add(
+        "cockpit-interface-open"
+      );
+
+      this.mobileCockpit?.classList.add(
+        "interface-open"
+      );
+    }
 
     this.worldCategory.textContent = `${zone.category} // DIGITAL WORLD`;
     this.worldTitle.textContent = zone.title;
@@ -4857,12 +6450,34 @@ export class InterfaceManager {
 
     this.digitalWorld.classList.add("is-open");
     this.digitalWorld.setAttribute("aria-hidden", "false");
+
+    if (this.isRealMobileDevice()) {
+      window.requestAnimationFrame(
+        () => {
+          this.enterPortalButton?.scrollIntoView({
+            block: "nearest",
+            inline: "nearest"
+          });
+        }
+      );
+    }
+
     this.showMessage(`Digital world loaded: ${zone.title}`);
   }
 
   closeDigitalWorld(enableFlight = false) {
     this.digitalWorld.classList.remove("is-open");
     this.digitalWorld.setAttribute("aria-hidden", "true");
+
+    if (this.isRealMobileDevice()) {
+      document.documentElement.classList.remove(
+        "cockpit-interface-open"
+      );
+
+      this.mobileCockpit?.classList.remove(
+        "interface-open"
+      );
+    }
 
     if (enableFlight && this.started) {
       this.inputManager.setEnabled(true);

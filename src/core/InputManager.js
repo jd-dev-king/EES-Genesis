@@ -79,6 +79,21 @@ export class InputManager {
     this.pressed.clear();
   }
 
+  pressVirtualKey(code) {
+    if (!this.enabled) return;
+    if (!this.keys.has(code)) this.pressed.add(code);
+    this.keys.add(code);
+  }
+
+  releaseVirtualKey(code) {
+    this.keys.delete(code);
+  }
+
+  tapVirtualKey(code, duration = 90) {
+    this.pressVirtualKey(code);
+    window.setTimeout(() => this.releaseVirtualKey(code), duration);
+  }
+
   isPressed(code) {
     return (
       this.enabled &&

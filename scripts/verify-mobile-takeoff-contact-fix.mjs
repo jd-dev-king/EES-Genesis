@@ -3,11 +3,13 @@ import fs from "node:fs";
 const pkg = JSON.parse(
   fs.readFileSync("package.json", "utf8")
 );
+
 const html = fs.readFileSync("index.html", "utf8");
 const ui = fs.readFileSync(
   "src/ui/InterfaceManager.js",
   "utf8"
 );
+
 const css = fs.readFileSync(
   "src/style.css",
   "utf8"

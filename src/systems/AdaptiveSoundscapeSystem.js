@@ -24,6 +24,95 @@ export class AdaptiveSoundscapeSystem {
     this.ambientOscillator = null;
     this.secondaryOscillator = null;
     this.filter = null;
+    this.mobileKeepAliveOscillator = null;
+    this.mobileKeepAliveGain = null;
+  }
+
+  unlockMobileAudio() {
+    if (!this.started) {
+      this.started = true;
+      this.initializeAudio();
+    }
+
+    if (!this.audioContext) {
+      return Promise.resolve(false);
+    }
+
+    /*
+     * iOS/WebKit requires sound creation to happen synchronously
+     * inside the user's tap. Schedule a short confirmation tone
+     * immediately before any promise is awaited.
+     */
+    const now = this.audioContext.currentTime;
+    const oscillator =
+      this.audioContext.createOscillator();
+    const gain =
+      this.audioContext.createGain();
+
+    oscillator.type = "sine";
+    oscillator.frequency.setValueAtTime(
+      520,
+      now
+    );
+    oscillator.frequency.linearRampToValueAtTime(
+      780,
+      now + 0.18
+    );
+
+    gain.gain.setValueAtTime(
+      0.0001,
+      now
+    );
+    gain.gain.linearRampToValueAtTime(
+      0.055,
+      now + 0.018
+    );
+    gain.gain.exponentialRampToValueAtTime(
+      0.0001,
+      now + 0.34
+    );
+
+    oscillator.connect(gain);
+    gain.connect(this.masterGain);
+    oscillator.start(now);
+    oscillator.stop(now + 0.38);
+
+    if (!this.mobileKeepAliveOscillator) {
+      this.mobileKeepAliveOscillator =
+        this.audioContext.createOscillator();
+
+      this.mobileKeepAliveGain =
+        this.audioContext.createGain();
+
+      this.mobileKeepAliveOscillator.type =
+        "sine";
+
+      this.mobileKeepAliveOscillator.frequency.value =
+        18;
+
+      this.mobileKeepAliveGain.gain.value =
+        0.00001;
+
+      this.mobileKeepAliveOscillator.connect(
+        this.mobileKeepAliveGain
+      );
+
+      this.mobileKeepAliveGain.connect(
+        this.masterGain
+      );
+
+      this.mobileKeepAliveOscillator.start();
+    }
+
+    const resumePromise =
+      this.audioContext.state === "suspended"
+        ? this.audioContext.resume()
+        : Promise.resolve();
+
+    return resumePromise.then(
+      () =>
+        this.audioContext.state === "running"
+    );
   }
 
   start() {
@@ -730,6 +819,49 @@ export class AdaptiveSoundscapeSystem {
       o.connect(g);g.connect(this.masterGain);o.start(t);o.stop(t+.38);
     });
     window.setTimeout(()=>this.speakPreflightStatus("All systems okay. Take Flight is authorized."),420);
+  }
+
+  queueMobileLaunchSpeech(
+    phase = "activation"
+  ) {
+    if (
+      !("speechSynthesis" in window) ||
+      !("SpeechSynthesisUtterance" in window)
+    ) {
+      return;
+    }
+
+    window.speechSynthesis.cancel();
+
+    const text =
+      phase === "takeoff"
+        ? (
+          "Engine start. " +
+          "Flight systems nominal. " +
+          "Launch countdown ready."
+        )
+        : (
+          "Initializing Engineering Experience System."
+        );
+
+    const utterance =
+      new SpeechSynthesisUtterance(
+        text
+      );
+
+    utterance.rate = 0.82;
+    utterance.pitch = 0.78;
+    utterance.volume = Math.max(
+      0.75,
+      Math.min(
+        1,
+        this.volume * 1.8
+      )
+    );
+
+    window.speechSynthesis.speak(
+      utterance
+    );
   }
 
   speakPreflightStatus(message) {

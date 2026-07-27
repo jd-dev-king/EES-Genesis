@@ -8960,3 +8960,2758 @@ html[data-flight-context="docked"]
     transition-duration: .01ms !important;
   }
 }
+
+
+/* EES v1.0.1 — iOS Chrome/WebKit mobile boot hotfix */
+.identity-boot-screen {
+  min-height: 100vh;
+  min-height: 100dvh;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+.identity-boot-frame {
+  height: calc(100vh - 44px);
+  height: calc(100dvh - 44px);
+  max-height: calc(100dvh - 44px);
+}
+
+#boot-continue:not(.is-hidden) {
+  display: grid !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  position: relative;
+  z-index: 8;
+}
+
+@media (max-width: 760px) {
+  .identity-boot-screen {
+    height: 100dvh;
+    min-height: 100dvh;
+    padding:
+      max(6px, env(safe-area-inset-top))
+      max(6px, env(safe-area-inset-right))
+      max(6px, env(safe-area-inset-bottom))
+      max(6px, env(safe-area-inset-left));
+  }
+
+  .identity-boot-frame {
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+  }
+
+  .identity-boot-layout {
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 22px;
+  }
+
+  .identity-boot-footer {
+    position: sticky;
+    position: -webkit-sticky;
+    bottom: 0;
+    z-index: 12;
+    flex: 0 0 auto;
+    padding:
+      9px
+      max(10px, env(safe-area-inset-right))
+      max(10px, env(safe-area-inset-bottom))
+      max(10px, env(safe-area-inset-left));
+    background:
+      linear-gradient(
+        180deg,
+        rgba(2, 8, 23, .97),
+        rgba(3, 18, 42, .99)
+      );
+    box-shadow: 0 -18px 34px rgba(0, 0, 0, .45);
+  }
+
+  .identity-boot-footer > div {
+    display: none;
+  }
+
+  .identity-launch-button {
+    width: 100%;
+    max-width: 420px;
+    min-width: 0;
+    min-height: 56px;
+    margin: 0 auto;
+  }
+
+  .identity-core-stage {
+    min-height: 330px;
+  }
+
+  .boot-status-module,
+  .boot-sequence-module {
+    padding: 14px;
+  }
+}
+
+@supports not (height: 100dvh) {
+  @media (max-width: 760px) {
+    .identity-boot-screen {
+      height: -webkit-fill-available;
+      min-height: -webkit-fill-available;
+    }
+
+    .identity-boot-frame {
+      height: 100%;
+      max-height: 100%;
+    }
+  }
+}
+
+
+/* ================================================================
+   EES v1.0.2 — REAL DEVICE MOBILE EXPERIENCE
+   ================================================================ */
+
+@media (max-width: 760px), (pointer: coarse) {
+  html,
+  body,
+  #experience,
+  #interface {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  /* ---------- Arrival cinematic ---------- */
+
+  .genesis-cinematic {
+    width: 100vw;
+    width: 100dvw;
+    height: 100vh;
+    height: 100dvh;
+    min-height: 100dvh;
+  }
+
+  .arrival-corridor {
+    inset:
+      max(0px, env(safe-area-inset-top))
+      max(0px, env(safe-area-inset-right))
+      max(0px, env(safe-area-inset-bottom))
+      max(0px, env(safe-area-inset-left));
+    perspective: 620px;
+  }
+
+  .corridor-ceiling {
+    top: -3%;
+    left: 4%;
+    width: 92%;
+    height: 32%;
+  }
+
+  .corridor-wall {
+    width: 24%;
+  }
+
+  .corridor-floor {
+    left: 6%;
+    bottom: -10%;
+    width: 88%;
+    height: 50%;
+    gap: 4%;
+  }
+
+  .blast-door {
+    top: 4%;
+    height: 92%;
+    width: 50.5%;
+  }
+
+  .door-seam {
+    top: 6%;
+    bottom: 6%;
+  }
+
+  .cinematic-copy {
+    width: calc(100vw - 32px);
+    max-width: 430px;
+    padding:
+      max(64px, env(safe-area-inset-top))
+      8px
+      max(80px, env(safe-area-inset-bottom));
+  }
+
+  .cinematic-copy h1 {
+    margin-top: 12px;
+    font-size:
+      clamp(2rem, 12vw, 3.9rem);
+    line-height: .98;
+  }
+
+  #cinematic-message {
+    max-width: 340px;
+    font-size: .72rem;
+    line-height: 1.5;
+  }
+
+  .cinematic-progress-track {
+    width: min(320px, 82vw);
+    margin-top: 20px;
+  }
+
+  .cinematic-corner {
+    font-size: .48rem;
+  }
+
+  .corner-top-left,
+  .corner-top-right {
+    top:
+      max(
+        12px,
+        env(safe-area-inset-top)
+      );
+  }
+
+  .corner-top-left,
+  .corner-bottom-left {
+    left:
+      max(
+        12px,
+        env(safe-area-inset-left)
+      );
+  }
+
+  .corner-top-right,
+  .corner-bottom-right {
+    right:
+      max(
+        12px,
+        env(safe-area-inset-right)
+      );
+  }
+
+  .corner-bottom-left,
+  .corner-bottom-right {
+    bottom:
+      max(
+        12px,
+        env(safe-area-inset-bottom)
+      );
+  }
+
+  .skip-cinematic-button {
+    right:
+      max(
+        12px,
+        env(safe-area-inset-right)
+      );
+    bottom:
+      max(
+        52px,
+        calc(
+          env(safe-area-inset-bottom) +
+          10px
+        )
+      );
+  }
+
+  /* ---------- Identity boot ---------- */
+
+  .identity-boot-screen {
+    place-items: stretch;
+    padding:
+      max(4px, env(safe-area-inset-top))
+      max(4px, env(safe-area-inset-right))
+      max(4px, env(safe-area-inset-bottom))
+      max(4px, env(safe-area-inset-left));
+  }
+
+  .identity-boot-frame {
+    border-radius: 14px;
+  }
+
+  .identity-boot-topline {
+    grid-template-columns: 1fr;
+    gap: 3px;
+    padding: 8px 46px 8px 10px;
+  }
+
+  .identity-boot-topline span:last-child {
+    display: none;
+  }
+
+  .identity-boot-layout {
+    display: block;
+    padding: 8px;
+  }
+
+  .boot-status-module,
+  .boot-sequence-module {
+    width: 100%;
+    min-height: auto;
+    margin-bottom: 8px;
+  }
+
+  .boot-status-module {
+    display: none;
+  }
+
+  .identity-core-stage {
+    min-height: 290px;
+    height: 42vh;
+    height: 42dvh;
+    max-height: 360px;
+    margin-bottom: 8px;
+  }
+
+  .identity-core-stage h1,
+  .identity-core-title {
+    font-size:
+      clamp(1.35rem, 8vw, 2.5rem);
+  }
+
+  .boot-sequence-module {
+    max-height: 29vh;
+    max-height: 29dvh;
+    overflow: auto;
+  }
+
+  .identity-boot-footer {
+    min-height: 68px;
+  }
+
+  /* ---------- Mobile command deck ---------- */
+
+  .top-bar {
+    min-height: 52px;
+    padding:
+      max(6px, env(safe-area-inset-top))
+      8px
+      4px;
+    align-items: flex-start;
+  }
+
+  .brand {
+    max-width: 44vw;
+    min-width: 0;
+  }
+
+  .brand-copy strong {
+    font-size: .56rem;
+  }
+
+  .brand-copy small {
+    display: none;
+  }
+
+  .flight-computer-shell {
+    top:
+      max(
+        4px,
+        env(safe-area-inset-top)
+      );
+    left: auto;
+    right: 52px;
+    min-width: 116px;
+    max-width: 150px;
+    padding: 4px 8px;
+    border-radius: 9px;
+    transform: none;
+    text-align: right;
+  }
+
+  .flight-computer-shell span {
+    font-size: .38rem;
+  }
+
+  .flight-computer-shell strong {
+    max-width: 136px;
+    overflow: hidden;
+    font-size: .39rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  [data-flight-computer] {
+    position: fixed !important;
+    z-index: 62 !important;
+    top:
+      max(
+        56px,
+        calc(
+          env(safe-area-inset-top) +
+          48px
+        )
+      ) !important;
+    left: 8px !important;
+    right: 8px !important;
+    width: auto !important;
+    max-width: none !important;
+    display: flex !important;
+    gap: 6px !important;
+    padding: 6px !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    transform: none !important;
+    border:
+      1px solid rgba(89, 208, 255, .22);
+    border-radius: 12px;
+    background:
+      rgba(2, 12, 29, .84);
+    box-shadow:
+      0 12px 30px rgba(0, 0, 0, .34);
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  [data-flight-computer]::-webkit-scrollbar {
+    display: none;
+  }
+
+  [data-flight-computer] .interface-button {
+    flex: 0 0 auto;
+    min-height: 32px;
+    padding: 7px 10px;
+    font-size: .53rem;
+    white-space: nowrap;
+  }
+
+  .system-console-toggle {
+    top:
+      max(
+        8px,
+        env(safe-area-inset-top)
+      ) !important;
+    right: 8px !important;
+    width: 38px;
+    min-width: 38px;
+    height: 38px;
+    padding: 0;
+    overflow: hidden;
+    font-size: 0;
+  }
+
+  .system-console-toggle::after {
+    content: "SYS";
+    font-size: .48rem;
+    font-weight: 900;
+    letter-spacing: .06em;
+  }
+
+  /* ---------- Compact flight status ---------- */
+
+  .mission-hud {
+    position: fixed;
+    z-index: 61;
+    top: auto;
+    right: 8px;
+    bottom:
+      max(
+        8px,
+        env(safe-area-inset-bottom)
+      );
+    left: 8px;
+    width: auto;
+    max-height: min(62dvh, 470px);
+    padding: 10px 12px;
+    overflow-y: auto;
+    border-radius: 14px;
+    background:
+      rgba(3, 16, 36, .9);
+    box-shadow:
+      0 14px 40px rgba(0, 0, 0, .42);
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .mission-hud .hud-heading {
+    min-height: 30px;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  .mission-hud .hud-heading::after {
+    content: "−";
+    flex: 0 0 auto;
+    display: grid;
+    place-items: center;
+    width: 25px;
+    height: 25px;
+    border:
+      1px solid rgba(101, 219, 255, .24);
+    border-radius: 7px;
+    color: #85e8ff;
+    font-weight: 900;
+  }
+
+  .mission-hud.mobile-collapsed {
+    max-height: none;
+    overflow: hidden;
+  }
+
+  .mission-hud.mobile-collapsed
+  .hud-heading {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  .mission-hud.mobile-collapsed
+  .hud-heading::after {
+    content: "+";
+  }
+
+  .mission-hud.mobile-collapsed
+  .hud-row,
+  .mission-hud.mobile-collapsed
+  .hud-divider {
+    display: none;
+  }
+
+  .mission-hud.mobile-collapsed
+  .hud-heading span {
+    font-size: .58rem;
+  }
+
+  .mission-hud.mobile-collapsed
+  .hud-heading strong {
+    max-width: 52vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .mission-panel,
+  .aura-operations-panel,
+  .facility-operations-console {
+    max-width: calc(100vw - 16px);
+  }
+
+  .mission-panel {
+    display: none !important;
+  }
+
+  /* ---------- Other floating UI ---------- */
+
+  .destination-marker {
+    top:
+      max(
+        102px,
+        calc(
+          env(safe-area-inset-top) +
+          94px
+        )
+      ) !important;
+    right: 8px !important;
+    left: 8px !important;
+    width: auto !important;
+    max-width: none !important;
+  }
+
+  .aura-presence-callout,
+  .verse-activity-ticker,
+  .facility-arrival-banner {
+    right: 8px;
+    left: 8px;
+    width: auto;
+    max-width: none;
+  }
+
+  .floating-controls,
+  .robot-controls,
+  [data-panel-label="Robot Controls"] {
+    top: auto !important;
+    right: 8px !important;
+    bottom:
+      calc(
+        env(safe-area-inset-bottom) +
+        66px
+      ) !important;
+    left: auto !important;
+    max-width: calc(100vw - 16px);
+  }
+
+  .system-console,
+  .navigation-panel,
+  .help-panel,
+  .aura-command-panel,
+  .digital-twin-panel,
+  .operations-panel,
+  .discoveries-panel,
+  .mission-log-panel {
+    top:
+      max(
+        102px,
+        calc(
+          env(safe-area-inset-top) +
+          94px
+        )
+      ) !important;
+    right: 8px !important;
+    bottom:
+      max(
+        8px,
+        env(safe-area-inset-bottom)
+      ) !important;
+    left: 8px !important;
+    width: auto !important;
+    max-width: none !important;
+    max-height:
+      calc(
+        100dvh -
+        env(safe-area-inset-top) -
+        env(safe-area-inset-bottom) -
+        112px
+      ) !important;
+    overflow: auto !important;
+  }
+
+  .crosshair {
+    display: none;
+  }
+}
+
+@supports not (height: 100dvh) {
+  @media (max-width: 760px), (pointer: coarse) {
+    .genesis-cinematic {
+      height: -webkit-fill-available;
+      min-height: -webkit-fill-available;
+    }
+
+    .mission-hud {
+      max-height: 62vh;
+    }
+  }
+}
+
+
+/* ================================================================
+   EES v1.1.0 — MOBILE EXPLORER CONTROLS
+   ================================================================ */
+.mobile-explorer-controls { display:none; }
+@media (max-width:760px), (pointer:coarse) {
+  .mobile-explorer-controls {
+    position:fixed; z-index:70; right:8px; bottom:max(8px,env(safe-area-inset-bottom)); left:8px;
+    display:grid; grid-template-columns:132px minmax(72px,1fr) 150px; align-items:end; gap:8px;
+    pointer-events:none;
+  }
+  .mobile-explorer-controls.is-hidden { display:none!important; }
+  .mobile-explorer-controls button { pointer-events:auto; touch-action:none; user-select:none; -webkit-user-select:none; border:1px solid rgba(91,214,255,.34); color:#eaf8ff; background:rgba(3,18,40,.9); box-shadow:0 8px 24px rgba(0,0,0,.38); font-weight:900; letter-spacing:.05em; }
+  .mobile-explorer-controls button.is-active { transform:scale(.94); background:rgba(24,116,169,.94); box-shadow:0 0 22px rgba(62,215,255,.35); }
+  .mobile-stick { position:relative; width:132px; height:132px; border-radius:50%; border:1px solid rgba(91,214,255,.18); background:rgba(2,12,28,.58); pointer-events:none; }
+  .mobile-stick button { position:absolute; width:44px; height:44px; border-radius:13px; font-size:1rem; }
+  .mobile-stick button:nth-child(1){left:44px;top:4px}.mobile-stick button:nth-child(2){left:4px;top:44px}.mobile-stick button:nth-child(3){left:44px;bottom:4px}.mobile-stick button:nth-child(4){right:4px;top:44px}
+  .mobile-stick span { position:absolute; inset:0; display:grid; place-items:center; color:#72ddff; font-size:.45rem; font-weight:900; letter-spacing:.12em; }
+  .mobile-altitude-controls { display:grid; gap:7px; align-self:center; }
+  .mobile-altitude-controls button { min-height:44px; border-radius:12px; font-size:.55rem; }
+  .mobile-action-controls { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:6px; }
+  .mobile-action-controls button { min-height:40px; border-radius:10px; padding:6px; font-size:.5rem; }
+  .mobile-controls-collapse { position:absolute; right:0; bottom:100%; width:34px; height:30px; border-radius:9px 9px 0 0; }
+  .mobile-explorer-controls.is-collapsed { grid-template-columns:1fr; left:auto; width:52px; }
+  .mobile-explorer-controls.is-collapsed .mobile-stick,
+  .mobile-explorer-controls.is-collapsed .mobile-altitude-controls,
+  .mobile-explorer-controls.is-collapsed .mobile-action-controls { display:none; }
+  .mission-hud { bottom:calc(max(8px,env(safe-area-inset-bottom)) + 144px); }
+  .mission-hud.mobile-collapsed { bottom:calc(max(8px,env(safe-area-inset-bottom)) + 144px); }
+  .mobile-explorer-controls.is-collapsed ~ .mission-hud { bottom:max(8px,env(safe-area-inset-bottom)); }
+}
+@media (max-width:430px) {
+  .mobile-explorer-controls { grid-template-columns:118px minmax(64px,1fr) 132px; gap:5px; }
+  .mobile-stick { width:118px;height:118px; }
+  .mobile-stick button { width:40px;height:40px; }
+  .mobile-stick button:nth-child(1){left:39px}.mobile-stick button:nth-child(2){top:39px}.mobile-stick button:nth-child(3){left:39px}.mobile-stick button:nth-child(4){top:39px}
+  .mobile-action-controls button { min-height:36px; font-size:.46rem; }
+}
+
+
+/* ================================================================
+   EES v1.1.1 — MOBILE UX POLISH
+   ================================================================ */
+
+.mobile-hud-tabs,
+.mobile-arrival-toast {
+  display: none;
+}
+
+@media (max-width: 760px), (pointer: coarse) {
+  .mobile-hud-tabs {
+    position: fixed;
+    z-index: 68;
+    right: 8px;
+    bottom:
+      calc(
+        env(safe-area-inset-bottom) +
+        132px
+      );
+    left: 8px;
+    display: grid;
+    grid-template-columns:
+      repeat(4, minmax(0, 1fr));
+    gap: 5px;
+    padding: 6px;
+    border:
+      1px solid rgba(82, 211, 255, .22);
+    border-radius: 12px;
+    background:
+      rgba(2, 13, 31, .88);
+    box-shadow:
+      0 12px 32px rgba(0, 0, 0, .4);
+  }
+
+  .mobile-hud-tabs.is-hidden {
+    display: none;
+  }
+
+  .mobile-hud-tabs button {
+    min-width: 0;
+    min-height: 32px;
+    padding: 5px 3px;
+    border:
+      1px solid rgba(86, 206, 255, .18);
+    border-radius: 8px;
+    color: #bceeff;
+    background:
+      rgba(5, 35, 66, .78);
+    font-size: .44rem;
+    font-weight: 900;
+    letter-spacing: .06em;
+  }
+
+  .mobile-arrival-toast {
+    position: fixed;
+    z-index: 84;
+    top:
+      max(
+        108px,
+        calc(
+          env(safe-area-inset-top) +
+          98px
+        )
+      );
+    right: 10px;
+    left: 10px;
+    display: grid;
+    grid-template-columns:
+      minmax(0, 1fr)
+      auto;
+    align-items: center;
+    gap: 4px 10px;
+    padding: 10px 12px;
+    border:
+      1px solid rgba(85, 222, 255, .38);
+    border-radius: 13px;
+    background:
+      linear-gradient(
+        135deg,
+        rgba(3, 20, 44, .96),
+        rgba(6, 43, 74, .94)
+      );
+    box-shadow:
+      0 15px 44px rgba(0, 0, 0, .5),
+      0 0 26px rgba(65, 207, 255, .14);
+  }
+
+  .mobile-arrival-toast.is-hidden {
+    display: none;
+  }
+
+  .mobile-arrival-toast strong {
+    color: #73e5ff;
+    font-size: .58rem;
+    letter-spacing: .1em;
+  }
+
+  .mobile-arrival-toast span {
+    grid-column: 1;
+    color: #d9effa;
+    font-size: .65rem;
+  }
+
+  .mobile-arrival-toast button {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    min-height: 42px;
+    padding: 8px 13px;
+    border: 0;
+    border-radius: 9px;
+    color: #03101d;
+    background: #60d7ff;
+    font-size: .58rem;
+    font-weight: 950;
+  }
+
+  .mobile-arrival-toast button.is-hidden {
+    display: none;
+  }
+
+  .destination-marker.is-collapsed {
+    top:
+      max(
+        104px,
+        calc(
+          env(safe-area-inset-top) +
+          96px
+        )
+      ) !important;
+    right: 10px !important;
+    left: auto !important;
+    width: min(248px, calc(100vw - 20px)) !important;
+    min-height: 44px;
+    padding: 7px 42px 7px 9px;
+  }
+
+  .destination-marker.is-collapsed
+  .marker-copy strong {
+    font-size: .55rem;
+  }
+
+  .destination-marker.is-collapsed
+  .marker-copy small {
+    font-size: .46rem;
+  }
+
+  .guidance-panel,
+  .mission-panel,
+  .facility-arrival-banner,
+  .verse-activity-ticker {
+    max-height: 34dvh;
+    overflow: auto;
+  }
+
+  .aura-sector-report,
+  .aura-guide-card,
+  .facility-ai-message {
+    max-height: 42dvh;
+    overflow: auto;
+  }
+
+  .mobile-explorer-controls {
+    z-index: 72;
+  }
+
+  .mobile-explorer-controls:not(.is-collapsed)
+  ~ .mobile-hud-tabs {
+    bottom:
+      calc(
+        env(safe-area-inset-bottom) +
+        142px
+      );
+  }
+
+  .mobile-explorer-controls.is-collapsed
+  ~ .mobile-hud-tabs {
+    bottom:
+      calc(
+        env(safe-area-inset-bottom) +
+        8px
+      );
+    right: 64px;
+  }
+
+  #experience-canvas {
+    touch-action: none;
+  }
+}
+
+
+/* ================================================================
+   EES v1.1.2 — MOBILE WAYPOINT VISIBILITY FIX
+   ================================================================ */
+
+@media (max-width: 760px), (pointer: coarse) {
+  html.real-mobile-device
+  .destination-marker {
+    position: fixed !important;
+    z-index: 78 !important;
+    top:
+      max(
+        104px,
+        calc(
+          env(safe-area-inset-top) +
+          96px
+        )
+      ) !important;
+    right: 8px !important;
+    bottom: auto !important;
+    left: auto !important;
+    width:
+      min(
+        224px,
+        calc(100vw - 16px)
+      ) !important;
+    min-width: 0 !important;
+    max-width:
+      min(
+        224px,
+        calc(100vw - 16px)
+      ) !important;
+    min-height: 42px !important;
+    max-height: 48px !important;
+    display: flex;
+    flex-wrap: nowrap !important;
+    align-items: center;
+    gap: 5px !important;
+    padding:
+      6px
+      36px
+      6px
+      8px !important;
+    overflow: hidden !important;
+    border-radius: 11px !important;
+    background:
+      rgba(2, 18, 40, .9) !important;
+    box-shadow:
+      0 10px 28px rgba(0, 0, 0, .38),
+      0 0 20px rgba(71, 207, 255, .12) !important;
+    transform: none !important;
+  }
+
+  html.real-mobile-device
+  .destination-marker.is-hidden {
+    display: none !important;
+  }
+
+  html.real-mobile-device
+  .destination-marker
+  .destination-marker-actions {
+    display: none !important;
+  }
+
+  html.real-mobile-device
+  .destination-marker
+  .destination-marker-drag-handle {
+    min-width: 0 !important;
+    flex: 1 1 auto !important;
+    gap: 6px !important;
+    padding: 0 !important;
+    cursor: default;
+    touch-action: manipulation;
+  }
+
+  html.real-mobile-device
+  .destination-marker
+  .marker-dot {
+    flex: 0 0 8px;
+    width: 8px;
+    height: 8px;
+  }
+
+  html.real-mobile-device
+  .destination-marker
+  .marker-copy {
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  html.real-mobile-device
+  .destination-marker
+  .marker-copy strong {
+    display: block;
+    overflow: hidden;
+    font-size: .5rem !important;
+    line-height: 1.15;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  html.real-mobile-device
+  .destination-marker
+  .marker-copy small {
+    display: block;
+    font-size: .42rem !important;
+    line-height: 1.1;
+  }
+
+  html.real-mobile-device
+  .destination-marker-collapse {
+    position: absolute !important;
+    top: 7px !important;
+    right: 7px !important;
+    width: 27px !important;
+    height: 27px !important;
+    font-size: .78rem !important;
+  }
+
+  /*
+   * Dynamic space events become a non-blocking notification strip
+   * rather than a large centered desktop banner.
+   */
+  .space-event-banner,
+  .dynamic-space-event,
+  [data-space-event-banner] {
+    position: fixed !important;
+    z-index: 76 !important;
+    top:
+      max(
+        154px,
+        calc(
+          env(safe-area-inset-top) +
+          146px
+        )
+      ) !important;
+    right: 10px !important;
+    left: 10px !important;
+    width: auto !important;
+    max-width: none !important;
+    min-height: 0 !important;
+    padding: 9px 12px !important;
+    border-radius: 12px !important;
+    text-align: left !important;
+  }
+
+  .space-event-banner h2,
+  .dynamic-space-event h2,
+  [data-space-event-banner] h2 {
+    margin: 2px 0 !important;
+    font-size: .86rem !important;
+  }
+
+  .space-event-banner p,
+  .dynamic-space-event p,
+  [data-space-event-banner] p {
+    margin: 0 !important;
+    overflow: hidden;
+    font-size: .58rem !important;
+    line-height: 1.25;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .space-event-banner .eyebrow,
+  .dynamic-space-event .eyebrow,
+  [data-space-event-banner] .eyebrow {
+    font-size: .43rem !important;
+  }
+}
+
+
+/* ================================================================
+   EES v1.1.3 — MOBILE CLEAR VIEW HUD
+   ================================================================ */
+
+.mobile-system-hologram,
+.mobile-flight-chip {
+  display: none;
+}
+
+@media (max-width: 760px), (pointer: coarse) {
+  html.real-mobile-device
+  .mobile-hud-tabs {
+    position: fixed;
+    z-index: 90;
+    top:
+      max(
+        62px,
+        calc(
+          env(safe-area-inset-top) +
+          54px
+        )
+      );
+    right: 8px;
+    bottom: auto;
+    left: 8px;
+    display: flex;
+    gap: 5px;
+    padding: 5px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    border-radius: 11px;
+    background:
+      rgba(2, 13, 30, .68);
+    backdrop-filter:
+      blur(13px)
+      saturate(1.08);
+    box-shadow:
+      0 8px 24px rgba(0, 0, 0, .3);
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  html.real-mobile-device
+  .mobile-hud-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  html.real-mobile-device
+  .mobile-hud-tabs button {
+    flex: 0 0 auto;
+    min-width: 74px;
+    min-height: 30px;
+    padding: 5px 8px;
+    border-color:
+      rgba(92, 220, 255, .16);
+    color:
+      rgba(189, 239, 255, .78);
+    background:
+      rgba(5, 38, 68, .45);
+    font-size: .4rem;
+  }
+
+  html.real-mobile-device
+  .mobile-system-hologram {
+    position: fixed;
+    z-index: 87;
+    top:
+      max(
+        112px,
+        calc(
+          env(safe-area-inset-top) +
+          104px
+        )
+      );
+    right: 0;
+    display: flex;
+    align-items: stretch;
+    width: 214px;
+    min-height: 68px;
+    border:
+      1px solid rgba(109, 221, 255, .18);
+    border-right: 0;
+    border-radius: 13px 0 0 13px;
+    background:
+      linear-gradient(
+        135deg,
+        rgba(3, 24, 49, .43),
+        rgba(3, 54, 78, .23)
+      );
+    backdrop-filter:
+      blur(10px)
+      saturate(1.15);
+    box-shadow:
+      -10px 12px 30px rgba(0, 0, 0, .25),
+      inset 0 0 20px rgba(73, 219, 255, .04);
+    transition:
+      transform .26s ease;
+  }
+
+  html.real-mobile-device
+  .mobile-system-hologram.is-hidden {
+    display: none;
+  }
+
+  html.real-mobile-device
+  .mobile-system-hologram.is-collapsed {
+    transform:
+      translateX(
+        calc(100% - 34px)
+      );
+  }
+
+  html.real-mobile-device
+  .mobile-system-hologram > button {
+    flex: 0 0 34px;
+    width: 34px;
+    border: 0;
+    border-right:
+      1px solid rgba(103, 220, 255, .15);
+    color:
+      rgba(138, 231, 255, .72);
+    background:
+      rgba(4, 30, 57, .38);
+    font-size: .75rem;
+  }
+
+  html.real-mobile-device
+  .mobile-system-hologram-body {
+    min-width: 0;
+    display: grid;
+    align-content: center;
+    gap: 3px;
+    padding: 9px 11px;
+    opacity: .72;
+  }
+
+  html.real-mobile-device
+  .mobile-system-hologram-body span {
+    color: rgba(129, 224, 255, .68);
+    font-size: .42rem;
+    font-weight: 900;
+    letter-spacing: .12em;
+  }
+
+  html.real-mobile-device
+  .mobile-system-hologram-body strong {
+    color: rgba(210, 246, 255, .76);
+    font-size: .58rem;
+    letter-spacing: .05em;
+  }
+
+  html.real-mobile-device
+  .mobile-system-hologram-body small {
+    overflow: hidden;
+    color: rgba(145, 194, 211, .58);
+    font-size: .38rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  html.real-mobile-device
+  .mobile-flight-chip {
+    position: fixed;
+    z-index: 86;
+    top:
+      max(
+        188px,
+        calc(
+          env(safe-area-inset-top) +
+          180px
+        )
+      );
+    left: 0;
+    display: grid;
+    grid-template-columns:
+      auto
+      minmax(0, 1fr)
+      auto;
+    align-items: center;
+    gap: 5px;
+    width: 128px;
+    min-height: 38px;
+    padding: 6px 7px 6px 9px;
+    border:
+      1px solid rgba(95, 221, 255, .17);
+    border-left: 0;
+    border-radius: 0 10px 10px 0;
+    color: inherit;
+    background:
+      rgba(3, 22, 44, .46);
+    backdrop-filter: blur(9px);
+    opacity: .72;
+    box-shadow:
+      9px 10px 24px rgba(0, 0, 0, .2);
+  }
+
+  html.real-mobile-device
+  .mobile-flight-chip.is-hidden {
+    display: none;
+  }
+
+  html.real-mobile-device
+  .mobile-flight-chip span {
+    color: rgba(134, 222, 255, .58);
+    font-size: .38rem;
+    font-weight: 900;
+    letter-spacing: .09em;
+  }
+
+  html.real-mobile-device
+  .mobile-flight-chip strong {
+    overflow: hidden;
+    color: rgba(213, 244, 255, .72);
+    font-size: .44rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  html.real-mobile-device
+  .mobile-flight-chip b {
+    color: rgba(103, 219, 255, .7);
+    font-size: .8rem;
+  }
+
+  /*
+   * All detail panels become top drawers. The center and lower
+   * destination view remain clear for flying, landing, and portals.
+   */
+  html.real-mobile-device
+  .mobile-top-drawer {
+    position: fixed !important;
+    z-index: 96 !important;
+    top:
+      max(
+        104px,
+        calc(
+          env(safe-area-inset-top) +
+          96px
+        )
+      ) !important;
+    right: 8px !important;
+    bottom: auto !important;
+    left: 8px !important;
+    width: auto !important;
+    max-width: none !important;
+    max-height: 44dvh !important;
+    margin: 0 !important;
+    padding: 12px !important;
+    overflow: auto !important;
+    border-radius: 13px !important;
+    background:
+      rgba(2, 15, 34, .93) !important;
+    box-shadow:
+      0 18px 45px rgba(0, 0, 0, .52) !important;
+    transform: none !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  html.real-mobile-device
+  .mission-hud,
+  html.real-mobile-device
+  .mission-panel,
+  html.real-mobile-device
+  .destination-marker,
+  html.real-mobile-device
+  .guidance-panel,
+  html.real-mobile-device
+  .facility-arrival-banner,
+  html.real-mobile-device
+  .facility-ai-message,
+  html.real-mobile-device
+  .verse-activity-ticker,
+  html.real-mobile-device
+  .aura-operations-panel,
+  html.real-mobile-device
+  .facility-operations-console {
+    bottom: auto !important;
+  }
+
+  html.real-mobile-device
+  .destination-marker {
+    display: none !important;
+  }
+
+  html.real-mobile-device
+  .guidance-panel,
+  html.real-mobile-device
+  .facility-arrival-banner,
+  html.real-mobile-device
+  .facility-ai-message,
+  html.real-mobile-device
+  .verse-activity-ticker,
+  html.real-mobile-device
+  .aura-operations-panel,
+  html.real-mobile-device
+  .facility-operations-console {
+    display: none !important;
+  }
+
+  html.real-mobile-device
+  .mobile-arrival-toast {
+    top:
+      max(
+        108px,
+        calc(
+          env(safe-area-inset-top) +
+          100px
+        )
+      );
+    right: 9px;
+    left: 9px;
+    max-height: 64px;
+    padding: 8px 10px;
+    opacity: .9;
+  }
+
+  html.real-mobile-device
+  .mobile-explorer-controls {
+    right: 7px;
+    bottom:
+      max(
+        7px,
+        env(safe-area-inset-bottom)
+      );
+    left: 7px;
+    z-index: 92;
+    background:
+      rgba(2, 14, 30, .42);
+    backdrop-filter: blur(8px);
+  }
+
+  html.real-mobile-device
+  .mobile-explorer-controls.is-collapsed {
+    right: 7px;
+    left: auto;
+    width: 46px;
+    min-height: 42px;
+    opacity: .68;
+  }
+}
+
+
+/* ================================================================
+   EES v1.2.0 — MOBILE COCKPIT EDITION
+   ================================================================ */
+
+.mobile-cockpit {
+  display: none;
+}
+
+@media (max-width: 760px), (pointer: coarse) {
+  html.mobile-cockpit-mode
+  .top-bar {
+    pointer-events: none;
+    opacity: .32;
+  }
+
+  html.mobile-cockpit-mode
+  [data-flight-computer],
+  html.mobile-cockpit-mode
+  .flight-computer-shell,
+  html.mobile-cockpit-mode
+  .system-console-toggle,
+  html.mobile-cockpit-mode
+  .mission-hud,
+  html.mobile-cockpit-mode
+  .mission-panel,
+  html.mobile-cockpit-mode
+  .destination-marker,
+  html.mobile-cockpit-mode
+  .guidance-panel,
+  html.mobile-cockpit-mode
+  .facility-arrival-banner,
+  html.mobile-cockpit-mode
+  .facility-ai-message,
+  html.mobile-cockpit-mode
+  .verse-activity-ticker,
+  html.mobile-cockpit-mode
+  .aura-operations-panel,
+  html.mobile-cockpit-mode
+  .facility-operations-console,
+  html.mobile-cockpit-mode
+  .mobile-hud-tabs,
+  html.mobile-cockpit-mode
+  .mobile-system-hologram,
+  html.mobile-cockpit-mode
+  .mobile-flight-chip,
+  html.mobile-cockpit-mode
+  .mobile-explorer-controls,
+  html.mobile-cockpit-mode
+  .mobile-arrival-toast {
+    display: none !important;
+  }
+
+  html.mobile-cockpit-mode
+  .mobile-cockpit {
+    position: fixed;
+    z-index: 100;
+    inset: 0;
+    display: block;
+    pointer-events: none;
+  }
+
+  html.mobile-cockpit-mode
+  .mobile-cockpit.is-hidden {
+    display: none;
+  }
+
+  .mobile-cockpit-canopy {
+    position: absolute;
+    inset:
+      max(0px, env(safe-area-inset-top))
+      0
+      0;
+    pointer-events: none;
+  }
+
+  .canopy-glass {
+    position: absolute;
+    z-index: 1;
+    top: 46px;
+    right: 13px;
+    bottom: 196px;
+    left: 13px;
+    border:
+      1px solid rgba(95, 216, 255, .1);
+    border-radius:
+      48% 48% 16px 16px /
+      20% 20% 16px 16px;
+    background:
+      linear-gradient(
+        180deg,
+        rgba(71, 184, 255, .035),
+        transparent 28%,
+        rgba(4, 20, 42, .035)
+      );
+    box-shadow:
+      inset 0 0 32px rgba(75, 204, 255, .025);
+  }
+
+  .canopy-frame {
+    position: absolute;
+    z-index: 2;
+    pointer-events: none;
+    background:
+      linear-gradient(
+        90deg,
+        rgba(6, 18, 34, .96),
+        rgba(18, 49, 73, .92),
+        rgba(3, 12, 25, .98)
+      );
+    box-shadow:
+      0 0 14px rgba(0, 0, 0, .72);
+  }
+
+  .canopy-frame-left {
+    top: 45px;
+    bottom: 190px;
+    left: 0;
+    width: 14px;
+    transform:
+      skewY(-10deg);
+    transform-origin: bottom;
+  }
+
+  .canopy-frame-right {
+    top: 45px;
+    right: 0;
+    bottom: 190px;
+    width: 14px;
+    transform:
+      skewY(10deg);
+    transform-origin: bottom;
+  }
+
+  .canopy-frame-top {
+    top:
+      max(
+        42px,
+        env(safe-area-inset-top)
+      );
+    right: 0;
+    left: 0;
+    height: 11px;
+  }
+
+  .mobile-cockpit-telemetry {
+    position: absolute;
+    z-index: 5;
+    top:
+      max(
+        58px,
+        calc(
+          env(safe-area-inset-top) +
+          48px
+        )
+      );
+    right: 18px;
+    left: 18px;
+    display: grid;
+    grid-template-columns:
+      58px
+      58px
+      minmax(0, 1fr)
+      72px;
+    gap: 5px;
+    pointer-events: none;
+  }
+
+  .mobile-cockpit-telemetry > div {
+    min-width: 0;
+    display: grid;
+    gap: 2px;
+    padding: 5px 7px;
+    border:
+      1px solid rgba(83, 212, 255, .13);
+    border-radius: 8px;
+    background:
+      rgba(2, 18, 39, .35);
+    backdrop-filter: blur(6px);
+  }
+
+  .mobile-cockpit-telemetry span {
+    color: rgba(113, 219, 255, .56);
+    font-size: .34rem;
+    font-weight: 900;
+    letter-spacing: .09em;
+  }
+
+  .mobile-cockpit-telemetry strong {
+    overflow: hidden;
+    color: rgba(221, 247, 255, .72);
+    font-size: .48rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .mobile-cockpit-alert {
+    position: absolute;
+    z-index: 8;
+    top:
+      max(
+        104px,
+        calc(
+          env(safe-area-inset-top) +
+          94px
+        )
+      );
+    right: 22px;
+    left: 22px;
+    display: grid;
+    grid-template-columns:
+      auto
+      minmax(0, 1fr);
+    gap: 7px;
+    align-items: center;
+    padding: 8px 10px;
+    border:
+      1px solid rgba(103, 226, 255, .22);
+    border-radius: 9px;
+    background:
+      rgba(3, 24, 48, .52);
+    backdrop-filter: blur(10px);
+    box-shadow:
+      0 10px 24px rgba(0, 0, 0, .25);
+    pointer-events: none;
+  }
+
+  .mobile-cockpit-alert.is-hidden {
+    display: none;
+  }
+
+  .mobile-cockpit-alert strong {
+    color: rgba(117, 230, 255, .76);
+    font-size: .43rem;
+    letter-spacing: .1em;
+  }
+
+  .mobile-cockpit-alert span {
+    overflow: hidden;
+    color: rgba(225, 247, 255, .8);
+    font-size: .52rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .mobile-cockpit-dashboard {
+    position: absolute;
+    z-index: 10;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    min-height:
+      calc(
+        178px +
+        env(safe-area-inset-bottom)
+      );
+    display: grid;
+    grid-template-columns:
+      minmax(112px, 1fr)
+      minmax(122px, 1.08fr)
+      minmax(112px, 1fr);
+    gap: 6px;
+    padding:
+      12px
+      8px
+      max(
+        8px,
+        env(safe-area-inset-bottom)
+      );
+    border-top:
+      1px solid rgba(100, 215, 255, .16);
+    background:
+      linear-gradient(
+        180deg,
+        rgba(2, 9, 20, .62),
+        rgba(2, 12, 28, .92) 25%,
+        rgba(1, 8, 20, .98)
+      );
+    box-shadow:
+      0 -18px 40px rgba(0, 0, 0, .52);
+    pointer-events: auto;
+    transition:
+      transform .28s ease;
+  }
+
+  .mobile-cockpit.is-minimized
+  .mobile-cockpit-dashboard {
+    transform:
+      translateY(
+        calc(
+          100% -
+          42px -
+          env(safe-area-inset-bottom)
+        )
+      );
+  }
+
+  .cockpit-control-cluster {
+    min-width: 0;
+    display: grid;
+    align-content: end;
+    gap: 5px;
+    padding: 6px;
+    border:
+      1px solid rgba(83, 205, 255, .12);
+    border-radius: 11px;
+    background:
+      linear-gradient(
+        145deg,
+        rgba(5, 26, 50, .72),
+        rgba(2, 13, 30, .85)
+      );
+    box-shadow:
+      inset 0 0 20px rgba(70, 213, 255, .025);
+  }
+
+  .cockpit-cluster-label {
+    color: rgba(107, 220, 255, .54);
+    font-size: .34rem;
+    font-weight: 900;
+    letter-spacing: .1em;
+    text-align: center;
+  }
+
+  .cockpit-dpad {
+    position: relative;
+    width: 108px;
+    height: 108px;
+    margin: auto;
+  }
+
+  .cockpit-dpad button {
+    position: absolute;
+    width: 38px;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    border:
+      1px solid rgba(102, 218, 255, .22);
+    border-radius: 10px;
+    color: rgba(226, 250, 255, .9);
+    background:
+      rgba(5, 37, 67, .78);
+    font-size: .78rem;
+    font-weight: 900;
+  }
+
+  .cockpit-dpad button:nth-child(1) {
+    top: 0;
+    left: 35px;
+  }
+
+  .cockpit-dpad button:nth-child(2) {
+    top: 35px;
+    left: 0;
+  }
+
+  .cockpit-dpad button:nth-child(3) {
+    bottom: 0;
+    left: 35px;
+  }
+
+  .cockpit-dpad button:nth-child(4) {
+    top: 35px;
+    right: 0;
+  }
+
+  .cockpit-dpad i {
+    position: absolute;
+    top: 39px;
+    left: 39px;
+    width: 30px;
+    height: 30px;
+    border:
+      1px solid rgba(101, 218, 255, .1);
+    border-radius: 50%;
+    background:
+      radial-gradient(
+        circle,
+        rgba(70, 215, 255, .18),
+        rgba(3, 20, 39, .62)
+      );
+  }
+
+  .cockpit-altitude-stack,
+  .cockpit-primary-actions,
+  .cockpit-command-grid {
+    display: grid;
+    gap: 5px;
+  }
+
+  .cockpit-altitude-stack {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .cockpit-primary-actions,
+  .cockpit-command-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .mobile-cockpit-dashboard button {
+    min-width: 0;
+    min-height: 34px;
+    padding: 5px;
+    border:
+      1px solid rgba(91, 211, 255, .18);
+    border-radius: 8px;
+    color: rgba(220, 247, 255, .86);
+    background:
+      linear-gradient(
+        145deg,
+        rgba(7, 44, 78, .78),
+        rgba(3, 26, 50, .88)
+      );
+    font-size: .42rem;
+    font-weight: 900;
+    letter-spacing: .04em;
+    touch-action: manipulation;
+  }
+
+  .mobile-cockpit-dashboard button.is-active {
+    transform: scale(.95);
+    border-color:
+      rgba(108, 229, 255, .62);
+    background:
+      rgba(20, 111, 154, .9);
+    box-shadow:
+      0 0 18px rgba(67, 216, 255, .24);
+  }
+
+  .mobile-cockpit-minimize {
+    position: absolute;
+    z-index: 12;
+    right: 8px;
+    bottom:
+      calc(
+        178px +
+        env(safe-area-inset-bottom)
+      );
+    width: 38px;
+    height: 30px;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    border:
+      1px solid rgba(95, 216, 255, .17);
+    border-bottom: 0;
+    border-radius: 9px 9px 0 0;
+    color: rgba(151, 229, 255, .72);
+    background:
+      rgba(3, 25, 48, .84);
+    pointer-events: auto;
+    transition:
+      bottom .28s ease;
+  }
+
+  .mobile-cockpit.is-minimized
+  .mobile-cockpit-minimize {
+    bottom:
+      max(
+        12px,
+        env(safe-area-inset-bottom)
+      );
+  }
+
+  html.mobile-cockpit-mode
+  .mobile-cockpit-drawer {
+    position: fixed !important;
+    z-index: 110 !important;
+    top:
+      max(
+        96px,
+        calc(
+          env(safe-area-inset-top) +
+          86px
+        )
+      ) !important;
+    right: 12px !important;
+    bottom:
+      calc(
+        188px +
+        env(safe-area-inset-bottom)
+      ) !important;
+    left: 12px !important;
+    width: auto !important;
+    max-width: none !important;
+    max-height: none !important;
+    margin: 0 !important;
+    overflow: auto !important;
+    border-radius: 13px !important;
+    background:
+      rgba(2, 14, 32, .96) !important;
+    box-shadow:
+      0 18px 48px rgba(0, 0, 0, .62) !important;
+    transform: none !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  @media (max-width: 390px) {
+    .mobile-cockpit-dashboard {
+      grid-template-columns:
+        106px
+        minmax(112px, 1fr)
+        106px;
+      gap: 4px;
+      padding-inline: 5px;
+    }
+
+    .cockpit-control-cluster {
+      padding: 4px;
+    }
+
+    .cockpit-dpad {
+      width: 100px;
+      height: 100px;
+    }
+
+    .cockpit-dpad button {
+      width: 35px;
+      height: 35px;
+    }
+
+    .cockpit-dpad button:nth-child(1) {
+      left: 32px;
+    }
+
+    .cockpit-dpad button:nth-child(2),
+    .cockpit-dpad button:nth-child(4) {
+      top: 32px;
+    }
+
+    .cockpit-dpad button:nth-child(3) {
+      left: 32px;
+    }
+
+    .cockpit-dpad i {
+      top: 36px;
+      left: 36px;
+      width: 28px;
+      height: 28px;
+    }
+
+    .mobile-cockpit-dashboard button {
+      min-height: 31px;
+      font-size: .38rem;
+    }
+  }
+}
+
+
+/* ================================================================
+   EES v1.2.1 — MOBILE COCKPIT PORTAL + COUNTDOWN FIX
+   ================================================================ */
+
+@media (max-width: 760px), (pointer: coarse) {
+  /*
+   * Destination and portal screens occupy a protected center viewport.
+   * The cockpit canopy remains visible, but telemetry and dashboard
+   * retract so every destination action can be reached.
+   */
+  html.mobile-cockpit-mode.cockpit-interface-open
+  .mobile-cockpit-telemetry,
+  html.mobile-cockpit-mode.cockpit-interface-open
+  .mobile-cockpit-alert,
+  html.mobile-cockpit-mode.cockpit-interface-open
+  .mobile-cockpit-dashboard,
+  html.mobile-cockpit-mode.cockpit-interface-open
+  .mobile-cockpit-minimize {
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  html.mobile-cockpit-mode.cockpit-interface-open
+  .canopy-glass {
+    top:
+      max(
+        42px,
+        env(safe-area-inset-top)
+      );
+    bottom:
+      max(
+        8px,
+        env(safe-area-inset-bottom)
+      );
+    opacity: .25;
+  }
+
+  html.mobile-cockpit-mode
+  .digital-world,
+  html.mobile-cockpit-mode
+  .portal-interface,
+  html.mobile-cockpit-mode
+  .portal-detail-overlay {
+    position: fixed !important;
+    z-index: 130 !important;
+    inset:
+      max(
+        52px,
+        calc(
+          env(safe-area-inset-top) +
+          42px
+        )
+      )
+      8px
+      max(
+        10px,
+        env(safe-area-inset-bottom)
+      ) !important;
+    display: grid !important;
+    place-items: center !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
+
+  html.mobile-cockpit-mode
+  .digital-world:not(.is-open),
+  html.mobile-cockpit-mode
+  .portal-interface:not(.is-open),
+  html.mobile-cockpit-mode
+  .portal-detail-overlay:not(.is-open) {
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  html.mobile-cockpit-mode
+  .digital-world.is-open,
+  html.mobile-cockpit-mode
+  .portal-interface.is-open,
+  html.mobile-cockpit-mode
+  .portal-detail-overlay.is-open {
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  html.mobile-cockpit-mode
+  .digital-world-shell,
+  html.mobile-cockpit-mode
+  .portal-shell,
+  html.mobile-cockpit-mode
+  .portal-detail-shell {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    padding:
+      14px
+      12px
+      max(
+        24px,
+        calc(
+          env(safe-area-inset-bottom) +
+          18px
+        )
+      ) !important;
+    overflow-y: auto !important;
+    border-radius: 15px !important;
+    scroll-padding-top: 12px;
+    scroll-padding-bottom:
+      calc(
+        env(safe-area-inset-bottom) +
+        90px
+      );
+    -webkit-overflow-scrolling: touch;
+  }
+
+  html.mobile-cockpit-mode
+  .digital-world-header,
+  html.mobile-cockpit-mode
+  .portal-header,
+  html.mobile-cockpit-mode
+  .portal-detail-header {
+    flex: 0 0 auto;
+    gap: 10px !important;
+    padding: 8px 4px 12px !important;
+  }
+
+  html.mobile-cockpit-mode
+  .digital-world-header h2,
+  html.mobile-cockpit-mode
+  .portal-header h2,
+  html.mobile-cockpit-mode
+  .portal-detail-header h2 {
+    font-size:
+      clamp(
+        1.45rem,
+        8vw,
+        2.35rem
+      ) !important;
+    line-height: 1 !important;
+  }
+
+  html.mobile-cockpit-mode
+  .world-description,
+  html.mobile-cockpit-mode
+  .portal-description {
+    margin-top: 9px !important;
+    font-size: .72rem !important;
+    line-height: 1.45 !important;
+  }
+
+  html.mobile-cockpit-mode
+  .world-status-bar {
+    flex: 0 0 auto;
+    margin-top: 8px !important;
+    padding: 8px 9px !important;
+    font-size: .5rem !important;
+  }
+
+  html.mobile-cockpit-mode
+  .world-components {
+    flex: 0 0 auto;
+    grid-template-columns: 1fr !important;
+    gap: 9px !important;
+    margin-top: 10px !important;
+  }
+
+  html.mobile-cockpit-mode
+  .world-component-card {
+    min-height: 0 !important;
+    padding: 14px !important;
+    border-radius: 13px !important;
+  }
+
+  html.mobile-cockpit-mode
+  .world-component-card h3 {
+    margin: 8px 0 !important;
+    font-size: 1.05rem !important;
+  }
+
+  html.mobile-cockpit-mode
+  .world-component-card p {
+    font-size: .72rem !important;
+    line-height: 1.45 !important;
+  }
+
+  html.mobile-cockpit-mode
+  .world-actions {
+    position: sticky;
+    z-index: 8;
+    bottom:
+      calc(
+        -1 *
+        max(
+          24px,
+          calc(
+            env(safe-area-inset-bottom) +
+            18px
+          )
+        )
+      );
+    flex: 0 0 auto;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+    margin-top: 14px !important;
+    padding:
+      12px
+      0
+      max(
+        24px,
+        calc(
+          env(safe-area-inset-bottom) +
+          18px
+        )
+      ) !important;
+    background:
+      linear-gradient(
+        180deg,
+        rgba(3, 13, 29, 0),
+        rgba(3, 13, 29, .96) 22%
+      );
+  }
+
+  html.mobile-cockpit-mode
+  .world-actions button,
+  html.mobile-cockpit-mode
+  .portal-exit-actions button {
+    width: 100% !important;
+    min-height: 48px !important;
+    pointer-events: auto !important;
+    touch-action: manipulation;
+  }
+
+  html.mobile-cockpit-mode
+  #enter-portal {
+    order: -1;
+    border-color:
+      rgba(90, 220, 255, .62) !important;
+    color: #04121e !important;
+    background:
+      linear-gradient(
+        135deg,
+        #7ddcff,
+        #3abef1
+      ) !important;
+  }
+
+  html.mobile-cockpit-mode
+  .portal-topline {
+    display: none !important;
+  }
+
+  html.mobile-cockpit-mode
+  .portal-console {
+    flex: 1 1 auto;
+    min-height: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    border-top:
+      1px solid rgba(125, 211, 252, .12);
+  }
+
+  html.mobile-cockpit-mode
+  .console-sidebar {
+    position: sticky;
+    z-index: 6;
+    top: 0;
+    flex: 0 0 auto;
+    display: flex !important;
+    gap: 5px !important;
+    padding: 7px 0 !important;
+    overflow-x: auto;
+    overflow-y: hidden;
+    border-right: 0 !important;
+    border-bottom:
+      1px solid rgba(125, 211, 252, .12);
+    background:
+      rgba(3, 10, 24, .96);
+    -webkit-overflow-scrolling: touch;
+  }
+
+  html.mobile-cockpit-mode
+  .portal-tab {
+    flex: 0 0 auto;
+    min-width: 88px;
+    min-height: 38px;
+    padding: 0 10px;
+    text-align: center;
+  }
+
+  html.mobile-cockpit-mode
+  .portal-content {
+    flex: 1 1 auto;
+    min-height: 0;
+    padding: 12px 2px 20px !important;
+    overflow: visible !important;
+  }
+
+  html.mobile-cockpit-mode
+  .portal-footer {
+    position: sticky;
+    z-index: 7;
+    bottom:
+      calc(
+        -1 *
+        max(
+          24px,
+          calc(
+            env(safe-area-inset-bottom) +
+            18px
+          )
+        )
+      );
+    flex: 0 0 auto;
+    display: block !important;
+    padding:
+      12px
+      0
+      max(
+        24px,
+        calc(
+          env(safe-area-inset-bottom) +
+          18px
+        )
+      ) !important;
+    background:
+      linear-gradient(
+        180deg,
+        rgba(3, 10, 24, 0),
+        rgba(3, 10, 24, .98) 20%
+      );
+  }
+
+  html.mobile-cockpit-mode
+  .portal-footer > span {
+    display: none;
+  }
+
+  html.mobile-cockpit-mode
+  .portal-exit-actions {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+
+  /*
+   * Desktop transient cards never render over the mobile cockpit or
+   * the destination/portal viewport.
+   */
+  html.mobile-cockpit-mode
+  .space-event-banner,
+  html.mobile-cockpit-mode
+  .dynamic-space-event,
+  html.mobile-cockpit-mode
+  [data-space-event-banner],
+  html.mobile-cockpit-mode
+  .guide,
+  html.mobile-cockpit-mode
+  .achievement-toast,
+  html.mobile-cockpit-mode
+  .system-message,
+  html.mobile-cockpit-mode
+  .aura-presence-callout,
+  html.mobile-cockpit-mode
+  .facility-arrival-banner,
+  html.mobile-cockpit-mode
+  .facility-ai-message,
+  html.mobile-cockpit-mode
+  .verse-activity-ticker {
+    display: none !important;
+  }
+}
+
+
+/* ================================================================
+   EES v1.2.2 — MOBILE PORTAL FOOTER FIX
+   ================================================================ */
+
+@media (max-width: 760px), (pointer: coarse) {
+  /*
+   * The portal footer now participates in the shell layout instead of
+   * floating over content. The content area owns scrolling, while the
+   * footer remains a dedicated cockpit control bar.
+   */
+  html.mobile-cockpit-mode
+  .portal-shell {
+    overflow: hidden !important;
+    padding:
+      12px
+      10px
+      max(
+        10px,
+        env(safe-area-inset-bottom)
+      ) !important;
+  }
+
+  html.mobile-cockpit-mode
+  .portal-header {
+    flex: 0 0 auto;
+  }
+
+  html.mobile-cockpit-mode
+  .portal-console {
+    flex: 1 1 auto;
+    min-height: 0 !important;
+    overflow: hidden !important;
+  }
+
+  html.mobile-cockpit-mode
+  .portal-content {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto !important;
+    padding:
+      12px
+      2px
+      22px !important;
+    scroll-padding-bottom: 24px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  html.mobile-cockpit-mode
+  .portal-footer {
+    position: relative !important;
+    z-index: 14;
+    bottom: auto !important;
+    flex: 0 0 auto;
+    margin: 8px 0 0 !important;
+    padding:
+      10px
+      0
+      max(
+        6px,
+        env(safe-area-inset-bottom)
+      ) !important;
+    border-top:
+      1px solid rgba(125, 211, 252, .14);
+    background:
+      linear-gradient(
+        180deg,
+        rgba(3, 10, 24, .98),
+        rgba(2, 8, 20, 1)
+      ) !important;
+    box-shadow:
+      0 -12px 24px rgba(0, 0, 0, .34);
+  }
+
+  html.mobile-cockpit-mode
+  .portal-exit-actions {
+    display: grid !important;
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr)) !important;
+    gap: 8px !important;
+  }
+
+  html.mobile-cockpit-mode
+  .portal-exit-actions button {
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 46px !important;
+    padding:
+      8px
+      10px !important;
+    font-size: .62rem !important;
+    line-height: 1.15 !important;
+  }
+
+  html.mobile-cockpit-mode
+  #portal-return {
+    order: 1;
+  }
+
+  html.mobile-cockpit-mode
+  #portal-takeoff {
+    order: 2;
+  }
+
+  /*
+   * On narrow phones the two actions stack cleanly rather than being
+   * clipped by the browser toolbar.
+   */
+  @media (max-width: 390px) {
+    html.mobile-cockpit-mode
+    .portal-exit-actions {
+      grid-template-columns: 1fr !important;
+    }
+
+    html.mobile-cockpit-mode
+    .portal-exit-actions button {
+      min-height: 44px !important;
+    }
+  }
+
+  /*
+   * Digital-world actions follow the same non-overlapping footer rule.
+   */
+  html.mobile-cockpit-mode
+  .digital-world-shell {
+    overflow: hidden !important;
+  }
+
+  html.mobile-cockpit-mode
+  .world-components {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto !important;
+    padding-bottom: 18px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  html.mobile-cockpit-mode
+  .world-actions {
+    position: relative !important;
+    z-index: 14;
+    bottom: auto !important;
+    flex: 0 0 auto;
+    margin-top: 8px !important;
+    padding:
+      10px
+      0
+      max(
+        6px,
+        env(safe-area-inset-bottom)
+      ) !important;
+    background:
+      linear-gradient(
+        180deg,
+        rgba(3, 13, 29, .98),
+        rgba(2, 8, 20, 1)
+      ) !important;
+    box-shadow:
+      0 -12px 24px rgba(0, 0, 0, .34);
+  }
+}
+
+
+/* ================================================================
+   EES v1.2.3 — MOBILE COCKPIT NAVIGATION FIX
+   ================================================================ */
+
+.mobile-cockpit-help {
+  display: none;
+}
+
+@media (max-width: 760px), (pointer: coarse) {
+  /*
+   * The cockpit must not be visible during preflight or launch.
+   * It becomes available only after the simulator starts.
+   */
+  html:not(.mobile-cockpit-mode)
+  .mobile-cockpit {
+    display: none !important;
+  }
+
+  html.mobile-cockpit-mode
+  .mobile-cockpit-help {
+    position: absolute;
+    z-index: 20;
+    top:
+      max(
+        118px,
+        calc(
+          env(safe-area-inset-top) +
+          108px
+        )
+      );
+    right: 20px;
+    left: 20px;
+    display: grid;
+    gap: 7px;
+    padding: 12px;
+    border:
+      1px solid rgba(102, 226, 255, .28);
+    border-radius: 12px;
+    background:
+      rgba(2, 20, 42, .92);
+    box-shadow:
+      0 16px 38px rgba(0, 0, 0, .5);
+    pointer-events: auto;
+  }
+
+  html.mobile-cockpit-mode
+  .mobile-cockpit-help.is-hidden {
+    display: none;
+  }
+
+  .mobile-cockpit-help strong {
+    color: #72e3ff;
+    font-size: .58rem;
+    letter-spacing: .1em;
+  }
+
+  .mobile-cockpit-help span {
+    color: #d7edf7;
+    font-size: .65rem;
+    line-height: 1.45;
+  }
+
+  .mobile-cockpit-help button {
+    justify-self: end;
+    min-height: 36px;
+    padding: 7px 14px;
+    border:
+      1px solid rgba(98, 221, 255, .35);
+    border-radius: 8px;
+    color: #04121e;
+    background: #65d9ff;
+    font-size: .55rem;
+    font-weight: 950;
+  }
+
+  /*
+   * Eliminate browser text selection and callout menus while flying.
+   */
+  html.mobile-cockpit-mode
+  .mobile-cockpit-dashboard,
+  html.mobile-cockpit-mode
+  .mobile-cockpit-dashboard button {
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+  }
+
+  html.mobile-cockpit-mode
+  .mobile-cockpit-dashboard button {
+    touch-action: none !important;
+  }
+
+  /*
+   * Digital World cards remain real contained cards instead of
+   * transparent pills and text lines overlapping one another.
+   */
+  html.mobile-cockpit-mode
+  .digital-world-shell {
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+  }
+
+  html.mobile-cockpit-mode
+  .world-components {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    align-content: start !important;
+    gap: 10px !important;
+    margin: 12px 0 0 !important;
+    padding:
+      0
+      0
+      18px !important;
+    overflow-y: auto !important;
+  }
+
+  html.mobile-cockpit-mode
+  .world-component-card {
+    position: relative !important;
+    min-height: 138px !important;
+    display: block !important;
+    padding: 16px !important;
+    overflow: hidden !important;
+    border:
+      1px solid rgba(106, 211, 255, .24) !important;
+    border-radius: 15px !important;
+    background:
+      linear-gradient(
+        145deg,
+        rgba(13, 38, 68, .96),
+        rgba(5, 18, 37, .98)
+      ) !important;
+    box-shadow:
+      inset 0 0 24px rgba(66, 205, 255, .035);
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  html.mobile-cockpit-mode
+  .world-component-card
+  .component-tag {
+    position: static !important;
+    display: inline-flex !important;
+    width: auto !important;
+    min-width: 0 !important;
+    margin: 0 0 10px !important;
+    padding: 5px 10px !important;
+    border:
+      1px solid rgba(99, 215, 255, .28) !important;
+    border-radius: 999px !important;
+    color: #7de2ff !important;
+    background:
+      rgba(8, 52, 82, .72) !important;
+    font-size: .52rem !important;
+    font-weight: 900 !important;
+    letter-spacing: .1em !important;
+  }
+
+  html.mobile-cockpit-mode
+  .world-component-card h3 {
+    position: static !important;
+    margin: 0 0 8px !important;
+    color: #f2f7ff !important;
+    font-size: 1.08rem !important;
+    line-height: 1.15 !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  html.mobile-cockpit-mode
+  .world-component-card p {
+    position: static !important;
+    margin: 0 !important;
+    color: #aebed4 !important;
+    font-size: .74rem !important;
+    line-height: 1.5 !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /*
+   * Cockpit controls remain fully expanded when control transfers
+   * into the universe. The user may minimize them afterwards.
+   */
+  html.mobile-cockpit-mode
+  .mobile-cockpit:not(.is-minimized)
+  .mobile-cockpit-dashboard {
+    transform: translateY(0) !important;
+  }
+}
+
+
+/* ================================================================
+   EES v1.2.4 — MOBILE TAKEOFF + CONTACT CONSOLE FIX
+   ================================================================ */
+
+@media (max-width: 760px), (pointer: coarse) {
+  html.mobile-cockpit-mode
+  .portal-interface.detail-is-open {
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  html.mobile-cockpit-mode
+  .portal-detail-overlay {
+    z-index: 170 !important;
+  }
+
+  html.mobile-cockpit-mode
+  .portal-detail-overlay.is-open {
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  html.mobile-cockpit-mode
+  .portal-detail-shell {
+    overflow: hidden !important;
+  }
+
+  html.mobile-cockpit-mode
+  .portal-detail-content {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto !important;
+    padding:
+      12px
+      4px
+      max(
+        24px,
+        env(safe-area-inset-bottom)
+      ) !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  html.mobile-cockpit-mode
+  .contact-console-card {
+    display: grid !important;
+    gap: 9px !important;
+    width: 100% !important;
+    padding: 2px !important;
+  }
+
+  html.mobile-cockpit-mode
+  .contact-console-card > div {
+    display: grid !important;
+    gap: 5px !important;
+    padding: 13px !important;
+    border:
+      1px solid rgba(102, 216, 255, .18);
+    border-radius: 12px;
+    background:
+      rgba(7, 30, 55, .82);
+  }
+
+  html.mobile-cockpit-mode
+  .contact-console-card span {
+    color: #73defc;
+    font-size: .48rem;
+    font-weight: 900;
+    letter-spacing: .09em;
+  }
+
+  html.mobile-cockpit-mode
+  .contact-console-card strong {
+    overflow-wrap: anywhere;
+    color: #e7f4fb;
+    font-size: .72rem;
+    line-height: 1.42;
+  }
+
+  html.mobile-cockpit-mode
+  .contact-console-card p {
+    margin: 4px 0 0 !important;
+    padding: 13px !important;
+    border:
+      1px solid rgba(169, 113, 255, .18);
+    border-radius: 12px;
+    color: #c7badc;
+    background:
+      rgba(40, 20, 67, .45);
+    font-size: .68rem;
+    line-height: 1.5;
+  }
+
+  html.mobile-cockpit-mode
+  [data-portal-detail] {
+    pointer-events: auto !important;
+    touch-action: manipulation !important;
+  }
+}

@@ -66,6 +66,13 @@
 
   </head>
   <body>
+    <audio
+      id="mobile-cinematic-audio"
+      preload="auto"
+      playsinline
+      src="/audio/mobile-genesis-cinematic.wav"
+    ></audio>
+
   <div id="flight-computer-shell" class="flight-computer-shell is-hidden" aria-live="polite"><span id="flight-computer-mode">FLIGHT COMPUTER</span><strong id="flight-computer-context">ENGINEERING VERSE</strong></div>
     <div id="experience">
       <canvas id="experience-canvas"></canvas>
@@ -77,7 +84,7 @@
           <span class="brand-mark">EES</span>
           <span class="brand-copy">
             <strong>Engineering Experience System</strong>
-            <small>Portfolio Experience <span class="version-badge">v1.0.0 EES GENESIS PUBLIC RELEASE</span></small>
+            <small>Portfolio Experience <span class="version-badge">v1.2.4 MOBILE TAKEOFF CONTACT FIX</span></small>
           </span>
         </a>
 
@@ -1469,8 +1476,141 @@
         <strong id="verse-activity-message">Engineering Verse operating normally.</strong>
       </aside>
       <div id="system-message" class="system-message" aria-live="polite"></div>
-      <div class="build-watermark">EES v1.0.0 • PUBLIC RELEASE</div>
-    </div>
+      <div class="build-watermark">EES v1.2.4 • MOBILE TAKEOFF CONTACT FIX</div>
+    
+      <nav id="mobile-hud-tabs" class="mobile-hud-tabs is-hidden" aria-label="Mobile command tabs">
+        <button type="button" data-mobile-action="missions">MISSIONS</button>
+        <button type="button" data-mobile-action="controls">CONTROLS</button>
+        <button type="button" data-mobile-action="destinations">DESTINATIONS</button>
+        <button type="button" data-mobile-action="aura">AURA</button>
+        <button type="button" data-mobile-action="system">SYSTEM</button>
+      </nav>
+
+      <aside id="mobile-system-hologram" class="mobile-system-hologram is-collapsed is-hidden" aria-label="Mobile system status">
+        <button id="mobile-system-hologram-toggle" type="button" aria-label="Toggle system status">◀</button>
+        <div class="mobile-system-hologram-body">
+          <span>SYSTEM STATUS</span>
+          <strong id="mobile-system-summary">NOMINAL</strong>
+          <small id="mobile-system-detail">AURA ONLINE • NAV READY</small>
+        </div>
+      </aside>
+
+      <button id="mobile-flight-chip" class="mobile-flight-chip is-hidden" type="button" aria-label="Toggle flight status">
+        <span>FLIGHT</span>
+        <strong id="mobile-flight-chip-value">ONLINE</strong>
+        <b>›</b>
+      </button>
+
+      <section id="mobile-arrival-toast" class="mobile-arrival-toast is-hidden" aria-live="polite">
+        <strong id="mobile-arrival-title">DESTINATION</strong>
+        <span id="mobile-arrival-message">Approach ready.</span>
+        <button id="mobile-arrival-land" type="button">LAND</button>
+      </section>
+
+      <section id="mobile-cockpit" class="mobile-cockpit is-hidden" aria-label="Mobile cockpit">
+        <div class="mobile-cockpit-canopy" aria-hidden="true">
+          <span class="canopy-frame canopy-frame-left"></span>
+          <span class="canopy-frame canopy-frame-right"></span>
+          <span class="canopy-frame canopy-frame-top"></span>
+          <span class="canopy-glass"></span>
+        </div>
+
+        <div id="mobile-cockpit-help" class="mobile-cockpit-help is-hidden" aria-live="polite">
+          <strong>PILOT CONTROLS ONLINE</strong>
+          <span>Hold the thrust arrows to fly. Use DEST for waypoints and LAND when approach is ready.</span>
+          <button id="mobile-cockpit-help-dismiss" type="button">GOT IT</button>
+        </div>
+
+        <div class="mobile-cockpit-alert is-hidden" id="mobile-cockpit-alert" aria-live="polite">
+          <strong id="mobile-cockpit-alert-title">AURA</strong>
+          <span id="mobile-cockpit-alert-message">Systems nominal.</span>
+        </div>
+
+        <div class="mobile-cockpit-telemetry">
+          <div>
+            <span>SPEED</span>
+            <strong id="cockpit-speed">0</strong>
+          </div>
+          <div>
+            <span>ALT</span>
+            <strong id="cockpit-altitude">0</strong>
+          </div>
+          <div>
+            <span>WAYPOINT</span>
+            <strong id="cockpit-waypoint">NONE</strong>
+          </div>
+          <div>
+            <span>STATUS</span>
+            <strong id="cockpit-status">ONLINE</strong>
+          </div>
+        </div>
+
+        <div class="mobile-cockpit-dashboard">
+          <div class="cockpit-control-cluster cockpit-thrust-cluster">
+            <span class="cockpit-cluster-label">THRUST</span>
+            <div class="cockpit-dpad">
+              <button type="button" data-cockpit-key="KeyW" aria-label="Move forward">▲</button>
+              <button type="button" data-cockpit-key="KeyA" aria-label="Turn left">◀</button>
+              <button type="button" data-cockpit-key="KeyS" aria-label="Move backward">▼</button>
+              <button type="button" data-cockpit-key="KeyD" aria-label="Turn right">▶</button>
+              <i></i>
+            </div>
+          </div>
+
+          <div class="cockpit-control-cluster cockpit-center-cluster">
+            <span class="cockpit-cluster-label">FLIGHT</span>
+            <div class="cockpit-altitude-stack">
+              <button type="button" data-cockpit-key="KeyE">ASCEND</button>
+              <button type="button" data-cockpit-key="KeyQ">DESCEND</button>
+            </div>
+            <div class="cockpit-primary-actions">
+              <button type="button" data-cockpit-tap="ShiftLeft">BOOST</button>
+              <button type="button" data-cockpit-tap="KeyF">SCAN</button>
+              <button type="button" data-cockpit-tap="KeyP">AUTO</button>
+              <button type="button" data-cockpit-tap="KeyL">LAND</button>
+            </div>
+          </div>
+
+          <div class="cockpit-control-cluster cockpit-command-cluster">
+            <span class="cockpit-cluster-label">COMMAND</span>
+            <div class="cockpit-command-grid">
+              <button type="button" data-cockpit-action="destinations">DEST</button>
+              <button type="button" data-cockpit-action="missions">MISSION</button>
+              <button type="button" data-cockpit-action="aura">AURA</button>
+              <button type="button" data-cockpit-action="system">SYSTEM</button>
+              <button type="button" data-cockpit-action="controls">HELP</button>
+              <button type="button" data-cockpit-action="takeoff">TAKE OFF</button>
+            </div>
+          </div>
+        </div>
+
+        <button id="mobile-cockpit-minimize" class="mobile-cockpit-minimize" type="button" aria-label="Minimize cockpit controls">⌄</button>
+      </section>
+
+      <section id="mobile-explorer-controls" class="mobile-explorer-controls is-hidden" aria-label="Mobile explorer flight controls">
+        <div class="mobile-stick mobile-stick-left" aria-label="Movement controls">
+          <button type="button" data-mobile-key="KeyW" aria-label="Move forward">▲</button>
+          <button type="button" data-mobile-key="KeyA" aria-label="Turn left">◀</button>
+          <button type="button" data-mobile-key="KeyS" aria-label="Reverse">▼</button>
+          <button type="button" data-mobile-key="KeyD" aria-label="Turn right">▶</button>
+          <span>THRUST</span>
+        </div>
+        <div class="mobile-altitude-controls" aria-label="Altitude controls">
+          <button type="button" data-mobile-key="KeyE">ASCEND</button>
+          <button type="button" data-mobile-key="KeyQ">DESCEND</button>
+        </div>
+        <div class="mobile-action-controls" aria-label="Explorer actions">
+          <button type="button" data-mobile-tap="ShiftLeft">BOOST</button>
+          <button type="button" data-mobile-tap="KeyF">SCAN</button>
+          <button type="button" data-mobile-tap="KeyP">AUTO</button>
+          <button type="button" data-mobile-tap="KeyL" data-mobile-land>LAND</button>
+          <button type="button" data-mobile-tap="KeyT" data-mobile-takeoff>TAKE OFF</button>
+          <button type="button" data-mobile-action="destinations">MAP</button>
+        </div>
+        <button id="mobile-controls-collapse" class="mobile-controls-collapse" type="button" aria-label="Collapse mobile controls">−</button>
+      </section>
+
+</div>
 
     <script type="module" src="/src/main.js"></script>
   </body>
