@@ -1,7 +1,7 @@
 {
   "name": "ees-portfolio-experience",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.2.4",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -42,7 +42,8 @@
     "verify:rc2-fixes": "node scripts/verify-rc2-fixes.mjs",
     "verify:rc3-waypoint": "node scripts/verify-rc3-waypoint.mjs",
     "verify:production": "node scripts/verify-production-release.mjs",
-    "verify:final-launch": "node scripts/verify-final-launch.mjs"
+    "verify:final-launch": "node scripts/verify-final-launch.mjs",
+    "verify:takeoff-contact": "node scripts/verify-mobile-takeoff-contact-fix.mjs"
   },
   "dependencies": {
     "three": "^0.180.0"
@@ -50,6 +51,6 @@
   "devDependencies": {
     "vite": "^7.1.7"
   },
-  "description": "EES Genesis v1.0.0 Final Launch Edition \u2014 an immersive 3D Engineering Experience System with cinematic onboarding, AURA intelligence, adaptive audio and camera systems, live engineering project portals, polished branding, accessibility, and production deployment support.",
+  "description": "EES Genesis v1.2.4 mobile fix with immediate takeoff restoration, direct cockpit takeoff handling, and an accessible mobile contact console.",
   "homepage": "https://ees-jdl.com"
 }
