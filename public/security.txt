@@ -1,0 +1,3 @@
+Contact: mailto:jeremiah@jeremiahlupton.com
+Canonical: https://ees-jdl.com/security.txt
+Preferred-Languages: en

@@ -1,0 +1,25 @@
+{
+  "name": "EES Genesis \u2014 Engineering Experience System",
+  "short_name": "EES Genesis",
+  "description": "An immersive 3D engineering portfolio and Engineering Experience System.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#020A1A",
+  "theme_color": "#031834",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

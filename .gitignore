@@ -1,0 +1,16 @@
+node_modules/
+dist/
+.DS_Store
+.env
+.env.*
+.vercel/
+*.log
+# Public repository cleanup
+.vite/
+__MACOSX/
+*.zip
+*.mov
+*.mp4
+!.env.example
+coverage/
+*.tsbuildinfo

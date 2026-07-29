@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ees-jdl.com/sitemap.xml

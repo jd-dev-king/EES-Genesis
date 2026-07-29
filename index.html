@@ -1,0 +1,1617 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="EES Genesis — Jeremiah Lupton’s interactive 3D engineering portfolio and Engineering Experience System."
+    />
+    <meta name="theme-color" content="#020617" />
+    <meta name="application-name" content="EES Genesis" />
+    <meta name="author" content="Jeremiah Lupton" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href="https://ees-jdl.com/" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Engineering Experience System" />
+    <meta property="og:title" content="EES Genesis | Jeremiah Lupton" />
+    <meta property="og:description" content="Enter a living 3D engineering facility and explore Jeremiah Lupton’s projects, capabilities, journey, and the foundation of the Engineering Experience System." />
+    <meta property="og:url" content="https://ees-jdl.com/" />
+    <meta property="og:image" content="https://ees-jdl.com/ees-social-preview.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="EES Genesis | Jeremiah Lupton" />
+    <meta name="twitter:description" content="An immersive 3D engineering portfolio and the public gateway to the Engineering Experience System." />
+    <meta name="twitter:image" content="https://ees-jdl.com/ees-social-preview.png" />
+    <title>EES Genesis | Engineering Experience System</title>
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta property="og:image" content="https://ees-jdl.com/og-image.png" />
+    <meta property="og:image:width" content="1536" />
+    <meta property="og:image:height" content="1024" />
+    <meta property="og:image:alt" content="EES Genesis immersive Engineering Experience System" />
+    <meta name="twitter:title" content="EES Genesis | Engineering Experience System" />
+    <meta
+      name="twitter:description"
+      content="Explore an immersive 3D engineering portfolio universe built around systems thinking, automation, data, manufacturing, and AI."
+    />
+    <meta name="twitter:image" content="https://ees-jdl.com/og-image.png" />
+
+  
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "EES Genesis",
+        "alternateName": "Engineering Experience System",
+        "url": "https://ees-jdl.com/",
+        "description": "An immersive 3D engineering portfolio platform showcasing engineering projects, digital experiences, and systems thinking.",
+        "creator": {
+          "@type": "Person",
+          "name": "Jeremiah Lupton",
+          "url": "https://jeremiahlupton.com/"
+        },
+        "sameAs": [
+          "https://github.com/jd-dev-king/EES-Genesis",
+          "https://portfolio.jeremiahlupton.com/"
+        ]
+      }
+    </script>
+
+  </head>
+  <body>
+    <audio
+      id="mobile-cinematic-audio"
+      preload="auto"
+      playsinline
+      src="/audio/mobile-genesis-cinematic.wav"
+    ></audio>
+
+  <div id="flight-computer-shell" class="flight-computer-shell is-hidden" aria-live="polite"><span id="flight-computer-mode">FLIGHT COMPUTER</span><strong id="flight-computer-context">ENGINEERING VERSE</strong></div>
+    <div id="experience">
+      <canvas id="experience-canvas"></canvas>
+    </div>
+
+    <div id="interface">
+      <header class="top-bar">
+        <a class="brand" href="#">
+          <span class="brand-mark">EES</span>
+          <span class="brand-copy">
+            <strong>Engineering Experience System</strong>
+            <small>Portfolio Experience <span class="version-badge">v1.3.0 CONNECTED EES ECOSYSTEM</span></small>
+          </span>
+        </a>
+
+        <div class="top-actions" data-flight-computer>
+          <button id="scanner-mode-button" class="interface-button" type="button">Scanner: Signal</button>
+          <button id="aura-command-button" class="interface-button" type="button">Ask AURA</button>
+          <button id="digital-twin-button" class="interface-button" type="button">Digital Twin</button>
+          <button id="operations-button" class="interface-button" type="button">Operations</button>
+          <button id="discoveries-button" class="interface-button" type="button">Discoveries</button>
+          <button id="mission-log-button" class="interface-button" type="button">Missions</button>
+          <button id="navigation-button" class="interface-button" type="button">Destinations</button>
+          <button id="help-button" class="interface-button" type="button">Controls</button>
+        </div>
+      </header>
+
+
+            <div
+        id="opening-audio-activation"
+        class="opening-audio-activation"
+        role="dialog"
+        aria-label="Activate immersive audio"
+      >
+        <div class="opening-audio-card">
+          <span>EES AUDIO LINK</span>
+          <strong>Activate Immersive Audio</strong>
+          <p>
+            Enable the Doppler arrival sequence, system checks, engine startup,
+            countdown voice, and adaptive Engineering Verse soundscape.
+          </p>
+          <button id="activate-opening-audio" type="button">
+            ACTIVATE AUDIO &amp; BEGIN
+          </button>
+          <small>Audio remains controllable from SYSTEM → ACCESSIBILITY.</small>
+        </div>
+      </div>
+
+<section
+        id="genesis-launch-pad"
+        class="genesis-launch-pad cinematic-pending"
+        aria-label="EES Genesis Arrival Protocol"
+      >
+        <div
+          id="genesis-cinematic"
+          class="genesis-cinematic"
+          aria-live="polite"
+        >
+          <div class="arrival-corridor" aria-hidden="true">
+            <div class="corridor-ceiling"></div>
+            <div class="corridor-wall corridor-wall-left"></div>
+            <div class="corridor-wall corridor-wall-right"></div>
+            <div class="corridor-floor">
+              <span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span>
+            </div>
+            <div class="blast-door blast-door-left"></div>
+            <div class="blast-door blast-door-right"></div>
+            <div class="door-seam"></div>
+          </div>
+
+          <div class="cinematic-grid"></div>
+          <div id="cinematic-pulse" class="cinematic-pulse"></div>
+
+          <div class="cinematic-copy">
+            <p id="cinematic-kicker">
+              ENGINEERING EXPERIENCE SYSTEM
+            </p>
+            <h1 id="cinematic-title">
+              APPROACHING THE EESIVERSE
+            </h1>
+            <p id="cinematic-message">
+              Arrival Protocol engaged. Engineering Command is preparing for guest access.
+            </p>
+            <div class="cinematic-progress-track">
+              <span id="cinematic-progress-bar"></span>
+            </div>
+          </div>
+
+          <div class="cinematic-corner corner-top-left">
+            <span>FACILITY LINK</span>
+            <strong id="cinematic-core-link">CONNECTING</strong>
+          </div>
+
+          <div class="cinematic-corner corner-top-right">
+            <span>ARRIVAL SEQUENCE</span>
+            <strong id="cinematic-sequence">00 / 07</strong>
+          </div>
+
+          <button
+            id="skip-genesis-cinematic"
+            class="skip-cinematic-button"
+            type="button"
+          >
+            Skip cinematic
+          </button>
+        </div>
+      </section>
+
+      <section id="boot-screen" class="boot-screen identity-boot-screen is-hidden">
+        <div class="identity-boot-frame">
+          <div class="identity-boot-topline">
+            <span>ENGINEERING EXPERIENCE SYSTEM</span>
+            <strong>EES GENESIS // SYSTEM INITIALIZATION</strong>
+            <span>IDENTITY CORE // JL</span>
+          </div>
+
+          <div class="identity-boot-layout">
+            <aside class="boot-module boot-status-module">
+              <p class="boot-module-title">SYSTEM STATUS</p>
+              <div id="boot-system-list" class="boot-system-list">
+                <div data-system-index="0"><i></i><span>POWER GRID</span><strong>STANDBY</strong></div>
+                <div data-system-index="1"><i></i><span>NAVIGATION MATRIX</span><strong>STANDBY</strong></div>
+                <div data-system-index="2"><i></i><span>ROBOTIC CONTROL</span><strong>STANDBY</strong></div>
+                <div data-system-index="3"><i></i><span>MISSION ENGINE</span><strong>STANDBY</strong></div>
+                <div data-system-index="4"><i></i><span>PORTAL NETWORK</span><strong>STANDBY</strong></div>
+                <div data-system-index="5"><i></i><span>DATA CORE</span><strong>STANDBY</strong></div>
+                <div data-system-index="6"><i></i><span>IDENTITY CORE</span><strong>STANDBY</strong></div>
+              </div>
+
+              <div class="boot-diagnostics">
+                <p class="boot-module-title">CORE DIAGNOSTICS</p>
+                <div class="diagnostic-gauge">
+                  <svg viewBox="0 0 120 120" aria-hidden="true">
+                    <circle cx="60" cy="60" r="48"></circle>
+                    <circle id="boot-diagnostic-ring" class="diagnostic-progress-ring" cx="60" cy="60" r="48"></circle>
+                  </svg>
+                  <div>
+                    <strong id="boot-diagnostic-value">0%</strong>
+                    <small>ALL SYSTEMS</small>
+                  </div>
+                </div>
+
+                <div class="diagnostic-status-list">
+                  <div><span>THERMAL STATUS</span><strong id="boot-thermal">CALIBRATING</strong></div>
+                  <div><span>MEMORY BANKS</span><strong id="boot-memory">SYNCING</strong></div>
+                  <div><span>NETWORK LINK</span><strong id="boot-network">CONNECTING</strong></div>
+                  <div><span>AI SUBSYSTEMS</span><strong id="boot-ai">INITIALIZING</strong></div>
+                </div>
+              </div>
+            </aside>
+
+            <main class="identity-core-stage" aria-label="Live three-dimensional identity core">
+              <div class="boot-core-identity" aria-label="Jeremiah Lupton Engineering Portfolio">
+                <h2>JEREMIAH<br />LUPTON</h2>
+                <p>ENGINEERING PORTFOLIO</p>
+                <strong>EES GENESIS ONLINE</strong>
+              </div>
+
+              <div class="command-ambient-layer" aria-hidden="true">
+                <div class="command-orbit-data orbit-data-a"><span>PORTAL NETWORK</span><strong id="ambient-portal-status">SYNCHRONIZING</strong></div>
+                <div class="command-orbit-data orbit-data-b"><span>DIGITAL TWIN GRID</span><strong id="ambient-twin-status">STANDBY</strong></div>
+                <div class="command-orbit-data orbit-data-c"><span>AURA LINK</span><strong id="ambient-aura-status">INITIALIZING</strong></div>
+                <div class="command-orbit-data orbit-data-d"><span>MISSION ENGINE</span><strong id="ambient-mission-status">LOADING</strong></div>
+              </div>
+
+              <div class="identity-core-stage-copy">
+                <p>IDENTITY CORE</p>
+                <strong id="boot-core-state">INITIALIZING</strong>
+                <small id="boot-core-message">Jeremiah Lupton Engineering Portfolio</small>
+              </div>
+              <div class="boot-experience-badge">
+                <strong>25+</strong>
+                <span>YEARS OF EXPERIENCE</span>
+              </div>
+            </main>
+
+            <aside class="boot-module boot-sequence-module">
+              <p class="boot-module-title">BOOT SEQUENCE</p>
+              <div id="boot-log" class="boot-log live-boot-log"></div>
+
+              <div class="boot-progress-block">
+                <div>
+                  <span id="boot-progress-label">INITIALIZING EES GENESIS</span>
+                  <strong id="boot-progress-value">0%</strong>
+                </div>
+                <div class="boot-progress">
+                  <span id="boot-progress-bar"></span>
+                </div>
+              </div>
+
+              <div class="boot-overview">
+                <p class="boot-module-title">SYSTEM OVERVIEW</p>
+                <div class="boot-robot-hologram">
+                  <span class="robot-holo-core"></span>
+                  <span class="robot-holo-arm arm-one"></span>
+                  <span class="robot-holo-arm arm-two"></span>
+                  <span class="robot-holo-arm arm-three"></span>
+                </div>
+                <strong id="boot-overview-status">AWAITING SYSTEM CHECK</strong>
+              </div>
+            </aside>
+          </div>
+
+          <section class="facility-ai-strip" aria-live="polite">
+            <div>
+              <span>FACILITY AI</span>
+              <strong id="facility-ai-message">Visitor detected. Engineering Command is preparing.</strong>
+            </div>
+            <div class="facility-ai-signal" aria-hidden="true">
+              <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+            </div>
+          </section>
+
+          <div class="identity-boot-footer">
+            <div>
+              <span id="boot-footer-status">PREPARING YOUR JOURNEY...</span>
+              <small>ENGINEERING SOLUTIONS. AUTOMATING TOMORROW.</small>
+            </div>
+            <button id="boot-continue" class="identity-launch-button is-hidden" type="button">
+              <span>TAKE FLIGHT</span>
+              <small>ENTER THE EES HANGAR</small>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section id="hangar-screen" class="hangar-screen flight-operations-screen is-hidden">
+        <div class="flight-operations-frame">
+          <div class="flight-operations-topline">
+            <span>FLIGHT OPERATIONS // ORBITAL HANGAR BAY 01</span>
+            <strong id="flight-ops-phase">PREPARING EXPLORER UNIT</strong>
+            <span id="flight-ops-percent">0%</span>
+          </div>
+
+          <div class="flight-operations-layout">
+            <aside class="flight-ops-panel">
+              <p class="eyebrow">STARTUP SEQUENCE</p>
+              <div id="flight-ops-systems" class="flight-ops-systems">
+                <div data-flight-system="0"><i></i><span>POWER CORE</span><strong>STANDBY</strong></div>
+                <div data-flight-system="1"><i></i><span>THRUSTERS</span><strong>STANDBY</strong></div>
+                <div data-flight-system="2"><i></i><span>NAVIGATION</span><strong>STANDBY</strong></div>
+                <div data-flight-system="3"><i></i><span>SCANNER ARRAY</span><strong>STANDBY</strong></div>
+                <div data-flight-system="4"><i></i><span>MISSION ENGINE</span><strong>STANDBY</strong></div>
+                <div data-flight-system="5"><i></i><span>FLIGHT HUD</span><strong>STANDBY</strong></div>
+              </div>
+            </aside>
+
+            <main class="flight-ops-vehicle">
+              <div class="flight-ops-hologram">
+                <span>EXPLORER UNIT</span>
+                <strong id="flight-ops-unit-state">DORMANT</strong>
+              </div>
+              <div class="flight-ops-energy-field" aria-hidden="true"></div>
+
+              <div class="service-arm service-arm-left" aria-hidden="true">
+                <span class="service-arm-segment"></span>
+                <span class="service-arm-joint"></span>
+                <span class="service-arm-tool"></span>
+              </div>
+
+              <div class="service-arm service-arm-right" aria-hidden="true">
+                <span class="service-arm-segment"></span>
+                <span class="service-arm-joint"></span>
+                <span class="service-arm-tool"></span>
+              </div>
+
+              <div class="docking-clamp docking-clamp-left" aria-hidden="true"></div>
+              <div class="docking-clamp docking-clamp-right" aria-hidden="true"></div>
+
+              <div class="scanner-sweep" aria-hidden="true"></div>
+
+              <div class="launch-countdown" aria-live="polite">
+                <span>LAUNCH SEQUENCE</span>
+                <strong id="launch-countdown-value">STANDBY</strong>
+              </div>
+              <div class="flight-ops-robot">
+                <span class="flight-robot-core"></span>
+                <span class="flight-robot-arm arm-one"></span>
+                <span class="flight-robot-arm arm-two"></span>
+                <span class="flight-robot-arm arm-three"></span>
+                <span class="flight-thruster thruster-one"></span>
+                <span class="flight-thruster thruster-two"></span>
+              </div>
+
+              <div class="runway-lights" aria-hidden="true">
+                <span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span>
+              </div>
+
+              <div class="hangar-door hangar-door-left"></div>
+              <div class="hangar-door hangar-door-right"></div>
+            </main>
+
+            <aside class="flight-ops-panel">
+              <p class="eyebrow">MISSION UPLOAD</p>
+              <strong>REACH ENGINEERING COMMAND</strong>
+              <p>Identity Constellation waypoint and Genesis mission data are being transferred to the explorer.</p>
+              <div id="flight-ops-log" class="flight-ops-log"></div>
+            </aside>
+          </div>
+
+          <div class="flight-ops-status-grid">
+            <div><span>DOCKING</span><strong id="flight-docking-status">ENGAGED</strong></div>
+            <div><span>THRUST</span><strong id="flight-thrust-status">0%</strong></div>
+            <div><span>SCANNER</span><strong id="flight-scanner-status">STANDBY</strong></div>
+            <div><span>CONTROL</span><strong id="flight-control-status">LOCKED</strong></div>
+          </div>
+
+          <div class="flight-ops-footer">
+            <div class="flight-ops-progress">
+              <span id="flight-ops-progress-bar"></span>
+            </div>
+            <strong id="flight-ops-status">CONNECTING FLIGHT SYSTEMS...</strong>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="verse-arrival-screen"
+        class="verse-arrival-screen is-hidden"
+        aria-live="polite"
+      >
+        <div class="verse-starfield" aria-hidden="true">
+          <span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span>
+        </div>
+
+        <div class="verse-arrival-core">
+          <p class="eyebrow">ENGINEERING VERSE TRANSIT</p>
+          <h2 id="verse-arrival-title">ENTERING THE EESIVERSE</h2>
+          <p id="verse-arrival-message">
+            Navigation Matrix is aligning the explorer with the portfolio destination network.
+          </p>
+
+          <div class="verse-route-map" aria-hidden="true">
+            <span class="route-node route-center"></span>
+            <span class="route-node route-a"></span>
+            <span class="route-node route-b"></span>
+            <span class="route-node route-c"></span>
+            <span class="route-node route-d"></span>
+            <span class="route-node route-e"></span>
+            <span class="route-node route-f"></span>
+            <i class="route-line route-line-a"></i>
+            <i class="route-line route-line-b"></i>
+            <i class="route-line route-line-c"></i>
+            <i class="route-line route-line-d"></i>
+            <i class="route-line route-line-e"></i>
+            <i class="route-line route-line-f"></i>
+          </div>
+
+          <div class="verse-destination-grid">
+            <div data-verse-destination="0"><i></i><span>IDENTITY CONSTELLATION</span><strong>LOCATING</strong></div>
+            <div data-verse-destination="1"><i></i><span>PROJECT EARTH</span><strong>LOCATING</strong></div>
+            <div data-verse-destination="2"><i></i><span>CAPABILITY NEXUS</span><strong>LOCATING</strong></div>
+            <div data-verse-destination="3"><i></i><span>JOURNEY MOON</span><strong>LOCATING</strong></div>
+            <div data-verse-destination="4"><i></i><span>COMMUNICATIONS STATION</span><strong>LOCATING</strong></div>
+            <div data-verse-destination="5"><i></i><span>SOURCE CODE SATELLITE</span><strong>LOCATING</strong></div>
+            <div data-verse-destination="6"><i></i><span>EES GATEWAY</span><strong>LOCATING</strong></div>
+          </div>
+
+          <div class="verse-arrival-progress">
+            <div>
+              <span id="verse-arrival-status">SYNCHRONIZING DESTINATION NETWORK</span>
+              <strong id="verse-arrival-percent">0%</strong>
+            </div>
+            <div class="verse-arrival-track">
+              <span id="verse-arrival-bar"></span>
+            </div>
+          </div>
+
+          <div class="verse-aura-briefing">
+            <span>AURA</span>
+            <strong id="verse-aura-message">
+              I am preparing your first navigation waypoint.
+            </strong>
+          </div>
+        </div>
+      </section>
+
+      <aside id="mission-panel" data-adaptive-panel="flight-status" data-panel-label="Flight Status" class="mission-panel is-hidden">
+        <p class="eyebrow">PRIMARY MISSION</p>
+        <strong id="mission-title">Reach Engineering Command</strong>
+        <span id="mission-objective">Set waypoint: Identity Constellation</span>
+        <div class="mission-progress"><span id="mission-progress-bar"></span></div>
+        <div class="mission-meta">
+          <span>Mission <strong id="mission-number">1</strong>/7</span>
+          <span>XP <strong id="mission-xp">0</strong></span>
+        </div>
+      </aside>
+
+      <aside id="mission-hud" class="mission-hud is-hidden">
+        <div class="hud-heading">
+          <span>FLIGHT STATUS</span>
+          <strong id="flight-status">STANDBY</strong>
+        </div>
+        <div class="hud-row"><span>Speed</span><strong><span id="speed-value">0</span> u/s</strong></div>
+        <div class="hud-row"><span>Altitude</span><strong><span id="altitude-value">0</span> u</strong></div>
+        <div class="hud-row"><span>Nearest signal</span><strong id="nearest-zone">Scanning</strong></div>
+        <div class="hud-row"><span>Landing</span><strong id="landing-status">Unavailable</strong></div>
+        <div class="hud-row"><span>Waypoint</span><strong id="waypoint-status">None</strong></div>
+        <div class="hud-row"><span>Autopilot</span><strong id="autopilot-status">OFF</strong></div>
+        <div class="hud-row"><span>Hull</span><strong><span id="hull-status">100</span>%</strong></div>
+        <div class="hud-row"><span>Energy</span><strong><span id="energy-status">100</span>%</strong></div>
+        <div class="hud-row"><span>Verse Boundary</span><strong id="boundary-status">CLEAR</strong></div>
+        <div class="hud-row"><span>Scanner</span><strong id="scanner-status">STANDBY</strong></div>
+        <div class="hud-row"><span>Signal Range</span><strong><span id="scanner-distance">—</span> u</strong></div>
+        <div class="hud-row"><span>Worlds</span><strong><span id="discovery-count">1</span>/7</strong></div>
+        <div class="hud-row"><span>Artifacts</span><strong><span id="artifact-count">0</span>/<span id="artifact-total">0</span></strong></div>
+        <div class="hud-row"><span>Scanner Mode</span><strong id="scanner-mode-status">SIGNAL</strong></div>
+        <div class="hud-row"><span>Active Event</span><strong id="event-status">NONE</strong></div>
+        <div class="hud-row"><span>Traffic Safety</span><strong id="traffic-safety-status">CLEAR</strong></div>
+        <div class="hud-row"><span>Operations</span><strong id="operations-status">STANDBY</strong></div>
+        <div class="hud-row"><span>Digital Twin</span><strong id="twin-status">OFFLINE</strong></div>
+        <div class="hud-row"><span>AURA</span><strong id="aura-status">ONLINE</strong></div>
+        <div class="hud-row"><span>Distance</span><strong><span id="waypoint-distance">—</span> u</strong></div>
+        <div class="hud-divider"></div>
+        <div class="hud-row living-telemetry"><span>Sector</span><strong id="living-sector">GENESIS</strong></div>
+        <div class="hud-row living-telemetry"><span>Mission Uptime</span><strong id="living-uptime">00:00</strong></div>
+        <div class="hud-row living-telemetry"><span>Power Draw</span><strong><span id="living-power">18</span>%</strong></div>
+        <div class="hud-row living-telemetry"><span>Nav Quality</span><strong><span id="living-navigation">100</span>%</strong></div>
+        <div class="hud-row living-telemetry"><span>Portal Integrity</span><strong><span id="living-portal">100</span>%</strong></div>
+        <div class="hud-row living-telemetry"><span>Verse Activity</span><strong id="living-activity">NOMINAL</strong></div>
+        <div class="hud-divider"></div>
+        <div class="hud-row destination-telemetry"><span>Facility</span><strong id="destination-facility">OPEN SPACE</strong></div>
+        <div class="hud-row destination-telemetry"><span>Approach</span><strong id="destination-approach">CLEAR</strong></div>
+        <div class="hud-row destination-telemetry"><span>Docking Link</span><strong id="destination-docking">STANDBY</strong></div>
+      </aside>
+
+      <div id="destination-marker" class="destination-marker is-hidden">
+        <div
+          id="destination-marker-drag-handle"
+          class="destination-marker-drag-handle"
+          title="Drag waypoint panel"
+          aria-label="Drag waypoint panel"
+        >
+          <span class="marker-dot"></span>
+          <div class="marker-copy">
+            <strong id="marker-title">Destination</strong>
+            <small><span id="marker-distance">0</span> units</small>
+          </div>
+        </div>
+
+        <div id="destination-marker-actions" class="destination-marker-actions">
+          <button id="marker-waypoint" class="mini-button" type="button">Set Waypoint</button>
+          <button id="marker-autopilot" class="mini-button" type="button">Autopilot</button>
+          <button id="clear-waypoint" class="mini-button" type="button">Clear</button>
+          <button id="marker-scan" class="mini-button scan-mini" type="button">Scan Signal</button>
+          <button id="marker-land" class="mini-button primary-mini" type="button">Land</button>
+        </div>
+
+        <button
+          id="destination-marker-collapse"
+          class="destination-marker-collapse"
+          type="button"
+          aria-label="Collapse waypoint panel"
+          title="Collapse waypoint panel"
+          aria-expanded="true"
+        >
+          −
+        </button>
+      </div>
+
+      <section id="portfolio-overlay" class="portfolio-overlay" aria-hidden="true">
+        <article class="portfolio-card">
+          <button id="close-overlay" class="close-button" type="button" aria-label="Close portfolio panel">×</button>
+          <p id="overlay-category" class="eyebrow">PORTFOLIO ZONE</p>
+          <h2 id="overlay-title">Project destination</h2>
+          <p id="overlay-description"></p>
+          <div id="overlay-projects" class="project-list"></div>
+          <div class="overlay-actions">
+            <button id="continue-flight" class="primary-button" type="button">Continue Flight</button>
+            <button id="open-portal" class="secondary-button" type="button">Open Destination Portal</button>
+          </div>
+        </article>
+      </section>
+
+
+      <section id="digital-world" class="digital-world" aria-hidden="true">
+        <div class="digital-world-shell">
+          <div class="digital-world-header">
+            <div>
+              <p id="world-category" class="eyebrow">DIGITAL WORLD</p>
+              <h2 id="world-title">Destination World</h2>
+              <p id="world-description" class="world-description"></p>
+            </div>
+            <button id="close-world" class="close-button" type="button" aria-label="Close digital world">×</button>
+          </div>
+
+          <div class="world-status-bar">
+            <span>CRAFT STATUS: <strong>LANDED</strong></span>
+            <span id="world-coordinate">COORDINATES LOCKED</span>
+          </div>
+
+          <div id="world-components" class="world-components"></div>
+
+          <div class="world-actions">
+            <button id="return-flight-button" class="secondary-button" type="button">Return to Landing Pad</button>
+            <button id="takeoff-button" class="primary-button" type="button">Take Off and Return to Flight</button>
+            <button id="enter-portal" class="secondary-button" type="button">Enter Portal Interface</button>
+          </div>
+        </div>
+      </section>
+
+
+
+      <section id="portal-detail-overlay" class="portal-detail-overlay" aria-hidden="true">
+        <div id="portal-detail-shell" class="portal-detail-shell">
+          <div class="portal-detail-topline">
+            <span>EES INTERNAL DATA VIEW</span>
+            <span id="portal-detail-code">VIEW-00</span>
+          </div>
+
+          <div class="portal-detail-header">
+            <div>
+              <p id="portal-detail-eyebrow" class="eyebrow">INTERNAL PORTAL</p>
+              <h2 id="portal-detail-title">Data View</h2>
+              <p id="portal-detail-subtitle"></p>
+            </div>
+            <div class="portal-detail-header-actions">
+              <button id="back-portal-detail" class="secondary-button portal-detail-back" type="button">Back to Portal</button>
+              <button id="close-portal-detail" class="close-button" type="button" aria-label="Close internal portal view">×</button>
+            </div>
+          </div>
+
+          <div id="portal-detail-content" class="portal-detail-content"></div>
+
+          <div class="portal-detail-footer">
+            <span>INTERNAL EES VIEW • ESC OR BACK TO RETURN</span>
+            <button id="footer-back-portal-detail" class="primary-button" type="button">Back to Destination Portal</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="portal-interface" class="portal-interface" aria-hidden="true">
+        <div id="portal-shell" class="portal-shell" data-zone="about">
+          <div class="portal-topline">
+            <span>DESTINATION PORTAL // EES PORTFOLIO DATA CORE</span>
+            <span id="portal-code">NODE-00</span>
+          </div>
+          <div class="portal-header">
+            <div>
+              <p id="portal-category" class="eyebrow">PORTAL</p>
+              <h2 id="portal-title">Destination</h2>
+              <p id="portal-description" class="portal-description"></p>
+            </div>
+            <button id="close-portal" class="close-button" type="button" aria-label="Close portal">×</button>
+          </div>
+          <div class="portal-console">
+            <div class="console-sidebar">
+              <button class="portal-tab is-active" data-tab="overview">Overview</button>
+              <button class="portal-tab" data-tab="systems">Systems</button>
+              <button class="portal-tab" data-tab="records">Records</button>
+              <button class="portal-tab" data-tab="links">Links</button>
+            </div>
+            <div id="portal-content" class="portal-content"></div>
+          </div>
+          <div class="portal-footer">
+            <span>SECURE EES PORTAL • STANDALONE EES PORTFOLIO DATA CORE</span>
+            <div class="portal-exit-actions">
+              <button id="portal-return" class="secondary-button" type="button">Return to Digital World</button>
+              <button id="portal-takeoff" class="primary-button" type="button">Take Off</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+
+
+
+      <section id="aura-command-panel" class="modal-panel aura-command-panel is-hidden">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">AURA CONTEXTUAL INTELLIGENCE</p>
+            <h2>Command Console</h2>
+          </div>
+          <button id="close-aura-command" class="close-button" type="button" aria-label="Close AURA console">×</button>
+        </div>
+
+        <div class="aura-context-strip">
+          <span>LOCATION <strong id="aura-location">OPEN SPACE</strong></span>
+          <span>MISSION <strong id="aura-mission">NONE</strong></span>
+          <span>HULL <strong id="aura-hull">100%</strong></span>
+          <span>ENERGY <strong id="aura-energy">100%</strong></span>
+        </div>
+
+        <div class="aura-console-layout">
+          <div class="aura-conversation">
+            <div id="aura-message-list" class="aura-message-list">
+              <article class="aura-message system">
+                <span>AURA</span>
+                <p>Contextual intelligence is online. Ask for guidance, recommendations, status, or a safe system action.</p>
+              </article>
+            </div>
+
+            <form id="aura-command-form" class="aura-command-form">
+              <input
+                id="aura-command-input"
+                type="text"
+                autocomplete="off"
+                placeholder="Ask AURA about missions, navigation, scanning, operations, or digital twins..."
+              />
+              <button class="primary-button" type="submit">Send</button>
+            </form>
+          </div>
+
+          <aside class="aura-actions-panel">
+            <p class="eyebrow">QUICK COMMANDS</p>
+
+            <div class="aura-quick-actions">
+              <button data-aura-command="recommend" type="button">Recommend Next Action</button>
+              <button data-aura-command="status" type="button">System Status</button>
+              <button data-aura-command="mission" type="button">Mission Guidance</button>
+              <button data-aura-command="scan" type="button">Scanner Guidance</button>
+              <button data-aura-command="repair" type="button">Repair Advice</button>
+              <button data-aura-command="twin" type="button">Digital Twin Advice</button>
+            </div>
+
+            <div class="aura-capability-note">
+              <span>LOCAL INTELLIGENCE</span>
+              <p>AURA uses live EES state and deterministic command logic. No external service is required.</p>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="digital-twin-panel" class="modal-panel digital-twin-panel is-hidden">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">EES DIGITAL TWIN ENGINE</p>
+            <h2 id="twin-panel-title">Destination Twin</h2>
+          </div>
+          <button id="close-digital-twin" class="close-button" type="button" aria-label="Close digital twin">×</button>
+        </div>
+
+        <div class="twin-status-strip">
+          <span>MODEL <strong id="twin-model-id">UNASSIGNED</strong></span>
+          <span>STATE <strong id="twin-model-state">STANDBY</strong></span>
+          <span>RUNS <strong id="twin-run-count">0</strong></span>
+          <span>SCORE <strong id="twin-efficiency-score">—</strong></span>
+        </div>
+
+        <div class="twin-layout">
+          <div class="twin-visualization">
+            <div class="twin-core">
+              <span class="twin-orbit orbit-a"></span>
+              <span class="twin-orbit orbit-b"></span>
+              <span class="twin-orbit orbit-c"></span>
+              <div class="twin-core-node">
+                <strong id="twin-core-value">0%</strong>
+                <small>MODEL LOAD</small>
+              </div>
+            </div>
+
+            <div id="twin-telemetry" class="twin-telemetry"></div>
+          </div>
+
+          <div class="twin-controls">
+            <p class="eyebrow">SIMULATION CONTROL</p>
+
+            <div class="twin-control-grid">
+              <button class="twin-scenario is-active" data-scenario="baseline" type="button">
+                <strong>Baseline</strong>
+                <small>Normal operating state</small>
+              </button>
+
+              <button class="twin-scenario" data-scenario="load" type="button">
+                <strong>Load Test</strong>
+                <small>Increase system demand</small>
+              </button>
+
+              <button class="twin-scenario" data-scenario="fault" type="button">
+                <strong>Fault Injection</strong>
+                <small>Introduce a controlled failure</small>
+              </button>
+
+              <button class="twin-scenario" data-scenario="optimize" type="button">
+                <strong>Optimize</strong>
+                <small>Apply engineering improvements</small>
+              </button>
+            </div>
+
+            <div class="twin-actions">
+              <button id="run-twin-simulation" class="primary-button" type="button">Run Simulation</button>
+              <button id="reset-twin-simulation" class="secondary-button" type="button">Reset Model</button>
+            </div>
+
+            <div id="twin-output" class="twin-output">
+              <span>DIGITAL TWIN READY</span>
+              <p>Land at a destination and run an engineering scenario.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="operations-panel" class="modal-panel operations-panel is-hidden">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">EES ENGINEERING NETWORK</p>
+            <h2>Operations</h2>
+          </div>
+          <button id="close-operations" class="close-button" type="button" aria-label="Close operations">×</button>
+        </div>
+
+        <div class="operations-summary">
+          <article>
+            <span>CRAFT HULL</span>
+            <strong><span id="operations-hull">100</span>%</strong>
+          </article>
+          <article>
+            <span>CRAFT ENERGY</span>
+            <strong><span id="operations-energy">100</span>%</strong>
+          </article>
+          <article>
+            <span>DOCKING STATE</span>
+            <strong id="operations-docking">IN FLIGHT</strong>
+          </article>
+          <article>
+            <span>ACTIVE SERVICE</span>
+            <strong id="operations-service">NONE</strong>
+          </article>
+        </div>
+
+        <div class="operations-grid">
+          <article class="operation-card">
+            <span>MAINTENANCE</span>
+            <h3>Hull Restoration</h3>
+            <p>Maintenance drones restore hull integrity while the craft is landed.</p>
+            <button id="repair-craft" class="secondary-button" type="button">Request Repair</button>
+          </article>
+
+          <article class="operation-card">
+            <span>ENERGY</span>
+            <h3>Power Recharge</h3>
+            <p>Recharge flight, scan, warp, and autopilot energy from the destination grid.</p>
+            <button id="recharge-craft" class="secondary-button" type="button">Recharge Energy</button>
+          </article>
+
+          <article class="operation-card">
+            <span>DIAGNOSTICS</span>
+            <h3>Run System Check</h3>
+            <p>Analyze propulsion, navigation, scanner, hull, and mission subsystems.</p>
+            <button id="run-diagnostics" class="secondary-button" type="button">Run Diagnostics</button>
+          </article>
+
+          <article class="operation-card">
+            <span>EVENT RESPONSE</span>
+            <h3>Engineering Response</h3>
+            <p>Respond to active distress beacons or unstable engineering events.</p>
+            <button id="respond-event" class="secondary-button" type="button">Respond to Event</button>
+          </article>
+        </div>
+
+        <div id="diagnostic-output" class="diagnostic-output">
+          <span>OPERATIONS CONSOLE READY</span>
+          <p>Land at a destination to enable station services.</p>
+        </div>
+      </section>
+
+      <section id="discoveries-panel" class="modal-panel discoveries-panel is-hidden">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">EES SENSOR ARCHIVE</p>
+            <h2>Discoveries</h2>
+          </div>
+          <button id="close-discoveries" class="close-button" type="button" aria-label="Close discoveries">×</button>
+        </div>
+
+        <div class="discovery-summary">
+          <article>
+            <span>WORLDS IDENTIFIED</span>
+            <strong><span id="archive-world-count">1</span>/7</strong>
+          </article>
+          <article>
+            <span>ARTIFACTS RECOVERED</span>
+            <strong><span id="archive-artifact-count">0</span>/<span id="archive-artifact-total">0</span></strong>
+          </article>
+          <article>
+            <span>SCANNER MODE</span>
+            <strong id="archive-scanner-mode">MULTI-SPECTRAL</strong>
+          </article>
+        </div>
+
+        <div id="artifact-list" class="artifact-list"></div>
+      </section>
+
+      <section id="mission-log-panel" class="modal-panel mission-log-panel is-hidden">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">GENESIS MISSION NETWORK</p>
+            <h2>Mission Log</h2>
+          </div>
+          <button id="close-mission-log" class="close-button" type="button" aria-label="Close mission log">×</button>
+        </div>
+
+        <div class="mission-summary-grid">
+          <article>
+            <span>ACTIVE MISSION</span>
+            <strong id="log-active-mission">Reach Engineering Command</strong>
+          </article>
+          <article>
+            <span>TOTAL XP</span>
+            <strong id="log-total-xp">0</strong>
+          </article>
+          <article>
+            <span>MISSIONS COMPLETE</span>
+            <strong><span id="log-complete-count">0</span>/7</strong>
+          </article>
+          <article>
+            <span>DISCOVERIES</span>
+            <strong><span id="log-discovery-count">1</span>/7</strong>
+          </article>
+        </div>
+
+        <div id="mission-list" class="mission-list"></div>
+
+        <div class="mission-log-actions">
+          <button id="reset-progress" class="secondary-button danger-button" type="button">Reset Local Progress</button>
+        </div>
+      </section>
+
+      <section id="controls-panel" class="modal-panel floating-controls-panel is-hidden" aria-label="Draggable robot controls">
+        <div id="controls-drag-handle" class="panel-header controls-drag-handle">
+          <div>
+            <p class="eyebrow">FLIGHT MANUAL // FLOATING CONSOLE</p>
+            <h2>Robot Controls</h2>
+          </div>
+          <div class="controls-window-actions">
+            <button id="pin-controls" class="window-control-button" type="button" aria-label="Pin controls" title="Pin controls">PIN</button>
+            <button id="minimize-controls" class="window-control-button" type="button" aria-label="Minimize controls" title="Minimize controls">—</button>
+            <button id="reset-controls-position" class="window-control-button" type="button" aria-label="Reset controls position" title="Reset controls position">↺</button>
+            <button id="close-controls" class="close-button" type="button" aria-label="Close controls">×</button>
+          </div>
+        </div>
+
+        <div id="controls-panel-body" class="controls-panel-body">
+          <div class="controls-console-status">
+            <span>DRAG HEADER TO REPOSITION</span>
+            <strong id="controls-window-state">FREE</strong>
+          </div>
+
+          <div class="control-grid">
+            <div><kbd>W</kbd><span>Forward thrust</span></div>
+            <div><kbd>S</kbd><span>Reverse thrust</span></div>
+            <div><kbd>A</kbd><span>Turn left</span></div>
+            <div><kbd>D</kbd><span>Turn right</span></div>
+            <div><kbd>Q</kbd><span>Descend</span></div>
+            <div><kbd>E</kbd><span>Ascend</span></div>
+            <div><kbd>Shift</kbd><span>Boost</span></div>
+            <div><kbd>Space</kbd><span>Inspect destination</span></div>
+            <div><kbd>L</kbd><span>Land at destination</span></div>
+            <div><kbd>T</kbd><span>Take off from any landed state</span></div>
+            <div><kbd>P</kbd><span>Toggle autopilot</span></div>
+            <div><kbd>F</kbd><span>Scan nearby signal</span></div>
+            <div><kbd>R</kbd><span>Cycle scanner mode</span></div>
+            <div><kbd>O</kbd><span>Open engineering operations</span></div>
+            <div><kbd>Y</kbd><span>Open digital twin lab</span></div>
+            <div><kbd>C</kbd><span>Open AURA command console</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="navigation-panel" class="modal-panel navigation-panel is-hidden">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">NAVIGATION MAP</p>
+            <h2>Destinations</h2>
+          </div>
+          <button id="close-navigation" class="close-button" type="button" aria-label="Close destinations">×</button>
+        </div>
+        <div class="map-layout">
+          <div class="map-radar">
+            <div class="radar-ring ring-one"></div>
+            <div class="radar-ring ring-two"></div>
+            <div class="radar-crosshair"></div>
+            <div id="map-nodes" class="map-nodes"></div>
+          </div>
+          <div id="navigation-list" class="navigation-list"></div>
+        </div>
+      </section>
+
+      <div id="crosshair" class="crosshair is-hidden" aria-hidden="true"><span></span><span></span></div>
+      <div id="waypoint-guidance" class="waypoint-guidance is-hidden">
+        <span class="guidance-label">ACTIVE WAYPOINT</span>
+        <strong id="guidance-title">Destination</strong>
+        <span><span id="guidance-distance">0</span> units remaining</span>
+      </div>
+
+
+      <aside id="space-event-banner" class="space-event-banner is-hidden">
+        <span id="event-type">SPACE EVENT</span>
+        <strong id="event-title">Meteor Shower</strong>
+        <small id="event-description">Dynamic activity detected in the Genesis Sector.</small>
+      </aside>
+
+      <aside id="achievement-toast" class="achievement-toast is-hidden">
+        <span>ACHIEVEMENT UNLOCKED</span>
+        <strong id="achievement-title">Explorer</strong>
+        <small id="achievement-description">A new milestone has been reached.</small>
+      </aside>
+
+      <aside id="ees-guide" class="ees-guide is-hidden">
+        <div class="guide-orb">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="guide-copy">
+          <small>EES GUIDE // AURA</small>
+          <strong id="guide-title">System online</strong>
+          <p id="guide-message">Navigation and mission support are ready.</p>
+        </div>
+        <button id="guide-dismiss" class="mini-button" type="button">Dismiss</button>
+      </aside>
+
+      <div id="scan-interface" class="scan-interface is-hidden">
+        <div class="scan-reticle">
+          <div class="scan-sweep"></div>
+          <div class="scan-rays">
+            <i></i><i></i><i></i><i></i><i></i><i></i>
+          </div>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <strong id="scan-target">UNKNOWN SIGNAL</strong>
+        <small id="scan-progress-label">SCANNING 0%</small>
+      </div>
+
+      <div id="boundary-warning" class="boundary-warning is-hidden">
+        <span>EES VERSE LIMIT</span>
+        <strong>You are approaching the edge of the current universe.</strong>
+        <small>Future atmospheres and systems will expand beyond this perimeter.</small>
+      </div>
+      <aside id="facility-operations-console" data-adaptive-panel="facility-operations" data-panel-label="Facility Operations" class="facility-operations-console is-hidden" aria-live="polite">
+        <div class="facility-operations-head">
+          <div>
+            <span>FACILITY OPERATIONS</span>
+            <strong id="facility-operations-title">DOCKING LINK</strong>
+          </div>
+          <span id="facility-operations-state" class="facility-operations-state">STANDBY</span>
+        </div>
+
+        <div id="facility-operations-steps" class="facility-operations-steps">
+          <div data-facility-step="0"><i></i><span>SECURITY AUTHENTICATION</span><strong>WAITING</strong></div>
+          <div data-facility-step="1"><i></i><span>DOCKING STABILIZATION</span><strong>WAITING</strong></div>
+          <div data-facility-step="2"><i></i><span>POWER BUS CONNECTION</span><strong>WAITING</strong></div>
+          <div data-facility-step="3"><i></i><span>LOCAL DATA CORE</span><strong>WAITING</strong></div>
+          <div data-facility-step="4"><i></i><span>PORTAL AUTHORIZATION</span><strong>WAITING</strong></div>
+        </div>
+
+        <div class="facility-operations-progress">
+          <div>
+            <span id="facility-operations-message">Awaiting landing confirmation.</span>
+            <strong id="facility-operations-percent">0%</strong>
+          </div>
+          <div class="facility-operations-track">
+            <span id="facility-operations-bar"></span>
+          </div>
+        </div>
+
+        <div class="facility-operations-metrics">
+          <div><span>LOCAL POWER</span><strong id="facility-local-power">0%</strong></div>
+          <div><span>DATA LINK</span><strong id="facility-data-link">OFFLINE</strong></div>
+          <div><span>PORTAL</span><strong id="facility-portal-link">LOCKED</strong></div>
+        </div>
+      </aside>
+
+      <button id="system-console-toggle" class="system-console-toggle is-hidden" type="button" aria-expanded="false" aria-controls="system-console">SYSTEM</button>
+
+      <aside id="system-console" class="system-console is-hidden" aria-label="EES System Console">
+        <div class="system-console-head">
+          <div><span>ENGINEERING EXPERIENCE SYSTEM</span><strong>SYSTEM COMMAND CONSOLE</strong></div>
+          <button id="system-console-close" type="button" aria-label="Close System Console">×</button>
+        </div>
+
+        <div class="system-console-tabs">
+          <button type="button" data-system-tab="workspace" class="is-active">WORKSPACE</button>
+          <button type="button" data-system-tab="accessibility">ACCESSIBILITY</button>
+          <button type="button" data-system-tab="diagnostics">DIAGNOSTICS</button>
+          <button type="button" data-system-tab="navigation">NAVIGATION</button>
+        </div>
+
+        <section data-system-panel="workspace" class="system-console-panel is-active">
+          <div class="system-console-section">
+            <span>EXPERIENCE PROFILE</span>
+            <div class="system-profile-grid">
+              <button type="button" data-system-profile="guided">GUIDED JOURNEY</button>
+              <button type="button" data-system-profile="recruiter">RECRUITER REVIEW</button>
+              <button type="button" data-system-profile="explorer">ENGINEERING EXPLORER</button>
+              <button type="button" data-system-profile="focus">FOCUS MODE</button>
+            </div>
+          </div>
+          <div class="system-console-section">
+            <span>PANEL MANAGEMENT</span>
+            <div id="system-panel-list" class="system-panel-list"></div>
+            <div class="system-console-actions">
+              <button id="system-show-all" type="button">SHOW ALL</button>
+              <button id="system-hide-all" type="button">HIDE ALL</button>
+              <button id="system-reset-layout" type="button">RESET LAYOUT</button>
+            </div>
+          </div>
+        </section>
+
+        <section data-system-panel="accessibility" class="system-console-panel">
+          <div class="system-console-settings">
+            <label><span>MOTION INTENSITY</span><select id="system-motion-level"><option value="full">FULL</option><option value="balanced">BALANCED</option><option value="reduced">REDUCED</option></select></label>
+            <label><span>GUIDANCE DENSITY</span><select id="system-guidance-level"><option value="high">HIGH</option><option value="standard">STANDARD</option><option value="minimal">MINIMAL</option></select></label>
+            <label class="system-console-switch"><span>CONTEXT-AWARE PANELS</span><input id="system-context-panels" type="checkbox" checked /></label>
+            <label class="system-console-switch"><span>AURA HOLOGRAPHIC PRESENCE</span><input id="system-aura-presence" type="checkbox" checked /></label>
+            <label class="system-console-switch"><span>CINEMATIC CAMERA</span><input id="system-cinematic-camera" type="checkbox" checked /></label>
+            <label class="system-console-switch"><span>ADAPTIVE SOUNDSCAPE</span><input id="system-adaptive-audio" type="checkbox" checked /></label>
+            <label class="system-console-range">
+              <span>MASTER VOLUME</span>
+              <input id="system-audio-volume" type="range" min="0" max="100" value="38" step="1" />
+              <strong id="system-audio-volume-value">38%</strong>
+            </label>
+          </div>
+        </section>
+
+        <section data-system-panel="diagnostics" class="system-console-panel">
+          <div class="system-diagnostics-grid">
+            <div><span>BUILD</span><strong>v3.2.0</strong></div>
+            <div><span>INTERFACE</span><strong id="system-interface-state">ONLINE</strong></div>
+            <div><span>CONTEXT</span><strong id="system-context-state">FLIGHT</strong></div>
+            <div><span>PANELS</span><strong id="system-panel-count">0 ACTIVE</strong></div>
+            <div><span>CAMERA</span><strong id="system-camera-state">FLIGHT DRIFT</strong></div>
+            <div><span>AUDIO</span><strong id="system-audio-state">STANDBY</strong></div>
+          </div>
+        </section>
+
+        <section data-system-panel="navigation" class="system-console-panel">
+          <button id="system-return-command" type="button">
+            RETURN TO COMMAND CENTER
+          </button>
+        </section>
+      </aside>
+
+      <div
+        id="command-center-confirmation"
+        class="command-center-confirmation is-hidden"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="command-center-confirmation-title"
+      >
+        <div class="command-center-confirmation-card">
+          <span>SIMULATION CONTROL</span>
+          <strong id="command-center-confirmation-title">
+            Return to Command Center?
+          </strong>
+
+          <p>
+            This action ends the active Engineering Verse simulation and returns
+            you to the Command Center. Current local mission and discovery
+            progress remains saved.
+          </p>
+
+          <div class="command-center-confirmation-actions">
+            <button id="cancel-command-center-return" type="button">
+              CANCEL
+            </button>
+
+            <button id="confirm-command-center-return" type="button">
+              END SIMULATION
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <section
+        id="command-center-screen"
+        class="command-center-screen is-hidden"
+        aria-label="EES Command Center"
+      >
+        <div class="command-center-environment" aria-hidden="true">
+          <div class="command-center-core">
+            <i></i>
+            <i></i>
+            <i></i>
+            <span></span>
+          </div>
+
+          <div class="mechanical-arm arm-left">
+            <i></i><i></i><i></i>
+          </div>
+
+          <div class="mechanical-arm arm-center">
+            <i></i><i></i><i></i>
+          </div>
+
+          <div class="mechanical-arm arm-right">
+            <i></i><i></i><i></i>
+          </div>
+        </div>
+
+        <div class="command-center-header">
+          <span>ENGINEERING EXPERIENCE SYSTEM</span>
+          <strong>COMMAND CENTER</strong>
+          <p>
+            Simulation ended safely. Select the next route through the EES
+            holographic command matrix.
+          </p>
+        </div>
+
+        <div class="command-center-routes">
+          <button
+            id="command-center-retake-flight"
+            class="command-center-route route-flight"
+            type="button"
+          >
+            <span>FLIGHT ARM // 01</span>
+            <strong><span>RETAKE</span> <span>FLIGHT</span></strong>
+            <small>
+              Restart at the EESiverse approach, door sequence, and three-second
+              launch countdown.
+            </small>
+          </button>
+
+          <a
+            class="command-center-route route-home"
+            href="https://jeremiahlupton.com"
+          >
+            <span>HOME ARM // 02</span>
+            <strong>RETURN HOME</strong>
+            <small>
+              Return to the Jeremiah Lupton primary domain.
+            </small>
+          </a>
+
+          <a
+            class="command-center-route route-portfolio"
+            href="https://portfolio.jeremiahlupton.com"
+          >
+            <span>PORTFOLIO ARM // 03</span>
+            <strong>TRADITIONAL PORTFOLIO EXPERIENCE</strong>
+            <small>
+              Enter the classic professional portfolio presentation.
+            </small>
+          </a>
+        </div>
+
+        <div class="command-center-footer">
+          <span>SIMULATION STATUS</span>
+          <strong>OFFLINE // COMMAND AUTHORITY RESTORED</strong>
+        </div>
+      </section>
+
+      <button
+        id="experience-director-toggle" data-legacy-system-control="true"
+        class="experience-director-toggle is-hidden"
+        type="button"
+        aria-expanded="false"
+        aria-controls="experience-director"
+      >
+        EXPERIENCE MODE
+      </button>
+
+      <aside
+        id="experience-director"
+        class="experience-director is-hidden"
+        aria-label="EES Experience Director"
+      >
+        <div class="experience-director-head">
+          <div>
+            <span>EXPERIENCE DIRECTOR</span>
+            <strong id="experience-director-current">GUIDED JOURNEY</strong>
+          </div>
+
+          <button
+            id="experience-director-close"
+            type="button"
+            aria-label="Close Experience Director"
+          >
+            ×
+          </button>
+        </div>
+
+        <p id="experience-director-description">
+          Balanced guidance, mission support, discovery intelligence, and destination context.
+        </p>
+
+        <div class="experience-profile-grid">
+          <button type="button" data-experience-profile="guided">
+            <span>GUIDED JOURNEY</span>
+            <strong>Balanced complete experience</strong>
+          </button>
+
+          <button type="button" data-experience-profile="recruiter">
+            <span>RECRUITER REVIEW</span>
+            <strong>Projects, identity, and journey first</strong>
+          </button>
+
+          <button type="button" data-experience-profile="explorer">
+            <span>ENGINEERING EXPLORER</span>
+            <strong>Missions, scanning, and full telemetry</strong>
+          </button>
+
+          <button type="button" data-experience-profile="focus">
+            <span>FOCUS MODE</span>
+            <strong>Minimal interface and free flight</strong>
+          </button>
+        </div>
+
+        <div class="experience-director-settings">
+          <label>
+            <span>MOTION INTENSITY</span>
+            <select id="experience-motion-level">
+              <option value="full">FULL</option>
+              <option value="balanced">BALANCED</option>
+              <option value="reduced">REDUCED</option>
+            </select>
+          </label>
+
+          <label>
+            <span>GUIDANCE DENSITY</span>
+            <select id="experience-guidance-level">
+              <option value="high">HIGH</option>
+              <option value="standard">STANDARD</option>
+              <option value="minimal">MINIMAL</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="experience-director-status">
+          <span>ACTIVE CONFIGURATION</span>
+          <strong id="experience-director-status">
+            6 panels • balanced motion • standard guidance
+          </strong>
+        </div>
+      </aside>
+
+      <button id="command-deck-toggle" data-legacy-system-control="true" class="command-deck-toggle is-hidden" type="button" aria-expanded="false" aria-controls="command-deck">COMMAND DECK</button>
+      <aside id="command-deck" class="command-deck is-hidden" aria-label="Adaptive Command Interface">
+        <div class="command-deck-head">
+          <div><span>ADAPTIVE COMMAND INTERFACE</span><strong>GENESIS XII</strong></div>
+          <button id="command-deck-close" type="button" aria-label="Close Command Deck">×</button>
+        </div>
+        <p>Show, hide, restore, and reset operational panels. Drag any visible panel by its header.</p>
+        <div id="command-deck-panel-list" class="command-deck-panel-list"></div>
+        <div class="command-deck-actions">
+          <button id="command-deck-show-all" type="button">SHOW ALL</button>
+          <button id="command-deck-hide-all" type="button">HIDE ALL</button>
+          <button id="command-deck-reset-layout" type="button">RESET LAYOUT</button>
+        </div>
+      </aside>
+      <aside
+        id="aura-holographic-presence"
+        class="aura-holographic-presence is-hidden"
+        aria-live="polite"
+        aria-label="AURA holographic intelligence"
+      >
+        <button
+          id="aura-presence-core"
+          class="aura-presence-core"
+          type="button"
+          aria-label="Open AURA Operations"
+        >
+          <span class="aura-core-orbit orbit-one"></span>
+          <span class="aura-core-orbit orbit-two"></span>
+          <span class="aura-core-orbit orbit-three"></span>
+          <i></i>
+          <b>AURA</b>
+        </button>
+
+        <div id="aura-presence-callout" class="aura-presence-callout">
+          <span id="aura-presence-status">ONBOARD INTELLIGENCE</span>
+          <strong id="aura-presence-title">AURA online.</strong>
+          <p id="aura-presence-message">
+            Operational guidance is available.
+          </p>
+          <small id="aura-presence-confidence">CONFIDENCE 96%</small>
+        </div>
+      </aside>
+
+      <aside id="aura-operations-console" data-adaptive-panel="aura-operations" data-panel-label="AURA Operations" class="aura-operations-console is-hidden" aria-live="polite">
+        <div class="aura-operations-head">
+          <div>
+            <span>AURA OPERATIONS INTELLIGENCE</span>
+            <strong id="aura-operations-focus">SYSTEM OBSERVATION</strong>
+          </div>
+          <span id="aura-operations-state" class="aura-operations-state">MONITORING</span>
+        </div>
+
+        <div class="aura-recommendation">
+          <span>RECOMMENDED ACTION</span>
+          <strong id="aura-recommendation-title">Continue Engineering Verse exploration.</strong>
+          <p id="aura-recommendation-reason">All systems are operating normally.</p>
+        </div>
+
+        <div class="aura-confidence">
+          <div>
+            <span>CONFIDENCE</span>
+            <strong id="aura-confidence-value">92%</strong>
+          </div>
+          <div class="aura-confidence-track">
+            <span id="aura-confidence-bar"></span>
+          </div>
+        </div>
+
+        <div class="aura-context-grid">
+          <div><span>MISSION</span><strong id="aura-context-mission">SYNCHRONIZING</strong></div>
+          <div><span>SCANNER</span><strong id="aura-context-scanner">NAVIGATION</strong></div>
+          <div><span>CRAFT</span><strong id="aura-context-craft">NOMINAL</strong></div>
+          <div><span>MOBILITY</span><strong id="aura-context-mobility">ACTIVE</strong></div>
+        </div>
+
+        <div class="aura-observation-log">
+          <span>RECENT OBSERVATIONS</span>
+          <div id="aura-observation-items"></div>
+        </div>
+      </aside>
+
+      <aside id="mission-command-console" data-adaptive-panel="mission-command" data-panel-label="Mission Command" class="mission-command-console is-hidden" aria-live="polite">
+        <div class="mission-command-head"><div><span>MISSION COMMAND</span><strong id="mission-command-title">GENESIS OPERATIONS</strong></div><span id="mission-command-state" class="mission-command-state">STANDBY</span></div>
+        <div class="mission-command-directive"><span>ACTIVE DIRECTIVE</span><strong id="mission-command-directive">Awaiting campaign synchronization.</strong><p id="mission-command-guidance">AURA will provide route and completion guidance.</p></div>
+        <div class="mission-command-phase">
+          <div><span>PHASE</span><strong id="mission-command-phase">INITIALIZE</strong></div>
+          <div><span>TARGET</span><strong id="mission-command-target">—</strong></div>
+          <div><span>ELAPSED</span><strong id="mission-command-elapsed">00:00</strong></div>
+          <div><span>PROJECTED GRADE</span><strong id="mission-command-grade">A</strong></div>
+        </div>
+        <div class="mission-command-route"><div class="mission-command-route-track"><span id="mission-command-route-bar"></span></div><div><span id="mission-command-route-status">ROUTE PENDING</span><strong id="mission-command-route-percent">0%</strong></div></div>
+        <div class="mission-command-optional"><i id="mission-command-optional-indicator"></i><div><span>OPTIONAL OBJECTIVE</span><strong id="mission-command-optional">Complete one scanner discovery before mission completion.</strong></div><b id="mission-command-optional-state">ACTIVE</b></div>
+      </aside>
+      <aside id="mission-debrief" class="mission-debrief is-hidden" aria-live="assertive">
+        <span>MISSION DEBRIEF</span><strong id="mission-debrief-title">Mission Complete</strong>
+        <div class="mission-debrief-grade"><b id="mission-debrief-grade">A</b><div><span>PERFORMANCE GRADE</span><strong id="mission-debrief-xp">+0 XP</strong></div></div>
+        <p id="mission-debrief-message">Mission data archived.</p>
+        <div class="mission-debrief-next"><span>NEXT DIRECTIVE</span><strong id="mission-debrief-next">Awaiting Mission Command.</strong></div>
+      </aside>
+      <aside id="discovery-protocol-console" data-adaptive-panel="discovery-protocol" data-panel-label="Discovery Protocol" class="discovery-protocol-console is-hidden" aria-live="polite">
+        <div class="discovery-protocol-head">
+          <div><span>DISCOVERY PROTOCOL</span><strong>ENGINEERING ARTIFACT NETWORK</strong></div>
+          <span id="discovery-protocol-state" class="discovery-protocol-state">STANDBY</span>
+        </div>
+        <div class="discovery-signal">
+          <div class="discovery-signal-radar" aria-hidden="true"><i></i><i></i><i></i><span id="discovery-signal-dot"></span></div>
+          <div><span>NEAREST SIGNAL</span><strong id="discovery-nearest-signal">NO SIGNAL</strong><p id="discovery-signal-detail">Cycle scanner modes to locate hidden engineering artifacts.</p></div>
+        </div>
+        <div class="discovery-protocol-metrics">
+          <div><span>ARTIFACTS</span><strong id="discovery-artifact-progress">0 / 0</strong></div>
+          <div><span>RECOVERY</span><strong id="discovery-recovery-percent">0%</strong></div>
+          <div><span>DISCOVERY XP</span><strong id="discovery-xp">0</strong></div>
+        </div>
+        <div class="discovery-achievement-list" id="discovery-achievement-list"></div>
+      </aside>
+      <aside id="discovery-achievement-toast" class="discovery-achievement-toast is-hidden" aria-live="assertive">
+        <span>ACHIEVEMENT UNLOCKED</span><strong id="discovery-achievement-title">Discovery Milestone</strong><p id="discovery-achievement-message">Engineering archive updated.</p>
+      </aside>
+      <aside id="destination-command-module" data-adaptive-panel="destination-command" data-panel-label="Destination Command" class="destination-command-module is-hidden" aria-live="polite">
+        <div class="destination-command-head">
+          <div>
+            <span>DESTINATION COMMAND</span>
+            <strong id="destination-command-title">FACILITY MODULE</strong>
+          </div>
+          <span id="destination-command-status" class="destination-command-status">STANDBY</span>
+        </div>
+
+        <p id="destination-command-objective" class="destination-command-objective">
+          Awaiting facility synchronization.
+        </p>
+
+        <div id="destination-command-systems" class="destination-command-systems"></div>
+
+        <div class="destination-command-metrics">
+          <div>
+            <span id="destination-metric-one-label">SYSTEM</span>
+            <strong id="destination-metric-one-value">—</strong>
+          </div>
+          <div>
+            <span id="destination-metric-two-label">NETWORK</span>
+            <strong id="destination-metric-two-value">—</strong>
+          </div>
+          <div>
+            <span id="destination-metric-three-label">READINESS</span>
+            <strong id="destination-metric-three-value">—</strong>
+          </div>
+        </div>
+
+        <div class="destination-command-aura">
+          <span>AURA BRIEFING</span>
+          <strong id="destination-command-aura">
+            Facility context will appear after docking.
+          </strong>
+        </div>
+      </aside>
+
+      <aside id="facility-arrival-banner" class="facility-arrival-banner is-hidden" aria-live="polite">
+        <div>
+          <span>DESTINATION FACILITY</span>
+          <strong id="facility-arrival-title">OPEN SPACE</strong>
+        </div>
+        <p id="facility-arrival-message">Approach corridor clear.</p>
+      </aside>
+
+      <aside id="verse-activity-ticker" class="verse-activity-ticker is-hidden" aria-live="polite">
+        <span>VERSE ACTIVITY</span>
+        <strong id="verse-activity-message">Engineering Verse operating normally.</strong>
+      </aside>
+      <div id="system-message" class="system-message" aria-live="polite"></div>
+      <div class="build-watermark">EES v1.3.0 • SUPPLY NEXUS + PHARMA PROCESS TWIN</div>
+    
+      <nav id="mobile-hud-tabs" class="mobile-hud-tabs is-hidden" aria-label="Mobile command tabs">
+        <button type="button" data-mobile-action="missions">MISSIONS</button>
+        <button type="button" data-mobile-action="controls">CONTROLS</button>
+        <button type="button" data-mobile-action="destinations">DESTINATIONS</button>
+        <button type="button" data-mobile-action="aura">AURA</button>
+        <button type="button" data-mobile-action="system">SYSTEM</button>
+      </nav>
+
+      <aside id="mobile-system-hologram" class="mobile-system-hologram is-collapsed is-hidden" aria-label="Mobile system status">
+        <button id="mobile-system-hologram-toggle" type="button" aria-label="Toggle system status">◀</button>
+        <div class="mobile-system-hologram-body">
+          <span>SYSTEM STATUS</span>
+          <strong id="mobile-system-summary">NOMINAL</strong>
+          <small id="mobile-system-detail">AURA ONLINE • NAV READY</small>
+        </div>
+      </aside>
+
+      <button id="mobile-flight-chip" class="mobile-flight-chip is-hidden" type="button" aria-label="Toggle flight status">
+        <span>FLIGHT</span>
+        <strong id="mobile-flight-chip-value">ONLINE</strong>
+        <b>›</b>
+      </button>
+
+      <section id="mobile-arrival-toast" class="mobile-arrival-toast is-hidden" aria-live="polite">
+        <strong id="mobile-arrival-title">DESTINATION</strong>
+        <span id="mobile-arrival-message">Approach ready.</span>
+        <button id="mobile-arrival-land" type="button">LAND</button>
+      </section>
+
+      <section id="mobile-cockpit" class="mobile-cockpit is-hidden" aria-label="Mobile cockpit">
+        <div class="mobile-cockpit-canopy" aria-hidden="true">
+          <span class="canopy-frame canopy-frame-left"></span>
+          <span class="canopy-frame canopy-frame-right"></span>
+          <span class="canopy-frame canopy-frame-top"></span>
+          <span class="canopy-glass"></span>
+        </div>
+
+        <div id="mobile-cockpit-help" class="mobile-cockpit-help is-hidden" aria-live="polite">
+          <strong>PILOT CONTROLS ONLINE</strong>
+          <span>Hold the thrust arrows to fly. Use DEST for waypoints and LAND when approach is ready.</span>
+          <button id="mobile-cockpit-help-dismiss" type="button">GOT IT</button>
+        </div>
+
+        <div class="mobile-cockpit-alert is-hidden" id="mobile-cockpit-alert" aria-live="polite">
+          <strong id="mobile-cockpit-alert-title">AURA</strong>
+          <span id="mobile-cockpit-alert-message">Systems nominal.</span>
+        </div>
+
+        <div class="mobile-cockpit-telemetry">
+          <div>
+            <span>SPEED</span>
+            <strong id="cockpit-speed">0</strong>
+          </div>
+          <div>
+            <span>ALT</span>
+            <strong id="cockpit-altitude">0</strong>
+          </div>
+          <div>
+            <span>WAYPOINT</span>
+            <strong id="cockpit-waypoint">NONE</strong>
+          </div>
+          <div>
+            <span>STATUS</span>
+            <strong id="cockpit-status">ONLINE</strong>
+          </div>
+        </div>
+
+        <div class="mobile-cockpit-dashboard">
+          <div class="cockpit-control-cluster cockpit-thrust-cluster">
+            <span class="cockpit-cluster-label">THRUST</span>
+            <div class="cockpit-dpad">
+              <button type="button" data-cockpit-key="KeyW" aria-label="Move forward">▲</button>
+              <button type="button" data-cockpit-key="KeyA" aria-label="Turn left">◀</button>
+              <button type="button" data-cockpit-key="KeyS" aria-label="Move backward">▼</button>
+              <button type="button" data-cockpit-key="KeyD" aria-label="Turn right">▶</button>
+              <i></i>
+            </div>
+          </div>
+
+          <div class="cockpit-control-cluster cockpit-center-cluster">
+            <span class="cockpit-cluster-label">FLIGHT</span>
+            <div class="cockpit-altitude-stack">
+              <button type="button" data-cockpit-key="KeyE">ASCEND</button>
+              <button type="button" data-cockpit-key="KeyQ">DESCEND</button>
+            </div>
+            <div class="cockpit-primary-actions">
+              <button type="button" data-cockpit-tap="ShiftLeft">BOOST</button>
+              <button type="button" data-cockpit-tap="KeyF">SCAN</button>
+              <button type="button" data-cockpit-tap="KeyP">AUTO</button>
+              <button type="button" data-cockpit-tap="KeyL">LAND</button>
+            </div>
+          </div>
+
+          <div class="cockpit-control-cluster cockpit-command-cluster">
+            <span class="cockpit-cluster-label">COMMAND</span>
+            <div class="cockpit-command-grid">
+              <button type="button" data-cockpit-action="destinations">DEST</button>
+              <button type="button" data-cockpit-action="missions">MISSION</button>
+              <button type="button" data-cockpit-action="aura">AURA</button>
+              <button type="button" data-cockpit-action="system">SYSTEM</button>
+              <button type="button" data-cockpit-action="controls">HELP</button>
+              <button type="button" data-cockpit-action="takeoff">TAKE OFF</button>
+            </div>
+          </div>
+        </div>
+
+        <button id="mobile-cockpit-minimize" class="mobile-cockpit-minimize" type="button" aria-label="Minimize cockpit controls">⌄</button>
+      </section>
+
+      <section id="mobile-explorer-controls" class="mobile-explorer-controls is-hidden" aria-label="Mobile explorer flight controls">
+        <div class="mobile-stick mobile-stick-left" aria-label="Movement controls">
+          <button type="button" data-mobile-key="KeyW" aria-label="Move forward">▲</button>
+          <button type="button" data-mobile-key="KeyA" aria-label="Turn left">◀</button>
+          <button type="button" data-mobile-key="KeyS" aria-label="Reverse">▼</button>
+          <button type="button" data-mobile-key="KeyD" aria-label="Turn right">▶</button>
+          <span>THRUST</span>
+        </div>
+        <div class="mobile-altitude-controls" aria-label="Altitude controls">
+          <button type="button" data-mobile-key="KeyE">ASCEND</button>
+          <button type="button" data-mobile-key="KeyQ">DESCEND</button>
+        </div>
+        <div class="mobile-action-controls" aria-label="Explorer actions">
+          <button type="button" data-mobile-tap="ShiftLeft">BOOST</button>
+          <button type="button" data-mobile-tap="KeyF">SCAN</button>
+          <button type="button" data-mobile-tap="KeyP">AUTO</button>
+          <button type="button" data-mobile-tap="KeyL" data-mobile-land>LAND</button>
+          <button type="button" data-mobile-tap="KeyT" data-mobile-takeoff>TAKE OFF</button>
+          <button type="button" data-mobile-action="destinations">MAP</button>
+        </div>
+        <button id="mobile-controls-collapse" class="mobile-controls-collapse" type="button" aria-label="Collapse mobile controls">−</button>
+      </section>
+
+</div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
