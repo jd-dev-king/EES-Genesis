@@ -1,4 +1,4 @@
-# EES Genesis v1.3.0
+# EES Genesis v1.3.1
 
 ## Supply Nexus & Pharma Process Twin Integration
 
@@ -13,7 +13,7 @@ This minor release updates the EES Universe to reflect the completed two-part En
 ### Updated
 - Project catalog ordering and metadata.
 - EES Gateway public-release messaging.
-- Visible version labels to v1.3.0.
+- Visible version labels to v1.3.1.
 
 ### Preserved
 - Existing EES Genesis universe layout and controls.

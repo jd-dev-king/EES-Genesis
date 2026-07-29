@@ -1,7 +1,7 @@
 {
   "name": "ees-portfolio-experience",
   "private": true,
-  "version": "1.3.0",
+  "version": "1.3.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -51,6 +51,6 @@
   "devDependencies": {
     "vite": "^7.1.7"
   },
-  "description": "EES Genesis v1.3.0 integrates EES Global Supply Nexus Part 1 and EES Pharma Process Twin Part 2 into the connected EES Universe.",
+  "description": "EES Genesis v1.3.1 adds a desktop Flight Status HUD overlap hotfix while preserving the connected EES ecosystem.",
   "homepage": "https://ees-jdl.com"
 }

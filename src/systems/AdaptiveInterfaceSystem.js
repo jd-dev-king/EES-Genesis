@@ -41,6 +41,7 @@ export class AdaptiveInterfaceSystem {
       ".destination-command-head",
       ".facility-operations-head",
       ".mission-panel-header",
+      ".hud-heading",
       "header"
     ].join(",")) || element.firstElementChild || element;
   }

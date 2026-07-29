@@ -1,6 +1,14 @@
 # Changelog
 
-## v1.3.0 — Supply Nexus & Pharma Process Twin Integration
+## 1.3.1 — Desktop Mission Panel Overlap Hotfix
+
+- Connected the actual Flight Status HUD to the Adaptive Command Interface.
+- Added drag, collapse, hide, and restore behavior to Flight Status.
+- Removed the incorrect adaptive binding from the Primary Mission summary panel.
+- Preserved the v1.3.0 EES project integrations.
+
+
+## v1.3.1 — Supply Nexus & Pharma Process Twin Integration
 
 ### Added
 - EES Global Supply Nexus as Part 1 of the Enterprise Execution Suite.
