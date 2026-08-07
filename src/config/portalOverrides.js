@@ -120,28 +120,49 @@ export const portalOverrides = {
   ees: {
     links: [
       {
-        tag: "PART 1 // ENTERPRISE PLANNING",
+        tag: "DATA CORE",
+        title: "EES Universal Data Moon",
+        description: "Open the governed enterprise data, registry, discovery, and SQL layer connecting the EES ecosystem.",
+        url: "https://jd-dev-king.github.io/EES-Universal-Data-Moon/",
+        repositoryUrl: "https://github.com/jd-dev-king/EES-Universal-Data-Moon",
+        action: "Enter Data Moon"
+      },
+      {
+        tag: "POWER HEAD",
+        title: "EES Power Grid Sun",
+        description: "Launch the industrial power digital twin supplying electrical context to downstream controls and diagnostics.",
+        url: "https://jd-dev-king.github.io/EES-Power-Grid-Sun/",
+        repositoryUrl: "https://github.com/jd-dev-king/EES-Power-Grid-Sun",
+        action: "Launch Power Grid Sun"
+      },
+      {
+        tag: "CONTROLS TAIL",
+        title: "EES RC Controls",
+        description: "Launch the connected electrical controls, transient simulation, and diagnostics environment.",
+        url: "https://jd-dev-king.github.io/EES-RC-Controls/",
+        repositoryUrl: "https://github.com/jd-dev-king/EES-RC-Controls",
+        action: "Launch RC Controls"
+      },
+      {
+        tag: "SUPPLY",
         title: "EES Global Supply Nexus",
-        description:
-          "Launch the enterprise supply-chain planning layer for procurement, inventory, logistics, risk intelligence, and manufacturing handoff.",
+        description: "Launch supply-to-production planning, logistics, material readiness, and enterprise risk intelligence.",
         url: "https://jd-dev-king.github.io/EES-Global-Supply-Nexus/",
         repositoryUrl: "https://github.com/jd-dev-king/EES-Global-Supply-Nexus",
         action: "Launch Supply Nexus"
       },
       {
-        tag: "PART 2 // PLANT EXECUTION",
+        tag: "PLANT EXECUTION",
         title: "EES Pharma Process Twin",
-        description:
-          "Launch the pharmaceutical MES and digital twin for warehouse, manufacturing, quality, automation, compliance, and plant analytics.",
+        description: "Launch pharmaceutical plant execution, traceability, automation, security, and 3D digital-twin operations.",
         url: "https://jd-dev-king.github.io/EES-Pharma-Process-Twin/",
         repositoryUrl: "https://github.com/jd-dev-king/EES-Pharma-Process-Twin",
         action: "Launch Process Twin"
       },
       {
         tag: "CONNECTED ECOSYSTEM",
-        title: "Planning-to-Execution Architecture",
-        description:
-          "Review how Part 1 transfers production readiness into Part 2 for plant execution and traceability.",
+        title: "EES Connected Architecture",
+        description: "Review how power, controls, supply, plant execution, manufacturing intelligence, data, SQL, and AI connect through EES.",
         detailId: "ees-connected-ecosystem",
         action: "Open Ecosystem Map"
       }

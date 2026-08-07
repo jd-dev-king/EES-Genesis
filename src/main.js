@@ -15,7 +15,7 @@ try {
       <p>The EES engine encountered a startup error.</p>
       <pre class="startup-error-details">${error?.message || "Unknown startup error"}</pre>
       <p>Open the browser console for the full stack trace.</p>
-      <a href="https://jeremiahlupton.com">Open Traditional Portfolio</a>
+      <a href="https://portfolio.jeremiahlupton.com">Open Traditional Portfolio</a>
     </main>
   `;
 }

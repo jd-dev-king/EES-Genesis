@@ -6,8 +6,8 @@ export const portfolioContent = {
         tag: "IDENTITY CORE",
         title: "Jeremiah Lupton",
         description:
-          "Engineering and technology professional connecting manufacturing operations, automation, software, data analytics, project leadership, and systems thinking.",
-        meta: "Engineering • Technology • Operations",
+          "Technology management and operational excellence professional connecting regulated manufacturing, software, data, automation, and systems thinking through Engineering Excellence Systems (EES).",
+        meta: "Technology Management • Connected Manufacturing • Operational Excellence",
         stack: ["Engineering Management", "Automation", "Data", "Software"]
       },
       {
@@ -22,9 +22,9 @@ export const portfolioContent = {
       {
         type: "mission",
         tag: "MISSION CORE",
-        title: "Build Useful Engineering Systems",
+        title: "Engineering Excellence Through Connected Systems",
         description:
-          "Create practical systems that make complex work understandable, measurable, safer, and easier to operate.",
+          "Apply Pragmatic Synthesis to connect people, processes, technology, and data into practical systems that improve quality, efficiency, compliance, and organizational performance.",
         meta: "Observe → Analyze → Act",
         stack: ["Systems Thinking", "Continuous Improvement", "Responsible Action"]
       }
@@ -67,9 +67,9 @@ export const portfolioContent = {
       },
       {
         tag: "EES",
-        title: "Engineering Experience System",
+        title: "Engineering Excellence Systems",
         description:
-          "An evolving interactive environment that transforms a portfolio into an explorable engineering ecosystem."
+          "A connected engineering initiative and portfolio spanning manufacturing intelligence, industrial automation, pharmaceutical systems, enterprise software, data, digital twins, and technology management."
       }
     ],
     links: [
@@ -88,11 +88,46 @@ export const portfolioContent = {
     overview: [
       {
         type: "project",
-        tag: "EES // PART 1",
+        tag: "EES DATA CORE",
+        title: "EES Universal Data Moon",
+        description: "Enterprise data integration, discovery, governance, and governed SQL connecting the EES ecosystem through a shared PostgreSQL platform.",
+        meta: "PostgreSQL • FastAPI • Railway • v1.0.0",
+        stack: ["PostgreSQL", "FastAPI", "Railway", "Data Governance"],
+        repositoryUrl: "https://github.com/jd-dev-king/EES-Universal-Data-Moon",
+        liveUrl: "https://jd-dev-king.github.io/EES-Universal-Data-Moon/",
+        url: "https://jd-dev-king.github.io/EES-Universal-Data-Moon/",
+        action: "Enter Data Moon"
+      },
+      {
+        type: "project",
+        tag: "EES POWER",
+        title: "EES Power Grid Sun",
+        description: "Industrial electrical infrastructure digital twin for facility power distribution, loads, power quality, energy behavior, diagnostics, and connected downstream systems.",
+        meta: "Power Systems • Digital Twin • v1.0.0",
+        stack: ["Power Systems", "Diagnostics", "Digital Twin"],
+        repositoryUrl: "https://github.com/jd-dev-king/EES-Power-Grid-Sun",
+        liveUrl: "https://jd-dev-king.github.io/EES-Power-Grid-Sun/",
+        url: "https://jd-dev-king.github.io/EES-Power-Grid-Sun/",
+        action: "Launch Power Grid Sun"
+      },
+      {
+        type: "project",
+        tag: "EES CONTROLS",
+        title: "EES RC Controls",
+        description: "Electrical controls and transient-analysis twin combining RC simulation, industrial diagnostics, and upstream context from EES Power Grid Sun.",
+        meta: "Controls • MATLAB • Digital Twin • v2.0.0",
+        stack: ["Controls", "MATLAB", "Diagnostics"],
+        repositoryUrl: "https://github.com/jd-dev-king/EES-RC-Controls",
+        liveUrl: "https://jd-dev-king.github.io/EES-RC-Controls/",
+        url: "https://jd-dev-king.github.io/EES-RC-Controls/",
+        action: "Launch RC Controls"
+      },
+      {
+        type: "project",
+        tag: "EES SUPPLY",
         title: "EES Global Supply Nexus",
-        description:
-          "Enterprise supply-chain digital twin for procurement, supplier intelligence, inventory, logistics risk, production planning, quality release, and manufacturing-readiness handoff.",
-        meta: "Supply Chain • FastAPI • Digital Twin • v1.0.0",
+        description: "Supply-to-production digital twin connecting procurement, material requirements, warehousing, logistics, production readiness, quality release, and enterprise visibility.",
+        meta: "Supply Chain • FastAPI • v1.0.0",
         stack: ["Supply Chain", "FastAPI", "Risk Intelligence", "Digital Twin"],
         repositoryUrl: "https://github.com/jd-dev-king/EES-Global-Supply-Nexus",
         liveUrl: "https://jd-dev-king.github.io/EES-Global-Supply-Nexus/",
@@ -101,12 +136,11 @@ export const portfolioContent = {
       },
       {
         type: "project",
-        tag: "EES // PART 2",
+        tag: "EES PHARMA",
         title: "EES Pharma Process Twin",
-        description:
-          "Pharmaceutical MES and digital twin spanning warehouse, bulk, weighing, mixing, QA, packaging, shipping, PLC/SCADA, EBR, historian analytics, workforce, and 3D plant operations.",
-        meta: "MES • PLC/SCADA • React • FastAPI • v1.0.0",
-        stack: ["MES", "React", "FastAPI", "PLC/SCADA", "3D Twin"],
+        description: "End-to-end pharmaceutical manufacturing digital twin spanning material flow, weighing, mixing, hold, packaging, QA, PLC behavior, security, and traceability.",
+        meta: "MES • PLC/SCADA • v2.0.0",
+        stack: ["MES", "FastAPI", "PLC/SCADA", "3D Twin"],
         repositoryUrl: "https://github.com/jd-dev-king/EES-Pharma-Process-Twin",
         liveUrl: "https://jd-dev-king.github.io/EES-Pharma-Process-Twin/",
         url: "https://jd-dev-king.github.io/EES-Pharma-Process-Twin/",
@@ -114,123 +148,98 @@ export const portfolioContent = {
       },
       {
         type: "project",
-        tag: "MANUFACTURING",
-        title: "Manufacturing Operations Intelligence Automation",
-        description:
-          "R-based operational reporting pipeline with KPI generation, dashboards, automation logs, scheduled execution, and manufacturing improvement analysis.",
-        meta: "R • Analytics • Automation",
-        stack: ["R", "Shiny", "GitHub Actions", "DMAIC"],
-        url: "https://github.com/jd-dev-king/Manufacturing-Operations-Intelligence-Automation",
-        action: "View Repository"
+        tag: "EES ACCESS",
+        title: "EES Pharma Parking Access Digital Twin",
+        description: "Pharmaceutical campus parking and access-control twin integrating identity, automated entry logic, PLC-inspired controls, occupancy tracking, and enterprise data services.",
+        meta: "Access Control • Digital Twin • v3.0.0",
+        stack: ["Three.js", "FastAPI", "PostgreSQL", "Access Control"],
+        repositoryUrl: "https://github.com/jd-dev-king/EES-Pharma-Parking-Access-Digital-Twin",
+        liveUrl: "https://jd-dev-king.github.io/EES-Pharma-Parking-Access-Digital-Twin/",
+        url: "https://jd-dev-king.github.io/EES-Pharma-Parking-Access-Digital-Twin/",
+        action: "Launch Parking Access Twin"
       },
       {
         type: "project",
-        tag: "PHARMA DATA NEXUS",
-        title: "Pharma Data Nexus",
-        description:
-          "Immersive 3D pharmaceutical data environment presenting cGMP master data, batch records, quality control, equipment calibration, ALCOA+ concepts, and executable SQL workflows.",
-        meta: "PostgreSQL • SQL • Three.js • cGMP",
-        stack: ["PostgreSQL", "pgAdmin", "SQL", "Three.js", "ALCOA+"],
-        repositoryUrl:
-          "https://github.com/jd-dev-king/Pharma-Data-Nexus",
-        liveUrl:
-          "https://jd-dev-king.github.io/Pharma-Data-Nexus/",
-        url:
-          "https://jd-dev-king.github.io/Pharma-Data-Nexus/",
-        action: "Launch 3D Data Experience"
+        tag: "EES INTELLIGENCE",
+        title: "EES Manufacturing Intelligence",
+        description: "Unified manufacturing intelligence combining production analytics, asset health, KPI monitoring, anomaly detection, reporting automation, and operational decision support.",
+        meta: "R • Shiny • PostgreSQL • v3.0.0",
+        stack: ["R", "Shiny", "PostgreSQL", "Asset Health"],
+        repositoryUrl: "https://github.com/jd-dev-king/EES-Manufacturing-Intelligence",
+        liveUrl: "https://jd-dev-king.github.io/EES-Manufacturing-Intelligence/",
+        url: "https://jd-dev-king.github.io/EES-Manufacturing-Intelligence/",
+        action: "Launch Manufacturing Intelligence"
       },
       {
         type: "project",
-        tag: "ANALYTICS",
-        title: "Manufacturing Asset Health Analytics",
-        description:
-          "Sensor and machine analytics environment using PostgreSQL and R to investigate cycle-time anomalies and equipment health.",
-        meta: "PostgreSQL • R • Predictive Analytics",
-        stack: ["SQL", "RStudio", "Anomaly Detection"]
+        tag: "EES PHARMA DATA",
+        title: "EES Pharma Data Nexus",
+        description: "3D pharmaceutical data architecture connected to Universal Data Moon for live schema discovery, record inspection, and governed SQL analysis.",
+        meta: "PostgreSQL • Three.js • Data Moon • v2.0.0",
+        stack: ["PostgreSQL", "SQL", "Three.js", "Data Moon"],
+        repositoryUrl: "https://github.com/jd-dev-king/Pharma-Data-Nexus",
+        liveUrl: "https://jd-dev-king.github.io/Pharma-Data-Nexus/",
+        url: "https://jd-dev-king.github.io/Pharma-Data-Nexus/",
+        action: "Launch Pharma Data Nexus"
       },
       {
         type: "project",
-        tag: "SQL STUDIO",
-        title: "Serverless SQL Studio",
-        description:
-          "Browser-based SQL IDE using DuckDB-Wasm, Monaco Editor, and ECharts for local CSV and Parquet analysis without a backend server.",
-        meta: "DuckDB-Wasm • Monaco • ECharts",
-        stack: ["JavaScript", "Vite", "SQL", "WebAssembly"],
-        url: "https://github.com/jd-dev-king/Serverless-SQL-Studio",
-        action: "View Repository"
+        tag: "EES SQL",
+        title: "EES Serverless SQL Studio",
+        description: "Dual-mode SQL workbench supporting private DuckDB analysis and governed live PostgreSQL exploration through EES Universal Data Moon.",
+        meta: "DuckDB-Wasm • Data Moon • v2.0.0",
+        stack: ["DuckDB-Wasm", "Monaco", "ECharts", "Data Moon"],
+        repositoryUrl: "https://github.com/jd-dev-king/Serverless-SQL-Studio",
+        liveUrl: "https://jd-dev-king.github.io/Serverless-SQL-Studio/",
+        url: "https://jd-dev-king.github.io/Serverless-SQL-Studio/",
+        action: "Launch SQL Studio"
       },
       {
         type: "project",
-        tag: "AUTOMATION",
-        title: "3D Parking PLC Simulator",
-        description:
-          "Browser-based 3D parking PLC simulator with a live scan cycle, animated barriers and vehicles, parking occupancy logic, HMI controls, interlocks, diagnostics, and interactive ladder/FBD views.",
-        meta: "Three.js • PLC • HMI • v2.0.0",
-        stack: ["Three.js", "JavaScript", "OpenPLC", "HMI"],
-        repositoryUrl:
-          "https://github.com/jd-dev-king/Car-Parking-Lot-Barrier-Controller",
-        liveUrl:
-          "https://jd-dev-king.github.io/Car-Parking-Lot-Barrier-Controller/",
-        url:
-          "https://jd-dev-king.github.io/Car-Parking-Lot-Barrier-Controller/",
-        action: "Launch 3D Simulator"
+        tag: "EES AI",
+        title: "EES Smart Assistant AI",
+        description: "Conversational intelligence layer connecting software automation, APIs, persistent context, local capabilities, and the broader EES information architecture.",
+        meta: "Python • PWA • EES • v3.0.0",
+        stack: ["Python", "JavaScript", "AI", "EES"],
+        repositoryUrl: "https://github.com/jd-dev-king/SmartAssistantAI",
+        liveUrl: "https://jd-dev-king.github.io/SmartAssistantAI/",
+        url: "https://jd-dev-king.github.io/SmartAssistantAI/",
+        action: "Launch Smart Assistant AI"
       },
       {
         type: "project",
-        tag: "AI",
-        title: "Smart Assistant AI",
-        description:
-          "Desktop and browser assistant concepts combining conversational tools, persistent memory, voice, utilities, local AI modes, and PWA deployment.",
-        meta: "Python • JavaScript • PWA",
-        stack: ["Python", "Tkinter", "JavaScript", "AI"]
-      },
-      {
-        type: "project",
-        tag: "NLP",
+        tag: "STANDALONE",
         title: "NeuralBrief Text Summarizer",
-        description:
-          "Python and Flask text summarization application with a dedicated GitHub Pages interface and graph-based NLP processing.",
+        description: "Standalone Flask NLP summarization application with graph-based processing and a dedicated GitHub Pages interface.",
         meta: "Python • Flask • NLP",
         stack: ["Flask", "Gensim", "NetworkX"],
-        url: "https://github.com/jd-dev-king/NeuralBrief-Text-Summarizer",
-        action: "View Repository"
+        repositoryUrl: "https://github.com/jd-dev-king/NeuralBrief-Text-Summarizer",
+        liveUrl: "https://jd-dev-king.github.io/NeuralBrief-Text-Summarizer/",
+        url: "https://jd-dev-king.github.io/NeuralBrief-Text-Summarizer/",
+        action: "Launch NLP Experience"
       },
       {
         type: "project",
-        tag: "SIMULATION",
-        title: "RC Circuit Transient Response Simulator",
-        description:
-          "MATLAB simulation and interactive application for capacitor charging, discharging, time constants, and transient-response visualization.",
-        meta: "MATLAB • App Designer",
-        stack: ["MATLAB", "Simulation", "Engineering Analysis"],
-        url: "https://github.com/jd-dev-king/RC-Circuit-Transient-Response-Simulator",
-        action: "View Repository"
-      },
-      {
-        type: "project",
-        tag: "JAVA",
+        tag: "STANDALONE",
         title: "Trivia Madness",
-        description:
-          "Java Swing trivia application with Open Trivia DB integration, SQLite persistence, difficulty selection, scoring, and leaderboards.",
+        description: "Standalone Java Swing and web trivia experience with Open Trivia DB, SQLite persistence, multiplayer behavior, and leaderboards.",
         meta: "Java • Swing • SQLite",
         stack: ["Java", "Maven", "SQLite", "REST API"],
-        url: "https://github.com/jd-dev-king/Trivia-Madness-Game",
-        action: "View Repository"
+        repositoryUrl: "https://github.com/jd-dev-king/Trivia-Madness-Game",
+        liveUrl: "https://jd-dev-king.github.io/Trivia-Madness-Game/",
+        url: "https://jd-dev-king.github.io/Trivia-Madness-Game/",
+        action: "Launch Trivia Experience"
       },
       {
         type: "project",
-        tag: "GIT TRAINING",
+        tag: "STANDALONE",
         title: "GitSafe Practice Lab",
-        description:
-          "Live interactive Git training demo with simulated remotes, teammate updates, rejected pushes, merge conflicts, recovery workflows, and guided command-line practice. The complete hosted user experience is planned for Railway.",
-        meta: "Git • Python • Flask • Live Demo",
+        description: "Standalone interactive Git training demo with simulated remotes, conflicts, recovery workflows, and guided command-line practice.",
+        meta: "Git • Python • Flask",
         stack: ["Git", "Python", "Flask", "Developer Education"],
-        repositoryUrl:
-          "https://github.com/jd-dev-king/GitSafe-Practice-Lab",
-        liveUrl:
-          "https://jd-dev-king.github.io/GitSafe-Practice-Lab/",
-        url:
-          "https://jd-dev-king.github.io/GitSafe-Practice-Lab/",
+        repositoryUrl: "https://github.com/jd-dev-king/GitSafe-Practice-Lab",
+        liveUrl: "https://jd-dev-king.github.io/GitSafe-Practice-Lab/",
+        url: "https://jd-dev-king.github.io/GitSafe-Practice-Lab/",
         action: "Launch Interactive Lab"
       }
     ],
@@ -422,7 +431,7 @@ export const portfolioContent = {
         tag: "EES",
         title: "EES Evolution",
         description:
-          "The portfolio is transitioning into a living, explorable Engineering Experience System with missions, intelligence, simulations, and operations.",
+          "The portfolio is transitioning into a living, explorable Engineering Excellence Systems with missions, intelligence, simulations, and operations.",
         stack: ["Three.js", "Digital Twins", "AURA", "Game Systems"]
       }
     ],
@@ -520,10 +529,10 @@ export const portfolioContent = {
       },
       {
         tag: "FEATURED",
-        title: "Manufacturing Operations Intelligence",
-        description: "R analytics, automation, dashboards, and manufacturing reporting.",
-        stack: ["R", "Shiny", "Actions"],
-        url: "https://github.com/jd-dev-king/Manufacturing-Operations-Intelligence-Automation",
+        title: "EES Manufacturing Intelligence",
+        description: "Unified production analytics, asset health, automation, dashboards, and manufacturing intelligence.",
+        stack: ["R", "Shiny", "PostgreSQL", "Analytics"],
+        url: "https://github.com/jd-dev-king/EES-Manufacturing-Intelligence",
         action: "Open Repository"
       }
     ],
